@@ -86,7 +86,7 @@ if (!class_exists('csl_mvc')) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$logDate = date('Y-m-d'); //local date
-				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CodeSwitcher-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log');
+				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log');
 			}
 			//intro page
 			self :: $intro = (isset ($CS_CONF['INTRO']) && is_string($CS_CONF['INTRO']) ? $CS_CONF['INTRO'] : '');

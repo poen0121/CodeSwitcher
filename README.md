@@ -1,6 +1,5 @@
 # CodeSwitcher
-CodeSwitcher is the PHP framework of the code version control.
-
+PHP Framework
 > About
 
 	CodeSwitcher is the code version control framework.

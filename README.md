@@ -2,6 +2,10 @@
 PHP Framework
 > About
 
+	CodeSwitcher is a web application framework with intuitive development. 
+	
+	We believe that development must be a simple, flexible development framework.
+	
 	CodeSwitcher is the code version control framework.
 
 	Based on Model 2 MVC architecture.

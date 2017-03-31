@@ -1,5 +1,5 @@
 # CodeSwitcher
-PHP Framework
+PHP Framework ( PHP >= 5 )
 > About
 
 	CodeSwitcher is a web application framework with intuitive development. 

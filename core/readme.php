@@ -15,9 +15,9 @@
 
 >> About
 
-	This is the code version control framework.
+	The core directory is the program directory of the CodeSwitcher framework.
 
-	Based on Model 2 MVC architecture.
+	The main program file is related to main.inc.php.
 
 >> Main Directory
 

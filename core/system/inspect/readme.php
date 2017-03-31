@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.0
+	Revision	: 3.0.0
 	Notes		:
 
 	Revision History:

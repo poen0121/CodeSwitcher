@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_template function
-	Revision	: 3.3
+	Revision	: 3.3.0
 	Notes		:
 
 	Revision History:

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.6
+	Revision	: 2.6.0
 	Notes		:
 
 	Revision History:

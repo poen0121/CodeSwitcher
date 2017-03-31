@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_version function
-	Revision	: 2.8
+	Revision	: 2.8.0
 	Notes		: You can use chdir() change current script parent directories.
 
 	Revision History:

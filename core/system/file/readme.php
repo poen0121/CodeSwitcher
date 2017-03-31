@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_file function
-	Revision	: 4.2
+	Revision	: 4.2.0
 	Notes		:
 
 	Revision History:

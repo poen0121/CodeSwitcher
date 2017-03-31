@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.8
+	Revision	: 2.8.0
 	Notes		:
 
 	Revision History:

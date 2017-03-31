@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_language function
-	Revision	: 2.6
+	Revision	: 2.6.0
 	Notes		: Use root XML tag names , the default is `language`.
 
 	Revision History:

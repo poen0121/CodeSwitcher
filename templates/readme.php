@@ -132,7 +132,7 @@
 	Use the csl_mvc::formPath function to process the output URI.
 	eg:
 	--------------------------------------------------------------
-	<script src="<?=csl_mvc::formPath('resources/test.js')?>"></script>
+	<script src="<?=csl_mvc::formPath('resources/test.js');?>"></script>
 	--------------------------------------------------------------
 */
 ?>

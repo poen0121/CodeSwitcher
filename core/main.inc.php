@@ -225,11 +225,21 @@ if (!class_exists('csl_mvc')) {
 						if (strlen($scriptNaame) == 0) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						} else {
-							$file = ($scriptNaame == self :: $intro ? BASEPATH . 'index.php' : BASEPATH . 'events/' . $scriptNaame . '/index.php');
-							if (is_file($file)) {
+							if ($scriptNaame == self :: $intro) {
+								$file = BASEPATH . 'index.php';
+								$file = (is_file($file) ? $file : null);
+								if (is_null($file)) {
+									$file = BASEPATH . 'events/' . $scriptNaame . '/index.php';
+									$file = (is_file($file) ? $file : null);
+								}
+							} else {
+								$file = BASEPATH . 'events/' . $scriptNaame . '/index.php';
+								$file = (is_file($file) ? $file : null);
+							}
+							if (isset ($file)) {
 								return csl_path :: relative($file);
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Script \'' . $scriptNaame . '\'' . ($scriptNaame == self :: $intro ? ' intro' : '') . ' index page does not exist', E_USER_WARNING, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Script \'' . $scriptNaame . '\' index page does not exist', E_USER_WARNING, 1);
 							}
 						}
 					}

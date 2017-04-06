@@ -454,7 +454,7 @@ if (!class_exists('csl_mvc')) {
 						self :: init();
 						if (ob_start()) {
 							$obStartLevel = ob_get_level();
-							$model = (strlen(self :: $script) > 0 ? self :: $script : self :: $intro);
+							$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
 							if (strlen($model) > 0 && is_dir(BASEPATH . 'events/' . $model)) {
 								$maxVersion = BASEPATH . 'events/' . $model . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');

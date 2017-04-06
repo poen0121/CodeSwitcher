@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_version function
-	Revision	: 2.8.0
+	Revision	: 2.8.1
 	Notes		: You can use chdir() change current script parent directories.
 
 	Revision History:
@@ -11,6 +11,7 @@
 	---------------------------------------------------------------------------
 	03-03-2016		Poen		03-03-2016	Poen		Create the program.
 	08-18-2016		Poen		03-27-2017	Poen		Reforming the program.
+	04-06-2017		Poen		04-06-2017	Poen		Debug get function version compare.
 	---------------------------------------------------------------------------
 
 >> About

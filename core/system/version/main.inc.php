@@ -59,14 +59,14 @@ if (!class_exists('csl_version')) {
 								if (is_dir($dir . $file) && preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $file)) {
 									$filemtime = filemtime($dir . $file);
 									if (!$maxVersion && ($this->labelTime == 0 || $filemtime <= $this->labelTime)) {
-										$version = ($version < $file ? $file : $version);
+										$version = (version_compare($file, $version) > 0 ? $file : $version);
 									}
 									if ($limitMaxVersion) {
-										if (!$maxVersion && $version > $limitMaxVersion) {
+										if (!$maxVersion && version_compare($version, $limitMaxVersion) > 0) {
 											$maxVersion = true;
 											$version = (is_dir($dir . $limitMaxVersion) ? $limitMaxVersion : false);
 										}
-										if ($file > $limitMaxVersion && $this->labelTime > 0 && $filemtime <= $this->labelTime) {
+										if (version_compare($file, $limitMaxVersion) > 0 && $this->labelTime > 0 && $filemtime <= $this->labelTime) {
 											touch($dir . $file, $this->touchTime); //reset file mtime
 										}
 									}

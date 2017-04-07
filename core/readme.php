@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.2.0
+	Revision	: 1.3.0
 	Notes		:
 
 	Revision History:
@@ -13,6 +13,7 @@
 	09-22-2016		Poen		03-30-2017	Poen		Reforming the program.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the index function to correct the info on the intro page.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the callEvent function.
+	04-07-2016		Poen		04-07-2017	Poen		Improve the program code.
 	---------------------------------------------------------------------------
 
 >> About

@@ -1,20 +1,21 @@
 <?php
 if (!class_exists('csl_mvc')) {
-	//path to the system root directory
+	//defines the path of the CodeSwitcher root directory
 	define('BASEPATH', rtrim(str_replace('\\', '/', dirname(dirname(__FILE__))), '/') . '/');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/error/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/func_arg/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/header/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/inspect/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/path/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/import/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/file/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/language/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/template/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/version/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/browser/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/time/main.inc.php');
-	include (str_replace('\\', '/', dirname(__FILE__)) . '/system/debug/main.inc.php');
+	//including the CodeSwitcher system library
+	include (BASEPATH . 'core/system/error/main.inc.php');
+	include (BASEPATH . 'core/system/func_arg/main.inc.php');
+	include (BASEPATH . 'core/system/header/main.inc.php');
+	include (BASEPATH . 'core/system/inspect/main.inc.php');
+	include (BASEPATH . 'core/system/path/main.inc.php');
+	include (BASEPATH . 'core/system/import/main.inc.php');
+	include (BASEPATH . 'core/system/file/main.inc.php');
+	include (BASEPATH . 'core/system/language/main.inc.php');
+	include (BASEPATH . 'core/system/template/main.inc.php');
+	include (BASEPATH . 'core/system/version/main.inc.php');
+	include (BASEPATH . 'core/system/browser/main.inc.php');
+	include (BASEPATH . 'core/system/time/main.inc.php');
+	include (BASEPATH . 'core/system/debug/main.inc.php');
 	/**
 	 * @about - this is the code version control framework.
 	 */
@@ -43,14 +44,14 @@ if (!class_exists('csl_mvc')) {
 			if (is_null(self :: $portal)) {
 				self :: $rootDir = csl_path :: document_root();
 				$script = (isset ($_SERVER['SCRIPT_NAME']) ? csl_path :: clean(self :: $rootDir . $_SERVER['SCRIPT_NAME']) : '');
-				$baseDir = csl_path :: clean(BASEPATH);
-				self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $baseDir) . '(events\/.+\/){0,1}index.php$/i', $script);
+				$hostDir = csl_path :: clean(BASEPATH);
+				self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', $script);
 				self :: $tripSystem = false;
 				self :: $tester = false;
 				self :: $develop = false;
 				self :: $obStartLevel = ob_get_level();
 				if (self :: $portal) {
-					$script = trim(substr($script, strlen($baseDir)), '/');
+					$script = trim(substr($script, strlen($hostDir)), '/');
 					//target script
 					self :: $script = (preg_match('/^index.php$/i', $script) ? null : trim(substr(csl_path :: cutdir($script), 7), '/'));
 				}
@@ -65,7 +66,7 @@ if (!class_exists('csl_mvc')) {
 			clearstatcache();
 			csl_debug :: display(false); //erorr display none
 			self :: $versionClass = new csl_version();
-			//----system-config-----------------------------------------------------------
+			//----system-config-----
 			$originalTripSystem = self :: $tripSystem;
 			self :: $tripSystem = true;
 			$CS_CONF = self :: cueConfig('CodeSwitcher');
@@ -123,7 +124,7 @@ if (!class_exists('csl_mvc')) {
 		 */
 		private static function ERROR_500() {
 			if (!csl_debug :: is_display() && !headers_sent()) {
-				// turns off all output buffers
+				//turns off all output buffers
 				while (ob_get_level() > self :: $obStartLevel) {
 					ob_end_clean();
 				}

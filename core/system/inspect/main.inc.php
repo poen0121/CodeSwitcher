@@ -45,12 +45,17 @@ if (!class_exists('csl_inspect')) {
 		/** IP format verification.
 		 * @access - public function
 		 * @param - string $data (ip)
+		 * @param - boolean $shield (shield private ip and reserved ip) : Default false
 		 * @return - boolean
-		 * @usage - csl_inspect::is_ip($data);
+		 * @usage - csl_inspect::is_ip($data,$shield);
 		 */
-		public static function is_ip($data = null) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				return (bool) filter_var($data, FILTER_VALIDATE_IP);
+		public static function is_ip($data = null, $shield = false) {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
+				if (!$shield) {
+					return (bool) filter_var($data, FILTER_VALIDATE_IP);
+				} else {
+					return (bool) filter_var($data, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+				}
 			}
 			return false;
 		}

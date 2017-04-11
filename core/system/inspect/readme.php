@@ -3,14 +3,14 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.0.0
+	Revision	: 3.1.0
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	02-08-2010		Poen		02-08-2010	Poen		Create the program.
-	08-01-2016		Poen		10-28-2016	Poen		Reforming the program.
+	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
 	---------------------------------------------------------------------------
 
 >> About
@@ -57,13 +57,17 @@
 
 	==============================================================
 	IP format verification.
-	Usage : csl_inspect::is_ip($data);
+	Usage : csl_inspect::is_ip($data,$shield);
 	Param : string $data (ip)
+	Param : boolean $shield (shield private ip and reserved ip) : Default false
 	Return : boolean
 	--------------------------------------------------------------
 	Example :
 	csl_inspect::is_ip('127.0.0.1');
 	Output >> TRUE
+	Example :
+	csl_inspect::is_ip('127.0.0.1',true);
+	Output >> FALSE
 	==============================================================
 
 	==============================================================

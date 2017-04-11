@@ -3,14 +3,14 @@
 >> Information
 
 	Title		: csl_browser function
-	Revision	: 2.8.0
+	Revision	: 2.9.0
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	09-21-2011		Poen		09-25-2015	Poen		Create the program.
-	08-01-2016		Poen		01-18-2017	Poen		Reforming the program.
+	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
 	---------------------------------------------------------------------------
 
 >> About

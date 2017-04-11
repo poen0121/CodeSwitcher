@@ -23,7 +23,7 @@ if (!class_exists('csl_browser')) {
 				if (isset ($_SERVER[$key])) {
 					foreach (explode(',', $_SERVER[$key]) as $ip) {
 						$ip = trim($ip);
-						if ((bool) filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+						if ((bool) filter_var($ip, FILTER_VALIDATE_IP)) {
 							return $ip;
 						}
 					}

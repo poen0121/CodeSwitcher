@@ -8,6 +8,15 @@
 
 >> Set Directory Version
 
+	File Structure :
+
+	languages
+	└── main directory
+		├── 1.0.1
+		│	└── main.inc.xml
+	  	└── ini
+			└── version.php
+
 	Step 1 : Create a main directory.
 
 	Step 2 : Create `ini` directory.

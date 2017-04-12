@@ -16,6 +16,15 @@
 
 >> Set Directory Version
 
+	File Structure :
+
+	resources
+	└── main directory
+		├── 1.0.1
+		│	└── resource file
+	  	└── ini
+			└── version.php
+
 	Step 1 : Create a main directory.
 
 	Step 2 : Create `ini` directory.

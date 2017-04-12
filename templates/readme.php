@@ -32,6 +32,15 @@
 
 >> Set Directory Version
 
+	File Structure :
+
+	templates
+	└── main directory
+		├── 1.0.1
+		│	└── main.inc.php
+	  	└── ini
+			└── version.php
+
 	Step 1 : Create a main directory.
 
 	Step 2 : Create `ini` directory.

@@ -99,7 +99,7 @@ if (!class_exists('csl_error')) {
 		 * @usage - self::where(&$echoDepth);
 		 */
 		private static function where(& $echoDepth) {
-			$trace = (bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false);
+			$trace = (isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false);
 			$baseDepth = 2 + $echoDepth;
 			$caller = debug_backtrace(($trace ? DEBUG_BACKTRACE_PROVIDE_OBJECT : DEBUG_BACKTRACE_IGNORE_ARGS), ($trace ? 0 : $baseDepth));
 			$rows = count($caller);

@@ -83,7 +83,7 @@ if (!class_exists('csl_template')) {
 					break;
 			}
 			$message = '<br /><b>' . $title . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b><br />';
-			if ((bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false)) { //error stack trace
+			if ((isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false)) { //error stack trace
 				$baseDepth = 1;
 				$caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT);
 				$rows = count($caller);

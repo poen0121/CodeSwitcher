@@ -3,14 +3,14 @@
 >> Information
 
 	Title		: csl_path function
-	Revision	: 3.8.0
+	Revision	: 3.8.1
 	Notes		: You can use chdir() change current script parent directories.
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	04-02-2010		Poen		05-28-2015	Poen		Create the program.
-	10-19-2016		Poen		03-27-2017	Poen		Reforming the program.
+	10-19-2016		Poen		04-21-2017	Poen		Reforming the program.
 	---------------------------------------------------------------------------
 
 >> About

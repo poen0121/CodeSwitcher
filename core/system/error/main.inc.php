@@ -82,7 +82,7 @@ if (!class_exists('csl_error')) {
 						error_log(strtoupper(trim($logTitle)) . ' ' . strip_tags($message), 0);
 					}
 					if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
-						echo $message . PHP_EOL;
+						echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
 					}
 				}
 				if ($title == 'Fatal error') {
@@ -99,7 +99,7 @@ if (!class_exists('csl_error')) {
 		 * @usage - self::where(&$echoDepth);
 		 */
 		private static function where(& $echoDepth) {
-			$trace = (bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? $_SERVER['ERROR_STACK_TRACE'] : false);
+			$trace = (bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false);
 			$baseDepth = 2 + $echoDepth;
 			$caller = debug_backtrace(($trace ? DEBUG_BACKTRACE_PROVIDE_OBJECT : DEBUG_BACKTRACE_IGNORE_ARGS), ($trace ? 0 : $baseDepth));
 			$rows = count($caller);

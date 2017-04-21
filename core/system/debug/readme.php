@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.0.0
+	Revision	: 3.1.0
 	Notes		:
 
 	Revision History:
@@ -11,6 +11,7 @@
 	---------------------------------------------------------------------------
 	10-20-2010		Poen		10-20-2010	Poen		Create the program.
 	08-17-2016		Poen		02-22-2017	Poen		Reforming the program.
+	04-20-2017		Poen		04-20-2017	Poen		Add set_trace_error_handler function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -22,6 +23,23 @@
 	==============================================================
 	Include file
 	Usage : include('debug/main.inc.php');
+	==============================================================
+
+	==============================================================
+	Set the PHP error stack trace mode to initialize the set_error_handler call hp_debug::TraceErrorHandler.
+	Usage : csl_debug::set_trace_error_handler($switch);
+	Param : boolean $switch (open or close the stack trace error mode) : Default true
+	Note : $switch `true` is open to $_SERVER['ERROR_STACK_TRACE'] = On.
+	Note : $switch `false` is close to $_SERVER['ERROR_STACK_TRACE'] = Off.
+	Return : boolean
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : Open the stack trace error.
+	csl_debug::set_trace_error_handler(true);
+	Output >> TRUE
+	Example : Close the stack trace error.
+	csl_debug::set_trace_error_handler(false);
+	Output >> TRUE
 	==============================================================
 
 	==============================================================

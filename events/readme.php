@@ -46,6 +46,7 @@
 	Step 6 : Create link file `index.php` in the main directory.
 	-----------------------------------------------------
 	<?php
+	chdir(dirname(__FILE__));
 	include('../../core/main.inc.php');
 	csl_mvc::callEvent();
 	?>

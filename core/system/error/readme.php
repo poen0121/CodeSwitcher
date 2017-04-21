@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.6.0
+	Revision	: 2.7.0
 	Notes		:
 
 	Revision History:
@@ -11,6 +11,7 @@
 	---------------------------------------------------------------------------
 	07-29-2016		Poen		07-29-2016	Poen		Create the program.
 	08-05-2016		Poen		03-27-2017	Poen		Reforming the program.
+	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	---------------------------------------------------------------------------
 
 >> About
@@ -32,9 +33,9 @@
 
 	Stack trace grab file and line echo location.
 
-	Enable : $_SERVER['ERROR_STACK_TRACE']=1;
+	Enable : $_SERVER['ERROR_STACK_TRACE'] = On;
 
-	Disable : $_SERVER['ERROR_STACK_TRACE']=0;
+	Disable : $_SERVER['ERROR_STACK_TRACE'] = Off;
 
 >> Error Level
 

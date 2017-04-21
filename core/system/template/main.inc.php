@@ -83,7 +83,7 @@ if (!class_exists('csl_template')) {
 					break;
 			}
 			$message = '<br /><b>' . $title . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b><br />';
-			if ((bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? $_SERVER['ERROR_STACK_TRACE'] : false)) { //error stack trace
+			if ((bool) (isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false)) { //error stack trace
 				$baseDepth = 1;
 				$caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT);
 				$rows = count($caller);
@@ -128,7 +128,7 @@ if (!class_exists('csl_template')) {
 				error_log('PHP ' . strip_tags($message), 0);
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
-				echo $message . PHP_EOL;
+				echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
 			}
 			if ($title == 'Fatal error') {
 				exit;

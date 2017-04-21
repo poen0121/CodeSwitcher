@@ -417,15 +417,15 @@ if (!class_exists('csl_path')) {
 					$path = self :: arrive($path);
 					return (parse_url($path, PHP_URL_HOST) === $_SERVER['SERVER_NAME'] && parse_url($path, PHP_URL_PATH) && self :: clean(parse_url($path, PHP_URL_PATH)) === self :: clean($_SERVER['SCRIPT_NAME']) && ((!parse_url($path, PHP_URL_PORT) && ($_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443')) || (parse_url($path, PHP_URL_PORT) === $_SERVER['SERVER_PORT'])) ? true : false);
 				}
-				elseif (isset ($_SERVER['SCRIPT_NAME']) && (self :: is_root_model($path) || self :: is_relative($path))) {
+				elseif (isset ($_SERVER['SCRIPT_FILENAME']) && (self :: is_root_model($path) || self :: is_relative($path))) {
 					if (self :: is_root_model($path)) {
 						$path = self :: arrive($path);
-						return (self :: clean($path) == self :: clean($_SERVER['SCRIPT_NAME']) ? true : false);
+						return (self :: clean($path) == self :: clean($_SERVER['SCRIPT_FILENAME']) ? true : false);
 					} else {
 						$path = self :: arrive($path);
 						$path = explode('/', $path);
 						$path = array_reverse($path);
-						$script = self :: clean($_SERVER['SCRIPT_NAME']);
+						$script = self :: clean($_SERVER['SCRIPT_FILENAME']);
 						$script = explode('/', $script);
 						$script = array_reverse($script);
 						$layer = 0;

@@ -1,7 +1,9 @@
 <?php
 if (!class_exists('csl_mvc')) {
+	//default document root directory
+	$_SERVER['DOCUMENT_ROOT'] = dirname(dirname(__FILE__));
 	//defines the path of the CodeSwitcher root directory
-	define('BASEPATH', rtrim(str_replace('\\', '/', dirname(dirname(__FILE__))), '/') . '/');
+	define('BASEPATH', rtrim(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '/') . '/');
 	//including the CodeSwitcher system library
 	include (BASEPATH . 'core/system/error/main.inc.php');
 	include (BASEPATH . 'core/system/func_arg/main.inc.php');
@@ -43,7 +45,7 @@ if (!class_exists('csl_mvc')) {
 			}
 			if (is_null(self :: $portal)) {
 				self :: $rootDir = csl_path :: document_root();
-				$script = (isset ($_SERVER['SCRIPT_NAME']) ? csl_path :: clean(self :: $rootDir . $_SERVER['SCRIPT_NAME']) : '');
+				$script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean($_SERVER['SCRIPT_FILENAME']) : '');
 				$hostDir = csl_path :: clean(BASEPATH);
 				self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', $script);
 				self :: $tripSystem = false;
@@ -79,7 +81,7 @@ if (!class_exists('csl_mvc')) {
 				}
 			}
 			//set error stack trace mode
-			$_SERVER['ERROR_STACK_TRACE'] = (array_key_exists('ERROR_STACK_TRACE_MODE', $CS_CONF) ? ($CS_CONF['ERROR_STACK_TRACE_MODE'] === true ? true : false) : false);
+			csl_debug :: set_trace_error_handler(array_key_exists('ERROR_STACK_TRACE_MODE', $CS_CONF) ? ($CS_CONF['ERROR_STACK_TRACE_MODE'] === true ? true : false) : false);
 			//set error log storage mode
 			csl_debug :: record(array_key_exists('ERROR_LOG_MODE', $CS_CONF) ? ($CS_CONF['ERROR_LOG_MODE'] === true ? true : false) : true);
 			//error log storage directory
@@ -97,7 +99,7 @@ if (!class_exists('csl_mvc')) {
 			//languages xml enciding
 			$langXmlEnciding = (isset ($CS_CONF['LANGUAGE_XML_ENCODING']) && is_string($CS_CONF['LANGUAGE_XML_ENCODING']) ? $CS_CONF['LANGUAGE_XML_ENCODING'] : 'utf-8');
 			//source IP verification tester
-			self :: $tester = (preg_match('/^(localhost|127.0.0.1)$/i', (isset ($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) ? true : in_array(csl_browser :: info('ip'), (isset ($CS_CONF['TESTER_IP']) && is_array($CS_CONF['TESTER_IP']) ? $CS_CONF['TESTER_IP'] : array ()), true));
+			self :: $tester = (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? true : (preg_match('/^(localhost|127.0.0.1)$/i', (isset ($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) ? true : in_array(csl_browser :: info('ip'), (isset ($CS_CONF['TESTER_IP']) && is_array($CS_CONF['TESTER_IP']) ? $CS_CONF['TESTER_IP'] : array ()), true)));
 			//set tester mode
 			if (self :: $tester) {
 				//set debug mode

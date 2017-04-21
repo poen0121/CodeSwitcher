@@ -1,6 +1,6 @@
 <?php
 /*
- >> Intro Page
+>> Intro Page
 
 	The system automatically loads the introductory page by CodeSwitcher configuration.
 
@@ -13,7 +13,8 @@
 	Example:
 	$CS_CONF['INTRO']='home';
 	==============================================================
-*/
-include('./core/main.inc.php');
-csl_mvc::callEvent();
+ */
+chdir(dirname(__FILE__));
+include ('./core/main.inc.php');
+csl_mvc :: callEvent();
 ?>

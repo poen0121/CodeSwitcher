@@ -462,10 +462,10 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			//restrictions can only be called once
 			if (!self :: $runEvent && self :: $portal) {
+				self :: $runEvent = true;
 				$fileName = null;
 				$lineNum = null;
 				if (!headers_sent($fileName, $lineNum)) {
-					self :: $runEvent = true;
 					if (!csl_func_arg :: delimit2error()) {
 						if (ob_start()) {
 							$obStartLevel = ob_get_level();

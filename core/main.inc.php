@@ -22,6 +22,7 @@ if (!class_exists('csl_mvc')) {
 	 * @about - this is the code version control framework.
 	 */
 	class csl_mvc {
+		private static $runEvent;
 		private static $versionClass;
 		private static $rootDir;
 		private static $script;
@@ -38,25 +39,28 @@ if (!class_exists('csl_mvc')) {
 		 * @usage -  self::start();
 		 */
 		private static function start() {
-			if (!self :: $tripSystem) {
+			if (is_null(self :: $portal)) {
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
-			}
-			if (is_null(self :: $portal)) {
+				self :: $runEvent = false; //run event state
 				self :: $rootDir = csl_path :: document_root();
-				$script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean($_SERVER['SCRIPT_FILENAME']) : '');
-				$hostDir = csl_path :: clean(BASEPATH);
-				self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', $script);
-				self :: $tripSystem = false;
-				self :: $tester = false;
-				self :: $develop = false;
+				self :: $tripSystem = false; //system running state
+				self :: $tester = false; //tester mode
+				self :: $develop = false; //develop mode by tester
 				self :: $obStartLevel = ob_get_level();
-				if (self :: $portal) {
-					$script = trim(substr($script, strlen($hostDir)), '/');
-					//target script
-					self :: $script = (preg_match('/^index.php$/i', $script) ? null : trim(substr(csl_path :: cutdir($script), 7), '/'));
+				self :: $portal = false; //portal script state
+				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean($_SERVER['SCRIPT_FILENAME']) : false); //script path
+				if (self :: $script !== false) {
+					$hostDir = csl_path :: clean(BASEPATH);
+					self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', self :: $script);
+					//get target script
+					if (self :: $portal) {
+						self :: $script = trim(substr(self :: $script, strlen($hostDir)), '/');
+						self :: $script = (preg_match('/^index.php$/i', self :: $script) ? null : trim(substr(csl_path :: cutdir(self :: $script), 7), '/'));
+					}
 				}
+				self :: init();
 			}
 		}
 		/** Init system config info.
@@ -110,11 +114,11 @@ if (!class_exists('csl_mvc')) {
 			//check languages xml options
 			if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $langXmlVersion)) {
 				self :: ERROR_500();
-				csl_error :: cast('System failed - invalid language configuration XML version number ' . $langXmlVersion, E_USER_ERROR, 2, 'CS');
+				csl_error :: cast('System failed - invalid language configuration XML version number ' . $langXmlVersion, E_USER_ERROR, 3, 'CS');
 			}
 			elseif (!csl_inspect :: is_iconv_encoding($langXmlEnciding)) {
 				self :: ERROR_500();
-				csl_error :: cast('System failed - invalid language configuration XML encoding scheme ' . $langXmlEnciding, E_USER_ERROR, 2, 'CS');
+				csl_error :: cast('System failed - invalid language configuration XML encoding scheme ' . $langXmlEnciding, E_USER_ERROR, 3, 'CS');
 			} else {
 				self :: $language = new csl_language('language', $langXmlVersion, $langXmlEnciding);
 			}
@@ -185,6 +189,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -207,6 +212,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -248,6 +254,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -275,6 +282,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -302,6 +310,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -374,6 +383,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -438,6 +448,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -449,12 +460,13 @@ if (!class_exists('csl_mvc')) {
 		 */
 		public static function callEvent() {
 			self :: start();
-			if (is_null(self :: $versionClass) && self :: $portal) { //restrictions can only be called once
+			//restrictions can only be called once
+			if (!self :: $runEvent && self :: $portal) {
 				$fileName = null;
 				$lineNum = null;
 				if (!headers_sent($fileName, $lineNum)) {
+					self :: $runEvent = true;
 					if (!csl_func_arg :: delimit2error()) {
-						self :: init();
 						if (ob_start()) {
 							$obStartLevel = ob_get_level();
 							$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
@@ -508,13 +520,18 @@ if (!class_exists('csl_mvc')) {
 						}
 					}
 				} else {
-					csl_error :: cast('Cannot modify header information - headers already sent by (output started at ' . $fileName . ':' . $lineNum . ')', E_USER_ERROR, 1, 'CS');
+					csl_error :: cast('Cannot modify header information - headers already sent by (output started at ' . $fileName . ':' . $lineNum . ')', E_USER_WARNING, 1, 'CS');
 				}
 			} else {
-				if (self :: $tripSystem && !is_null(self :: $versionClass)) {
+				if (self :: $tripSystem && self :: $runEvent) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Can not be called here', E_USER_NOTICE, 1, 'CS');
 				}
+				elseif (self :: $script === false) {
+					self :: ERROR_500();
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unknown script path', E_USER_ERROR, 1, 'CS');
+				}
 				elseif (!self :: $portal) {
+					self :: ERROR_500();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 				}
 			}
@@ -587,6 +604,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -658,6 +676,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;
@@ -742,6 +761,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
+				self :: ERROR_500();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
 			}
 			return false;

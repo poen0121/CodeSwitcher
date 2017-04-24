@@ -520,7 +520,7 @@ if (!class_exists('csl_mvc')) {
 						}
 					}
 				} else {
-					csl_error :: cast('Cannot modify header information - headers already sent by (output started at ' . $fileName . ':' . $lineNum . ')', E_USER_WARNING, 1, 'CS');
+					csl_error :: cast('Cannot modify header information - headers already sent by (output started at ' . $fileName . ':' . $lineNum . ')', E_USER_ERROR, 1, 'CS');
 				}
 			} else {
 				if (self :: $tripSystem && self :: $runEvent) {

@@ -43,7 +43,7 @@ if (!class_exists('csl_mvc')) {
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
-				self :: $runEvent = false; //run event state
+				self :: $runEvent = false; //event running state
 				self :: $rootDir = csl_path :: document_root();
 				self :: $tripSystem = false; //system running state
 				self :: $tester = false; //tester mode

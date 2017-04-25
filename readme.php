@@ -22,7 +22,7 @@
 
 	3.languages : Languages directory support version control mechanism.
 
-	4.libraries : Developer libraries directory version control mechanism is optional.
+	4.libraries : Developer libraries directory support version control mechanism.
 
 	5.models : Models directory support version control mechanism.
 

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.5.1
+	Revision	: 1.6.1
 	Notes		:
 
 	Revision History:
@@ -19,6 +19,7 @@
 	04-24-2017		Poen		04-24-2017	Poen		Confirm that the script information is available.
 	04-24-2017		Poen		04-24-2017	Poen		Modify the control error message to throw.
 	04-24-2017		Poen		04-24-2017	Poen		Debug run event start.
+	04-26-2016		Poen		04-26-2017	Poen		Add the importEvent function.
 	---------------------------------------------------------------------------
 
 >> About

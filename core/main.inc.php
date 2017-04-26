@@ -537,6 +537,78 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
+		/** Returns the version number when the event file was loaded form the CodeSwitcher events directory.
+		 * @access - public function
+		 * @param - string $model (model name)
+		 * @return - string|error|boolean
+		 * @usage - csl_mvc::importEvent($model);
+		 */
+		public static function importEvent($model = null) {
+			self :: start();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
+					} else {
+						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
+						if (strlen($model) == 0) {
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
+						}
+						elseif (is_dir(BASEPATH . 'events/' . $model)) {
+							$maxVersion = BASEPATH . 'events/' . $model . '/ini/version.php';
+							$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+							if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
+								self :: ERROR_500();
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unknown \'' . $model . '\' defined version number', E_USER_ERROR, 1, 'CS');
+							}
+							if (!self :: $versionClass->is_exists(BASEPATH . 'events/' . $model, $maxVersion)) {
+								self :: ERROR_500();
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - defined \'' . $model . '\' version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 1, 'CS');
+							}
+							$version = self :: $versionClass->get(BASEPATH . 'events/' . $model, (!self :: $tester || !self :: $develop ? $maxVersion : ''));
+							if ($version) {
+								$file = BASEPATH . 'events/' . $model . '/' . $version . '/main.inc.php';
+								if (is_file($file) && is_readable($file)) {
+									if (ob_start()) {
+										$obStartLevel = ob_get_level();
+										if (csl_import :: from($file) !== false) {
+											if (ob_get_level() >= $obStartLevel) {
+												$output = ob_get_contents();
+												ob_end_clean();
+												echo $output;
+											} else {
+												self :: ERROR_500();
+												csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1, 'CS');
+											}
+											return $version;
+										} else {
+											self :: ERROR_500();
+											csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1, 'CS');
+										}
+									} else {
+										self :: ERROR_500();
+										csl_error :: cast('System failed - open output buffer failed to start', E_USER_ERROR, 1, 'CS');
+									}
+								} else {
+									self :: ERROR_500();
+									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - could not load \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1, 'CS');
+								}
+							} else {
+								self :: ERROR_500();
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get \'' . $model . '\' version', E_USER_ERROR, 1, 'CS');
+							}
+						} else {
+							self :: ERROR_500();
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - target \'' . $model . '\' does not exist', E_USER_ERROR, 1, 'CS');
+						}
+					}
+				}
+			} else {
+				self :: ERROR_500();
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
+			}
+			return false;
+		}
 		/** Returns the version number when the model file was loaded form the CodeSwitcher models directory.
 		 * @access - public function
 		 * @param - string $model (model name)

@@ -196,6 +196,18 @@
 	==============================================================
 
 	==============================================================
+	Returns the version number when the event file was loaded form the CodeSwitcher events directory.
+	Usage : csl_mvc::importEvent($model);
+	Param : string $model (model name)
+	Return : string
+	Return Note : Returns FALSE on error.
+	--------------------------------------------------------------
+	Example :
+	csl_mvc::importEvent('home');
+	Output >> 1.0.1
+	==============================================================
+
+	==============================================================
 	Returns the version number when the model file was loaded form the CodeSwitcher models directory.
 	Usage : csl_mvc::importModel($model);
 	Param : string $model (model name)

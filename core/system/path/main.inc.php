@@ -342,7 +342,7 @@ if (!class_exists('csl_path')) {
 		 * @usage - csl_path::document_root();
 		 */
 		public static function document_root() {
-			if (!hpl_func_arg :: delimit2error() && isset ($_SERVER['DOCUMENT_ROOT'])) {
+			if (!csl_func_arg :: delimit2error() && isset ($_SERVER['DOCUMENT_ROOT'])) {
 				$path = self :: norm($_SERVER['DOCUMENT_ROOT']);
 				return (substr($path, -1, 1) !== '/' ? $path . '/' : $path);
 			}

@@ -75,8 +75,8 @@ if (!class_exists('csl_browser')) {
 						$info = ($info ? $info : null);
 						break;
 					case 'url' :
-						if (self :: info('host')) {
-							$info = (isset ($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] . '://' : '') . self :: info('host') . (isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
+						if (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST']) && $_SERVER['REQUEST_SCHEME'] && $_SERVER['HTTP_HOST']) {
+							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
 						}
 						break;
 					case 'ip' :
@@ -182,7 +182,7 @@ if (!class_exists('csl_browser')) {
 				$source = self :: info('source');
 				if ($source) {
 					$source = parse_url($source);
-					if (isset ($source['host']) && isset ($_SERVER['SERVER_NAME']) && $source['host'] == $_SERVER['SERVER_NAME']) {
+					if (isset ($source['host'], $_SERVER['SERVER_NAME']) && $source['host'] && $_SERVER['SERVER_NAME'] && $source['host'] == $_SERVER['SERVER_NAME']) {
 						return true;
 					}
 				}

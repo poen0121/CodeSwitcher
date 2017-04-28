@@ -174,7 +174,7 @@ if (!class_exists('csl_path')) {
 				if (self :: is_absolute($scriptName) || (!self :: is_root_model($scriptName) && !self :: is_relative($scriptName))) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 				}
-				elseif (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT'])) {
+				elseif (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']) && strlen($_SERVER['REQUEST_SCHEME']) > 0 && strlen($_SERVER['SERVER_NAME']) > 0 && strlen($_SERVER['SERVER_PORT']) > 0) {
 					return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ($_SERVER['SERVER_PORT'] != '80' && $_SERVER['SERVER_PORT'] != '443' ? ':' . $_SERVER['SERVER_PORT'] : '') . self :: clean($scriptName);
 				}
 			}
@@ -413,7 +413,7 @@ if (!class_exists('csl_path')) {
 		 */
 		public static function is_self($path = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				if (isset ($_SERVER['SERVER_NAME']) && isset ($_SERVER['SERVER_PORT']) && isset ($_SERVER['SCRIPT_NAME']) && self :: is_absolute($path)) {
+				if (isset ($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT'], $_SERVER['SCRIPT_NAME']) && self :: is_absolute($path)) {
 					$path = self :: arrive($path);
 					return (parse_url($path, PHP_URL_HOST) === $_SERVER['SERVER_NAME'] && parse_url($path, PHP_URL_PATH) && self :: clean(parse_url($path, PHP_URL_PATH)) === self :: clean($_SERVER['SCRIPT_NAME']) && ((!parse_url($path, PHP_URL_PORT) && ($_SERVER['SERVER_PORT'] == '80' || $_SERVER['SERVER_PORT'] == '443')) || (parse_url($path, PHP_URL_PORT) === $_SERVER['SERVER_PORT'])) ? true : false);
 				}

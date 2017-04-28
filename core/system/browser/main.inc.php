@@ -57,25 +57,25 @@ if (!class_exists('csl_browser')) {
 				$info = null;
 				switch ($index) {
 					case 'language' :
-						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE']) && $_SERVER['HTTP_ACCEPT_LANGUAGE']) {
+						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) > 0) {
 							$info = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 2);
 							$info = (isset ($info[0]) ? $info[0] : null);
 						}
 						break;
 					case 'server' :
 						$info = (isset ($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '');
-						$info = ($info ? $info : null);
+						$info = (strlen($info) > 0 ? $info : null);
 						break;
 					case 'host' :
 						$info = (isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
-						$info = ($info ? $info : null);
+						$info = (strlen($info) > 0 ? $info : null);
 						break;
 					case 'source' :
 						$info = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-						$info = ($info ? $info : null);
+						$info = (strlen($info) > 0 ? $info : null);
 						break;
 					case 'url' :
-						if (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST']) && $_SERVER['REQUEST_SCHEME'] && $_SERVER['HTTP_HOST']) {
+						if (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST']) && strlen($_SERVER['REQUEST_SCHEME']) > 0 && strlen($_SERVER['HTTP_HOST']) > 0) {
 							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
 						}
 						break;
@@ -85,7 +85,7 @@ if (!class_exists('csl_browser')) {
 					case 'proxy' :
 						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR'], $_SERVER['REMOTE_ADDR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
 							$info = $_SERVER['REMOTE_ADDR'];
-							$info = ($info ? $info : null);
+							$info = (strlen($info) > 0 ? $info : null);
 						}
 						break;
 					case 'name' :
@@ -143,6 +143,7 @@ if (!class_exists('csl_browser')) {
 							'badaOS' => '/\bBada\b/',
 							'BREWOS' => '/BREW/',
 
+
 						);
 						foreach ($list as $os => $match) {
 							if (preg_match($match, $userAgent)) {
@@ -154,8 +155,9 @@ if (!class_exists('csl_browser')) {
 					case 'device' :
 						$info = 'desktop';
 						$list = array (
-							'mobile' => '/Mobile|Phone|Opera Mini|320x320|240x320|176x220/i', //Too many devices on the market.
-							'tablet' => '/Tablet|Pad|Android.*Build\/|Silk.*Accelerated|Kindle|600x800|824x1200|1200x824/i' //Too many devices on the market.
+								'mobile' => '/Mobile|Phone|Opera Mini|320x320|240x320|176x220/i', //Too many devices on the market.
+		'tablet' => '/Tablet|Pad|Android.*Build\/|Silk.*Accelerated|Kindle|600x800|824x1200|1200x824/i' //Too many devices on the market.
+
 						);
 						foreach ($list as $device => $match) {
 							if (preg_match($match, $userAgent)) {
@@ -182,7 +184,7 @@ if (!class_exists('csl_browser')) {
 				$source = self :: info('source');
 				if ($source) {
 					$source = parse_url($source);
-					if (isset ($source['host'], $_SERVER['SERVER_NAME']) && $source['host'] && $_SERVER['SERVER_NAME'] && $source['host'] == $_SERVER['SERVER_NAME']) {
+					if (isset ($source['host'], $_SERVER['SERVER_NAME']) && strlen($source['host']) > 0 && strlen($_SERVER['SERVER_NAME']) > 0 && $source['host'] == $_SERVER['SERVER_NAME']) {
 						return true;
 					}
 				}

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_browser function
-	Revision	: 2.9.1
+	Revision	: 2.9.2
 	Notes		:
 
 	Revision History:
@@ -11,8 +11,8 @@
 	---------------------------------------------------------------------------
 	09-21-2011		Poen		09-25-2015	Poen		Create the program.
 	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
-	04-27-2016		Poen		04-27-2017	Poen		Debug info function.
-	04-27-2016		Poen		04-27-2017	Poen		Debug in_source function.
+	04-27-2016		Poen		04-28-2017	Poen		Debug info function.
+	04-27-2016		Poen		04-28-2017	Poen		Debug in_source function.
 	---------------------------------------------------------------------------
 
 >> About

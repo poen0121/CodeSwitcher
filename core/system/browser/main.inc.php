@@ -141,9 +141,7 @@ if (!class_exists('csl_browser')) {
 							'JavaOS' => '/J2ME\/|\bMIDP\b|\bCLDC\b/',
 							'webOS' => '/webOS|hpwOS/',
 							'badaOS' => '/\bBada\b/',
-							'BREWOS' => '/BREW/',
-
-
+							'BREWOS' => '/BREW/'
 						);
 						foreach ($list as $os => $match) {
 							if (preg_match($match, $userAgent)) {
@@ -155,9 +153,8 @@ if (!class_exists('csl_browser')) {
 					case 'device' :
 						$info = 'desktop';
 						$list = array (
-								'mobile' => '/Mobile|Phone|Opera Mini|320x320|240x320|176x220/i', //Too many devices on the market.
-		'tablet' => '/Tablet|Pad|Android.*Build\/|Silk.*Accelerated|Kindle|600x800|824x1200|1200x824/i' //Too many devices on the market.
-
+							'mobile' => '/Mobile|Phone|Opera Mini|320x320|240x320|176x220/i', //Too many devices on the market.
+							'tablet' => '/Tablet|Pad|Android.*Build\/|Silk.*Accelerated|Kindle|600x800|824x1200|1200x824/i' //Too many devices on the market.
 						);
 						foreach ($list as $device => $match) {
 							if (preg_match($match, $userAgent)) {

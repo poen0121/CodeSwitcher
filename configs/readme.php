@@ -12,7 +12,7 @@
 
 	The configs/CodeSwitcher directory is the system configuration for the CodeSwitcher framework.
 
-	The configs/CodeSwitcher directory does not support test develop mode in the csl_mvc::cueConfig function.
+	The configs/CodeSwitcher directory does not support test develop mode in the csl_mvc::cueConfig or csl_mvc::version function.
 
 >> Set Directory Version
 

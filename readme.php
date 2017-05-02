@@ -257,7 +257,7 @@
 
 	Directory : configs/CodeSwitcher
 	--------------------------------------------------------------
-	Note: The configs/CodeSwitcher directory does not support test develop mode in the csl_mvc::cueConfig function.
+	Note: The configs/CodeSwitcher directory does not support test develop mode in the csl_mvc::cueConfig or csl_mvc::version function.
 
 	==============================================================
 	The introduction page uses the controller script directory name.

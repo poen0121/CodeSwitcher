@@ -2,6 +2,8 @@
 /*
 >> About
 
+	GitHub : https://github.com/poen0121/CodeSwitcher
+
 	CodeSwitcher is the code version control framework.
 
 	Based on Model 2 MVC architecture.

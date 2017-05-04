@@ -143,48 +143,48 @@ if (!class_exists('csl_mvc')) {
 			}
 			return;
 		}
-		/** Get the available version info form the CodeSwitcher root directory file script name.
+		/** Get the available version info from the file directory path name of the CodeSwitcher root directory.
 		 * @access - public function
-		 * @param - string $scriptName (script name in framework)
+		 * @param - string $pathName (path name in framework)
 		 * @param - string $mode (returns directory relative path or version number) : Default false
 		 * @note - $mode `true` is returns directory relative path.
 		 * @note - $mode `false` is returns version number.
 		 * @return - string|boolean
-		 * @usage - csl_mvc::version($scriptName,$mode);
+		 * @usage - csl_mvc::version($pathName,$mode);
 		 */
-		public static function version($scriptName = null, $mode = false) {
+		public static function version($pathName = null, $mode = false) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
-					if (strlen($scriptName) == 0 || csl_path :: is_absolute($scriptName) || !csl_path :: is_relative($scriptName)) {
+					if (strlen($pathName) == 0 || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 					} else {
-						$scriptName = trim(csl_path :: clean(self :: $rootDir . $scriptName), '/');
-						if (strlen($scriptName) == 0) {
+						$pathName = trim(csl_path :: clean(self :: $rootDir . $pathName), '/');
+						if (strlen($pathName) == 0) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 						}
-						elseif (is_dir(BASEPATH . $scriptName)) {
-							$maxVersion = BASEPATH . $scriptName . '/ini/version.php';
+						elseif (is_dir(BASEPATH . $pathName)) {
+							$maxVersion = BASEPATH . $pathName . '/ini/version.php';
 							$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 							if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 								self :: ERROR_500();
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unknown \'' . $scriptName . '\' defined version number', E_USER_ERROR, 1, 'CS');
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unknown \'' . $pathName . '\' defined version number', E_USER_ERROR, 1, 'CS');
 							}
-							if (!self :: $versionClass->is_exists(BASEPATH . $scriptName, $maxVersion)) {
+							if (!self :: $versionClass->is_exists(BASEPATH . $pathName, $maxVersion)) {
 								self :: ERROR_500();
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - defined \'' . $scriptName . '\' version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 1, 'CS');
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - defined \'' . $pathName . '\' version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 1, 'CS');
 							}
-							$scriptInfo = explode('/', $scriptName);
-							$version = self :: $versionClass->get(BASEPATH . $scriptName, (!self :: $tester || !self :: $develop || (count($scriptInfo) === 2 && $scriptInfo[0] == 'configs' && $scriptInfo[1] == 'CodeSwitcher') ? $maxVersion : '')); //CodeSwitcher is system config
+							$pathInfo = explode('/', $pathName);
+							$version = self :: $versionClass->get(BASEPATH . $pathName, (!self :: $tester || !self :: $develop || (count($pathInfo) === 2 && $pathInfo[0] == 'configs' && $pathInfo[1] == 'CodeSwitcher') ? $maxVersion : '')); //CodeSwitcher is system config
 							if ($version) {
-								return ($mode ? csl_path :: relative(BASEPATH . $scriptName . '/' . $version . '/') : $version);
+								return ($mode ? csl_path :: relative(BASEPATH . $pathName . '/' . $version . '/') : $version);
 							} else {
 								self :: ERROR_500();
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unable to get \'' . $scriptName . '\' version', E_USER_ERROR, 1, 'CS');
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unable to get \'' . $pathName . '\' version', E_USER_ERROR, 1, 'CS');
 							}
 						} else {
 							self :: ERROR_500();
-							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - target \'' . $scriptName . '\' does not exist', E_USER_ERROR, 1, 'CS');
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - target \'' . $pathName . '\' does not exist', E_USER_ERROR, 1, 'CS');
 						}
 					}
 				}
@@ -194,21 +194,21 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Get the relative path form the CodeSwitcher root directory file script name.
+		/** Get the relative path from the file path name of the CodeSwitcher root directory.
 		 * @access - public function
-		 * @param - string $scriptName (script name in framework)
+		 * @param - string $pathName (path name in framework)
 		 * @return - string|boolean
-		 * @usage - csl_mvc::formPath($scriptName);
+		 * @usage - csl_mvc::formPath($pathName);
 		 */
-		public static function formPath($scriptName = null) {
+		public static function formPath($pathName = null) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (csl_path :: is_absolute($scriptName) || !csl_path :: is_relative($scriptName)) {
+					if (csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
-						$scriptName = ltrim(csl_path :: clean(self :: $rootDir . $scriptName), '/');
-						return csl_path :: relative(BASEPATH . $scriptName);
+						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
+						return csl_path :: relative(BASEPATH . $pathName);
 					}
 				}
 			} else {
@@ -217,38 +217,38 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns the index page relative path form the CodeSwitcher controller events script directory path name.
+		/** Returns the index page relative path from the events script directory path name of the CodeSwitcher root directory.
 		 * @access - public function
-		 * @param - string $scriptNaame (events script directory path name)
+		 * @param - string $eventName (events script directory path name)
 		 * @return - string|boolean
-		 * @usage - csl_mvc::index($scriptNaame);
+		 * @usage - csl_mvc::index($eventName);
 		 */
-		public static function index($scriptNaame = null) {
+		public static function index($eventName = null) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($scriptNaame) == 0 || csl_path :: is_absolute($scriptNaame) || !csl_path :: is_relative($scriptNaame)) {
+					if (strlen($eventName) == 0 || csl_path :: is_absolute($eventName) || !csl_path :: is_relative($eventName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
-						$scriptNaame = trim(csl_path :: clean(self :: $rootDir . $scriptNaame), '/');
-						if (strlen($scriptNaame) == 0) {
+						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
+						if (strlen($eventName) == 0) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						} else {
-							if ($scriptNaame == self :: $intro) {
+							if ($eventName == self :: $intro) {
 								$file = BASEPATH . 'index.php';
 								$file = (is_file($file) ? $file : null);
 								if (is_null($file)) {
-									$file = BASEPATH . 'events/' . $scriptNaame . '/index.php';
+									$file = BASEPATH . 'events/' . $eventName . '/index.php';
 									$file = (is_file($file) ? $file : null);
 								}
 							} else {
-								$file = BASEPATH . 'events/' . $scriptNaame . '/index.php';
+								$file = BASEPATH . 'events/' . $eventName . '/index.php';
 								$file = (is_file($file) ? $file : null);
 							}
 							if (isset ($file)) {
 								return csl_path :: relative($file);
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Script \'' . $scriptNaame . '\' index page does not exist', E_USER_WARNING, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Script \'' . $eventName . '\' index page does not exist', E_USER_WARNING, 1);
 							}
 						}
 					}

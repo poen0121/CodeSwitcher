@@ -63,9 +63,9 @@
 	Note: csl_mvc::callEvent function only be called within the events script directory index.php file.
 
 	==============================================================
-	Get the available version info form the CodeSwitcher root directory file script name.
-	Usage : csl_mvc::version($scriptName,$mode);
-	Param : string $scriptName (script name in framework)
+	Get the available version info from the file directory path name of the CodeSwitcher root directory.
+	Usage : csl_mvc::version($pathName,$mode);
+	Param :  string $pathName (path name in framework)
 	Param : string $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.
@@ -81,9 +81,9 @@
 	==============================================================
 
 	==============================================================
-	Get the relative path form the CodeSwitcher root directory file script name.
-	Usage : csl_mvc::formPath($scriptName);
-	Param : string $scriptName (script name in framework)
+	Get the relative path from the file path name of the CodeSwitcher root directory.
+	Usage : csl_mvc::formPath($pathName);
+	Param : string $pathName (path name in framework)
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -93,9 +93,9 @@
 	==============================================================
 
 	==============================================================
-	Returns the index page relative path form the CodeSwitcher controller events script directory path name.
-	Usage : csl_mvc::index($scriptNaame);
-	Param : string $scriptNaame (events script directory path name)
+	Returns the index page relative path from the events script directory path name of the CodeSwitcher root directory.
+	Usage : csl_mvc::index($eventName);
+	Param : string $eventName (events script directory path name)
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------

@@ -1,22 +1,22 @@
 <?php
 /*
->> Controller
+>> Begin
 
-	Events script directory relies on the version control mechanism.
+	Control events begin program relies on the version control mechanism.
 
-	Responsible for forwarding the request to process the request.
+	You can do some pretreatment function.
+
+	Events script execution will work together.
 
 >> Set Directory Version
 
 	File Structure :
 
-	events
-	└── main directory
-		├── 1.0.1
-		│	└── main.inc.php
-	  	├── ini
-		│	└── version.php
-		└── index.php
+	begin
+	├── 1.0.1
+	│	└── main.inc.php
+	└── ini
+		└── version.php
 
 	Step 1 : Create a main directory.
 
@@ -37,27 +37,10 @@
 
 	Step 4 : Create a directory such as `1.0.1` version.
 
-	Step 5 : Create a release directory `1.0.1/main.inc.php` master file and coding logic mechanisms.
+	Step 5 : Create a release directory `1.0.1/main.inc.php` master file and coding functions.
 	Write at the top of the file :
 	-----------------------------------------------------
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-	-----------------------------------------------------
-
-	Step 6 : Create link file `index.php` in the main directory.
-	-----------------------------------------------------
-	<?php
-	chdir(dirname(__FILE__));
-	include('../../core/main.inc.php');
-	csl_mvc::callEvent();
-	?>
-	-----------------------------------------------------
-
-	Step 7 : URL call format.
-
-	domain / events / events script directory link file path
-	eg :
-	-----------------------------------------------------
-	example.com/events/example/index.php
 	-----------------------------------------------------
 
 >> Revision Rule
@@ -84,31 +67,6 @@
 
 >> Framework Usage Function
 
-	Note: csl_mvc::callEvent function only be called within the events script directory index.php file.
-
-	==============================================================
-	Returns the version number when the script file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::callEvent();
-	Return : string
-	Return Note : Returns FALSE on error.
-	--------------------------------------------------------------
-	Example :
-	csl_mvc::callEvent();
-	Output >> 1.0.1
-	==============================================================
-
-	==============================================================
-	Returns the version number when the event file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::importEvent($model);
-	Param : string $model (model name)
-	Return : string
-	Return Note : Returns FALSE on error.
-	--------------------------------------------------------------
-	Example :
-	csl_mvc::importEvent('home');
-	Output >> 1.0.1
-	==============================================================
-
 	==============================================================
 	Get the available version info from the file directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
@@ -120,10 +78,10 @@
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::version('events/example');
+	csl_mvc::version('begin');
 	Output >> Version Number
 	Example :
-	csl_mvc::version('events/example',TRUE);
+	csl_mvc::version('begin',TRUE);
 	Output >> Directory URI
 	==============================================================
 

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.7.1
+	Revision	: 1.8.2
 	Notes		:
 
 	Revision History:
@@ -20,6 +20,9 @@
 	04-24-2017		Poen		04-24-2017	Poen		Modify the control error message to throw.
 	04-24-2017		Poen		04-24-2017	Poen		Debug run event start.
 	04-26-2016		Poen		04-26-2017	Poen		Add the importEvent function.
+	05-04-2016		Poen		05-04-2017	Poen		Debug the error 500 loop error.
+	05-04-2016		Poen		05-04-2017	Poen		Add the begin program mechanism.
+	05-04-2016		Poen		05-04-2017	Poen		Add the commit program mechanism.
 	---------------------------------------------------------------------------
 
 >> About
@@ -44,9 +47,13 @@
 
 	7.models : Models directory support version control mechanism.
 
-	8.events : Control events to perform directory rely on version control mechanism.
+	8.events : Events script directory relies on the version control mechanism.
 
 	9.templates : Templates directory support version control mechanism.
+
+	10.begin : Control events begin program relies on the version control mechanism.
+
+	11.commit : Control events end program relies on the version control mechanism.
 
 */
 ?>

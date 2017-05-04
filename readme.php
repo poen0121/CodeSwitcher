@@ -28,11 +28,15 @@
 
 	5.models : Models directory support version control mechanism.
 
-	6.events : Control events to perform directory rely on version control mechanism.
+	6.events : Events script directory relies on the version control mechanism.
 
 	7.resources : Storage resources directory version control mechanism is optional.
 
 	8.templates : Templates directory support version control mechanism.
+
+	9.begin : Control events begin program relies on the version control mechanism.
+
+	10.commit : Control events end program relies on the version control mechanism.
 
 >> Version Control - Revision Rule
 

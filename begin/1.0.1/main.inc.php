@@ -9,4 +9,5 @@
 	This script must exist.
 
  */
+return true;
 ?>

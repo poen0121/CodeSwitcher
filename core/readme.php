@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.8.2
+	Revision	: 1.8.3
 	Notes		:
 
 	Revision History:
@@ -13,7 +13,7 @@
 	09-22-2016		Poen		03-30-2017	Poen		Reforming the program.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the index function to correct the info on the intro page.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the callEvent function.
-	04-07-2016		Poen		05-04-2017	Poen		Improve the program code.
+	04-07-2016		Poen		05-05-2017	Poen		Improve the program code.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	04-20-2017		Poen		04-20-2017	Poen		Restricting the CLI mode is the tester mode.
 	04-24-2017		Poen		04-24-2017	Poen		Confirm that the script information is available.
@@ -23,6 +23,9 @@
 	05-04-2016		Poen		05-04-2017	Poen		Debug the error 500 loop error.
 	05-04-2016		Poen		05-04-2017	Poen		Add the begin program mechanism.
 	05-04-2016		Poen		05-04-2017	Poen		Add the commit program mechanism.
+	05-05-2016		Poen		05-05-2017	Poen		Improve the begin program mechanism.
+	05-05-2016		Poen		05-05-2017	Poen		Improve the commit program mechanism.
+	05-05-2016		Poen		05-05-2017	Poen		Debug the viewTemplate function.
 	---------------------------------------------------------------------------
 
 >> About

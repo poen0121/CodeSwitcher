@@ -2,11 +2,15 @@
 /*
 >> Commit
 
+	This is a required directory file.
+
 	Control events end program relies on the version control mechanism.
 
-	You can do some shutdown function.
+	Event script execution will work together.
 
-	Events script execution will work together.
+	You can control the event script to commit the output view.
+
+	You can do some shutdown function.
 
 >> Set Directory Version
 
@@ -18,11 +22,9 @@
 	└── ini
 		└── version.php
 
-	Step 1 : Create a main directory.
+	Step 1 : Create `ini` directory.
 
-	Step 2 : Create `ini` directory.
-
-	Step 3 : Create limit version file `ini/version.php`.
+	Step 2 : Create limit version file `ini/version.php`.
 	Write at the top of the file :
 	-----------------------------------------------------
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
@@ -35,12 +37,29 @@
 	?>
 	-----------------------------------------------------
 
-	Step 4 : Create a directory such as `1.0.1` version.
+	Step 3 : Create a directory such as `1.0.1` version.
 
-	Step 5 : Create a release directory `1.0.1/main.inc.php` master file and coding functions.
+	Step 4 : Create a release directory `1.0.1/main.inc.php` master file and coding functions.
 	Write at the top of the file :
 	-----------------------------------------------------
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+	-----------------------------------------------------
+	Write at the top of the file :
+	-----------------------------------------------------
+	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+	-----------------------------------------------------
+	Control returns :
+	-----------------------------------------------------
+	<?php
+	return true;
+	?>
+	-----------------------------------------------------
+	eg :
+	-----------------------------------------------------
+	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+	<?php
+	return true;
+	?>
 	-----------------------------------------------------
 
 >> Revision Rule
@@ -70,7 +89,7 @@
 	==============================================================
 	Get the available version info from the file directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
-	Param :  string $pathName (path name in framework)
+	Param : string $pathName (path name in framework)
 	Param : string $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.
@@ -84,6 +103,22 @@
 	csl_mvc::version('commit',TRUE);
 	Output >> Directory URI
 	==============================================================
+
+>> Example
+
+	Verify execution.
+	-----------------------------------------------------
+	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+	<?php
+	if(function_exists('unixTime')){
+		return true;
+	}else{
+		csl_header :: http('Internal Server Error', 500);
+		csl_mvc::viewTemplate('error/500');
+		return false;
+	}
+	?>
+	-----------------------------------------------------
 
 */
 ?>

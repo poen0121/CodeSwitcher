@@ -113,7 +113,7 @@
 	==============================================================
 	Get the available version info from the file directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
-	Param :  string $pathName (path name in framework)
+	Param : string $pathName (path name in framework)
 	Param : string $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.

@@ -113,7 +113,7 @@
 	if(function_exists('unixTime')){
 		return true;
 	}else{
-		csl_header :: http('Internal Server Error', 500);
+		csl_header::http('Internal Server Error',500);
 		csl_mvc::viewTemplate('error/500');
 		return false;
 	}

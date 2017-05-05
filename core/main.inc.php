@@ -51,7 +51,7 @@ if (!class_exists('csl_mvc')) {
 				self :: $develop = false; //develop mode by tester
 				self :: $obStartLevel = ob_get_level();
 				self :: $portal = false; //portal script state
-				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(strpos($_SERVER['SCRIPT_FILENAME'], '//') === 0 ? '/' . ltrim($_SERVER['SCRIPT_FILENAME'], '/') : $_SERVER['SCRIPT_FILENAME']) : false); //script path
+				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(strpos(csl_path :: norm($_SERVER['SCRIPT_FILENAME']), '//') === 0 ? '/' . ltrim(csl_path :: norm($_SERVER['SCRIPT_FILENAME']), '/') : $_SERVER['SCRIPT_FILENAME']) : false); //script path
 				if (self :: $script !== false) {
 					$hostDir = csl_path :: clean(BASEPATH);
 					self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', self :: $script);

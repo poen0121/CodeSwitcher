@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_path function
-	Revision	: 3.8.5
+	Revision	: 3.8.6
 	Notes		: You can use chdir() change current script parent directories.
 
 	Revision History:
@@ -14,7 +14,7 @@
 	04-27-2017		Poen		04-27-2017	Poen		Debug document_root function.
 	04-27-2017		Poen		04-28-2017	Poen		Debug absolute function.
 	04-27-2017		Poen		04-27-2017	Poen		Improve is_self function.
-	05-05-2017		Poen		05-05-2017	Poen		Debug is_self function.
+	05-05-2017		Poen		05-08-2017	Poen		Debug is_self function.
 	---------------------------------------------------------------------------
 
 >> About

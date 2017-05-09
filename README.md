@@ -57,7 +57,7 @@ PHP Framework ( PHP >= 5 ) CLI,CGI
 	#Revision number:
 	Usually in the software have bug , bug fixes released incremented version.
 
-	Example:
+	Example :
 	Version : 0.0.0
 	Version : 1.0.0
 	Version : 1.0.1
@@ -77,3 +77,22 @@ PHP Framework ( PHP >= 5 ) CLI,CGI
 	Load the script when the system shut down.
 
 	After the script executes the control events end program.
+
+> Note Namespace
+
+	System usage :
+
+	use csl_mvc;
+	use csl_error;
+	use csl_func_arg;
+	use csl_header;
+	use csl_inspect;
+	use csl_path;
+	use csl_import;
+	use csl_file;
+	use csl_language;
+	use csl_template;
+	use csl_version;
+	use csl_browser;
+	use csl_time;
+	use csl_debug;

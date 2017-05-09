@@ -55,7 +55,7 @@
 	#Revision number:
 	Usually in the software have bug , bug fixes released incremented version.
 
-	Example:
+	Example :
 	Version : 0.0.0
 	Version : 1.0.0
 	Version : 1.0.1

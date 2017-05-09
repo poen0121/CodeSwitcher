@@ -51,7 +51,7 @@
 	#Revision number:
 	Usually in the software have bug , bug fixes released incremented version.
 
-	Example:
+	Example :
 	Version : 0.0.0
 	Version : 1.0.0
 	Version : 1.0.1
@@ -266,38 +266,38 @@
 	==============================================================
 	The introduction page uses the controller script directory name.
 	Only the root directory index.php script is supported.
-	Example:
+	Example :
 	$CS_CONF['INTRO'] = 'home';
 	==============================================================
 
 	==============================================================
 	Set the default host time zone for the script with a value of -12 ~ 14 by GMT.
-	Example:
+	Example :
 	Taipei time zone :
 	$CS_CONF['DEFAULT_TIMEZONE'] = 8;
 	==============================================================
 
 	==============================================================
 	Languages xml file version code.
-	Example:
+	Example :
 	$CS_CONF['LANGUAGE_XML_VERSION'] = '1.0';
 	==============================================================
 
 	==============================================================
 	Languages xml file encoding code.
-	Example:
+	Example :
 	$CS_CONF['LANGUAGE_XML_ENCODING'] = 'utf-8';
 	==============================================================
 
 	==============================================================
 	Error stack trace is set to true or false.
-	Example:
+	Example :
 	$CS_CONF['ERROR_STACK_TRACE_MODE'] = false;
 	==============================================================
 
 	==============================================================
 	Error log storage mode is set to true or false.
-	Example:
+	Example :
 	$CS_CONF['ERROR_LOG_MODE'] = false;
 	--------------------------------------------------------------
 	About Function : csl_mvc::logs($mode);
@@ -309,7 +309,7 @@
 
 	==============================================================
 	Error log storage directory location.
-	Example:
+	Example :
 	$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
 	--------------------------------------------------------------
 	Note : The void value automatically uses the php.ini error_log location.
@@ -318,7 +318,7 @@
 
 	==============================================================
 	Testers debug display mode is set to true or false.
-	Example:
+	Example :
 	$CS_CONF['TESTER_DEBUG_MODE'] = false;
 	--------------------------------------------------------------
 	Note : General user default is false.
@@ -331,13 +331,13 @@
 
 	==============================================================
 	Testers develop mode is set to true or false.
-	Example:
+	Example :
 	$CS_CONF['TESTER_DEVELOP_MODE'] = false;
 	==============================================================
 
 	==============================================================
 	Testers IP source list settings, the localhost is tester.
-	Example:
+	Example :
 	$CS_CONF['TESTER_IP'][] = '117.108.121.77';
 	==============================================================
 

@@ -10,7 +10,7 @@
 	About : configs/CodeSwitcher directory.
 	==============================================================
 	The introduction page uses the controller script name.
-	Example:
+	Example :
 	$CS_CONF['INTRO']='home';
 	==============================================================
  */

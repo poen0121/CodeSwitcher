@@ -491,6 +491,9 @@ if (!class_exists('csl_mvc')) {
 							if (ob_get_level() >= $obStartLevel) {
 								$output = ob_get_contents();
 								ob_end_clean();
+								if ($import !== true) {
+									self :: bufferClean();
+								}
 								echo $output;
 								return ($import === true ? true : false);
 							} else {
@@ -616,9 +619,9 @@ if (!class_exists('csl_mvc')) {
 											self :: $tripSystem = false;
 											if ($import !== false) {
 												if (ob_get_level() >= $obStartLevel) {
+													$output = ob_get_contents();
+													ob_end_clean();
 													if (self :: commit()) {
-														$output = ob_get_contents();
-														ob_end_clean();
 														echo $output;
 													}
 												} else {

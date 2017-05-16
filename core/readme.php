@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.8.5
+	Revision	: 1.8.6
 	Notes		:
 
 	Revision History:
@@ -23,8 +23,8 @@
 	05-04-2016		Poen		05-04-2017	Poen		Debug the error 500 loop error.
 	05-04-2016		Poen		05-04-2017	Poen		Add the begin program mechanism.
 	05-04-2016		Poen		05-04-2017	Poen		Add the commit program mechanism.
-	05-05-2016		Poen		05-05-2017	Poen		Improve the begin program mechanism.
-	05-05-2016		Poen		05-05-2017	Poen		Improve the commit program mechanism.
+	05-05-2016		Poen		05-16-2017	Poen		Improve the begin program mechanism.
+	05-05-2016		Poen		05-16-2017	Poen		Improve the commit program mechanism.
 	05-05-2016		Poen		05-05-2017	Poen		Debug the viewTemplate function.
 	05-05-2016		Poen		05-08-2017	Poen		Debug the $_SERVER['SCRIPT_FILENAME'] realpath.
 	---------------------------------------------------------------------------

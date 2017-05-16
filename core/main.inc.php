@@ -23,6 +23,7 @@ if (!class_exists('csl_mvc')) {
 	 */
 	class csl_mvc {
 		private static $runEvent;
+		private static $scriptEvent;
 		private static $versionClass;
 		private static $rootDir;
 		private static $script;
@@ -219,6 +220,23 @@ if (!class_exists('csl_mvc')) {
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
 						return csl_path :: relative(BASEPATH . $pathName);
 					}
+				}
+			} else {
+				self :: ERROR500();
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
+			}
+			return false;
+		}
+		/** Captures the name of the script event that is currently running.
+		 * @access - public function
+		 * @return - string|boolean
+		 * @usage - csl_mvc::scriptEvent();
+		 */
+		public static function scriptEvent() {
+			self :: start();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error()) {
+					return self :: $scriptEvent;
 				}
 			} else {
 				self :: ERROR500();
@@ -620,6 +638,7 @@ if (!class_exists('csl_mvc')) {
 								if ($version) {
 									$file = BASEPATH . 'events/' . $model . '/' . $version . '/main.inc.php';
 									if (is_file($file) && is_readable($file)) {
+										self :: $scriptEvent = $model;
 										if (self :: begin()) {
 											self :: $tripSystem = true;
 											$import = csl_import :: from($file);

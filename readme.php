@@ -97,6 +97,17 @@
 	==============================================================
 
 	==============================================================
+	Captures the name of the script event that is currently running.
+	Usage : csl_mvc::scriptEvent();
+	Return : string
+	Return Note : Returns FALSE on error.
+	--------------------------------------------------------------
+	Example : __FILE__ >> /var/www/events/example/index.php
+	csl_mvc::scriptEvent();
+	Output >> example
+	==============================================================
+
+	==============================================================
 	Returns the index page relative path from the events script directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::index($eventName);
 	Param : string $eventName (events script directory path name)

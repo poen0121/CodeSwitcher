@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.8.6
+	Revision	: 1.8.7
 	Notes		:
 
 	Revision History:

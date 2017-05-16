@@ -473,10 +473,12 @@ if (!class_exists('csl_mvc')) {
 				$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 					self :: ERROR500();
+					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - unknown defined version number', E_USER_ERROR, 2, 'CS');
 				}
 				if (!self :: $versionClass->is_exists(BASEPATH . 'begin', $maxVersion)) {
 					self :: ERROR500();
+					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2, 'CS');
 				}
 				$version = self :: $versionClass->get(BASEPATH . 'begin', (!self :: $tester || !self :: $develop ? $maxVersion : ''));
@@ -498,22 +500,27 @@ if (!class_exists('csl_mvc')) {
 								return ($import === true ? true : false);
 							} else {
 								self :: ERROR500();
+								self :: bufferClean();
 								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2, 'CS');
 							}
 						} else {
 							self :: ERROR500();
+							self :: bufferClean();
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): System failed - open output buffer failed to start', E_USER_ERROR, 2, 'CS');
 						}
 					} else {
 						self :: ERROR500();
+						self :: bufferClean();
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2, 'CS');
 					}
 				} else {
 					self :: ERROR500();
+					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - unable to get version', E_USER_ERROR, 2, 'CS');
 				}
 			} else {
 				self :: ERROR500();
+				self :: bufferClean();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - file does not exist', E_USER_ERROR, 2, 'CS');
 			}
 			return false;

@@ -125,7 +125,7 @@
 	Output >> Version Number
 	Example :
 	csl_mvc::version('templates/example',TRUE);
-	Output >> Directory URI
+	Output >> Directory Relative Path
 	==============================================================
 
 >> Call Resources URI

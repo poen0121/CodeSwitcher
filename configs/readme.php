@@ -108,7 +108,7 @@
 	Output >> Version Number
 	Example :
 	csl_mvc::version('configs/example',TRUE);
-	Output >> Directory URI
+	Output >> Directory Relative Path
 	==============================================================
 
 */

@@ -134,7 +134,7 @@
 	Output >> Version Number
 	Example :
 	csl_mvc::version('languages/en_US',TRUE);
-	Output >> Directory URI
+	Output >> Directory Relative Path
 	==============================================================
 
 */

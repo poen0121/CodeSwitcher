@@ -93,10 +93,10 @@
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::formPath('libraries/test.js');
+	csl_mvc::formPath('resources/test.js');
 	Output >> Server Relative Path
 	Example :
-	csl_mvc::formPath('libraries/test.js',true);
+	csl_mvc::formPath('resources/test.js',true);
 	Output >> Client URI Relative Path
 	==============================================================
 

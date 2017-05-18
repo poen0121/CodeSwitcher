@@ -207,18 +207,32 @@ if (!class_exists('csl_mvc')) {
 		/** Get the relative path from the file path name of the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $pathName (path name in framework)
+		 * @param - string $uriMode (client URI analysis mode) : Default false
 		 * @return - string|boolean
-		 * @usage - csl_mvc::formPath($pathName);
+		 * @usage - csl_mvc::formPath($pathName,$uriMode);
 		 */
-		public static function formPath($pathName = null) {
+		public static function formPath($pathName = null, $uriMode = false) {
 			self :: start();
 			if (self :: $tripSystem) {
-				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
 					if (csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
+						$layer = 0;
+						if ($uriMode && isset ($_SERVER['PATH_INFO'])) {
+							$pathUri = ltrim(rtrim($_SERVER['PATH_INFO'], '/'), '/');
+							if ($pathUri) {
+								$layer += count(explode('/', $pathUri));
+							}
+							if (substr($_SERVER['PATH_INFO'], -1, 1) != '/') {
+								$layer -= 1;
+							}
+							if (strpos($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME'] . '/') === 0) {
+								$layer += 1;
+							}
+						}
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						return csl_path :: relative(BASEPATH . $pathName);
+						return csl_path :: arrive(str_repeat('../', $layer) . csl_path :: relative(BASEPATH . $pathName));
 					}
 				}
 			} else {

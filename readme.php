@@ -86,14 +86,18 @@
 
 	==============================================================
 	Get the relative path from the file path name of the CodeSwitcher root directory.
-	Usage : csl_mvc::formPath($pathName);
+	Usage : csl_mvc::formPath($pathName,$uriMode);
 	Param : string $pathName (path name in framework)
+	Param : string $uriMode (client URI analysis mode) : Default false
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example :
 	csl_mvc::formPath('libraries/test.js');
-	Output >> URI
+	Output >> Server Relative Path
+	Example :
+	csl_mvc::formPath('libraries/test.js',true);
+	Output >> Client URI Relative Path
 	==============================================================
 
 	==============================================================

@@ -258,10 +258,10 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns the index page relative path from the events script directory path name of the CodeSwitcher root directory.
+		/** Returns whether the index page exists from the events script directory path name of the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
-		 * @return - string|boolean
+		 * @return - boolean
 		 * @usage - csl_mvc::index($eventName);
 		 */
 		public static function index($eventName = null) {
@@ -277,20 +277,16 @@ if (!class_exists('csl_mvc')) {
 						} else {
 							if ($eventName == self :: $intro) {
 								$file = BASEPATH . 'index.php';
-								$file = (is_file($file) ? $file : null);
+								$file = (is_file($file) ? true : null);
 								if (is_null($file)) {
 									$file = BASEPATH . 'events/' . $eventName . '/index.php';
-									$file = (is_file($file) ? $file : null);
+									$file = (is_file($file) ? true : null);
 								}
 							} else {
 								$file = BASEPATH . 'events/' . $eventName . '/index.php';
-								$file = (is_file($file) ? $file : null);
+								$file = (is_file($file) ? true : null);
 							}
-							if (isset ($file)) {
-								return csl_path :: relative($file);
-							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Script \'' . $eventName . '\' index page does not exist', E_USER_WARNING, 1);
-							}
+							return isset($file);
 						}
 					}
 				}

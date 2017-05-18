@@ -112,15 +112,18 @@
 	==============================================================
 
 	==============================================================
-	Returns the index page relative path from the events script directory path name of the CodeSwitcher root directory.
+	Returns whether the index page exists from the events script directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::index($eventName);
 	Param : string $eventName (events script directory path name)
-	Return : string
+	Return : boolean
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
 	csl_mvc::index('example');
-	Output >> URI
+	Output >> TRUE
+	Example :
+	csl_mvc::index('home');
+	Output >> TRUE
 	==============================================================
 
 	==============================================================

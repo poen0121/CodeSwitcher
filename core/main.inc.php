@@ -220,7 +220,7 @@ if (!class_exists('csl_mvc')) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						if ($uriMode) {
+						if ($uriMode && isset ($_SERVER['REQUEST_URI'])) {
 							if (is_null(self :: $uriLayer)) {
 								self :: $uriLayer = 0;
 								$partStop = false;

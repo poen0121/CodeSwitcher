@@ -35,6 +35,7 @@ if (!class_exists('csl_mvc')) {
 		private static $tripSystem;
 		private static $obStartLevel;
 		private static $error500;
+		private static $uriLayer;
 		/** Start info.
 		 * @access - private function
 		 * @return - null
@@ -218,21 +219,41 @@ if (!class_exists('csl_mvc')) {
 					if (csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
-						$layer = 0;
-						if ($uriMode && isset ($_SERVER['PATH_INFO'])) {
-							$pathUri = ltrim(rtrim($_SERVER['PATH_INFO'], '/'), '/');
-							if ($pathUri) {
-								$layer += count(explode('/', $pathUri));
-							}
-							if (substr($_SERVER['PATH_INFO'], -1, 1) != '/') {
-								$layer -= 1;
-							}
-							if (strpos($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME'] . '/') === 0) {
-								$layer += 1;
-							}
-						}
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						return csl_path :: arrive(str_repeat('../', $layer) . csl_path :: relative(BASEPATH . $pathName));
+						if ($uriMode) {
+							if (is_null(self :: $uriLayer)) {
+								self :: $uriLayer = 0;
+								$partStop = false;
+								$uriPart = explode('/', $_SERVER['REQUEST_URI']);
+								$uriEnd = count($uriPart) - 1;
+								$scriptPart = explode('/', csl_path :: clean($_SERVER['SCRIPT_NAME']));
+								$partEnd = count($scriptPart) - 1;
+								$partName = current($scriptPart);
+								$partKey = key($scriptPart);
+								foreach ($uriPart as $uriKey => $uriName) {
+									if (!$partStop && $uriName === $partName) {
+										if ($partKey !== $partEnd) {
+											$partName = next($scriptPart);
+											$partKey = key($scriptPart);
+										} else {
+											$partStop = true;
+										}
+									} else {
+										if (!$partStop && ($uriName !== '' || $uriKey == $uriEnd)) {
+											$partStop = true;
+										} else {
+											self :: $uriLayer++;
+										}
+									}
+								}
+								self :: $uriLayer = str_repeat('../', self :: $uriLayer);
+							}
+							$path = csl_path :: relative(BASEPATH . $pathName);
+							$path = (self :: $uriLayer && strpos($path, './') === 0 ? substr($path, 2) : $path);
+							return self :: $uriLayer . $path;
+						} else {
+							return csl_path :: relative(BASEPATH . $pathName);
+						}
 					}
 				}
 			} else {
@@ -286,7 +307,7 @@ if (!class_exists('csl_mvc')) {
 								$file = BASEPATH . 'events/' . $eventName . '/index.php';
 								$file = (is_file($file) ? true : null);
 							}
-							return isset($file);
+							return isset ($file);
 						}
 					}
 				}

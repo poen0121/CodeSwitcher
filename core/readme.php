@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.11.10
+	Revision	: 1.11.11
 	Notes		:
 
 	Revision History:
@@ -31,6 +31,7 @@
 	05-18-2016		Poen		05-18-2017	Poen		Modify the formPath function to add client URI analysis mode.
 	05-18-2016		Poen		05-18-2017	Poen		Modify the index function only to exist for detection.
 	05-19-2016		Poen		05-19-2017	Poen		Debug the formPath function by client URI analysis mode.
+	05-24-2016		Poen		05-24-2017	Poen		Improve the http state 500 status information flexibility customization.
 	---------------------------------------------------------------------------
 
 >> About

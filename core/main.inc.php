@@ -146,8 +146,6 @@ if (!class_exists('csl_mvc')) {
 			if (!csl_debug :: is_display() && !headers_sent() && !self :: $error500) {
 				self :: $error500 = true;
 				self :: bufferClean();
-				csl_header :: nocache();
-				csl_header :: http('Internal Server Error', 500);
 				self :: $tripSystem = true;
 				self :: viewTemplate('error/500');
 				self :: $tripSystem = false;

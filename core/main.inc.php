@@ -43,16 +43,17 @@ if (!class_exists('csl_mvc')) {
 		 */
 		private static function start() {
 			if (is_null(self :: $portal)) {
+				clearstatcache();
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
 				self :: $runEvent = false; //event running state
 				self :: $rootDir = csl_path :: document_root();
-				self :: $tripSystem = false; //system running state
 				self :: $tester = false; //tester mode
 				self :: $develop = false; //develop mode by tester
 				self :: $obStartLevel = ob_get_level();
 				self :: $portal = false; //portal script state
+				self :: $versionClass = new csl_version(); //version controller
 				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(realpath($_SERVER['SCRIPT_FILENAME'])) : false); //script path
 				if (self :: $script !== false) {
 					$hostDir = csl_path :: clean(BASEPATH);
@@ -72,31 +73,16 @@ if (!class_exists('csl_mvc')) {
 		 * @usage -  self::init();
 		 */
 		private static function init() {
-			clearstatcache();
-			csl_debug :: display(false); //erorr display none
-			self :: $versionClass = new csl_version();
-			//----system-config-----
-			$originalTripSystem = self :: $tripSystem;
+			//---load-system-config---
 			self :: $tripSystem = true;
 			$CS_CONF = self :: cueConfig('CodeSwitcher');
-			self :: $tripSystem = $originalTripSystem;
+			self :: $tripSystem = false; //system default running state
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//set timezone
-			if (array_key_exists('DEFAULT_TIMEZONE', $CS_CONF) && is_int($CS_CONF['DEFAULT_TIMEZONE'])) {
-				if ($CS_CONF['DEFAULT_TIMEZONE'] >= -12 && $CS_CONF['DEFAULT_TIMEZONE'] <= 14) {
-					csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE']);
+			if (array_key_exists('DEFAULT_TIMEZONE', $CS_CONF) && is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
+				if(!csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])){
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
 				}
-			}
-			//set error stack trace mode
-			csl_debug :: set_trace_error_handler(array_key_exists('ERROR_STACK_TRACE_MODE', $CS_CONF) ? ($CS_CONF['ERROR_STACK_TRACE_MODE'] === true ? true : false) : false);
-			//set error log storage mode
-			csl_debug :: record(array_key_exists('ERROR_LOG_MODE', $CS_CONF) ? ($CS_CONF['ERROR_LOG_MODE'] === true ? true : false) : true);
-			//error log storage directory
-			if (strlen(isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) && is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] : '') > 0) {
-				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-				$logDate = date('Y-m-d'); //local date
-				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log');
 			}
 			//intro page
 			self :: $intro = (isset ($CS_CONF['INTRO']) && is_string($CS_CONF['INTRO']) ? $CS_CONF['INTRO'] : '');
@@ -105,6 +91,28 @@ if (!class_exists('csl_mvc')) {
 			$langXmlVersion = (isset ($CS_CONF['LANGUAGE_XML_VERSION']) && is_string($CS_CONF['LANGUAGE_XML_VERSION']) ? $CS_CONF['LANGUAGE_XML_VERSION'] : '1.0');
 			//languages xml enciding
 			$langXmlEnciding = (isset ($CS_CONF['LANGUAGE_XML_ENCODING']) && is_string($CS_CONF['LANGUAGE_XML_ENCODING']) ? $CS_CONF['LANGUAGE_XML_ENCODING'] : 'utf-8');
+			//check languages xml options
+			if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $langXmlVersion)) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - invalid language configuration XML version number \'' . $langXmlVersion . '\'', E_USER_ERROR, 3, 'CS');
+			}
+			elseif (!csl_inspect :: is_iconv_encoding($langXmlEnciding)) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - invalid language configuration XML encoding scheme \'' . $langXmlEnciding . '\'', E_USER_ERROR, 3, 'CS');
+			} else {
+				self :: $language = new csl_language('language', $langXmlVersion, $langXmlEnciding);
+			}
+			//error log storage directory
+			if (strlen(isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) && is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] : '') > 0) {
+				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
+				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
+				$logDate = date('Y-m-d'); //local date
+				if(!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')){
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change error log storage directory \'' . $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
+				}
+			}
+			//set error stack trace mode
+			csl_debug :: set_trace_error_handler(array_key_exists('ERROR_STACK_TRACE_MODE', $CS_CONF) ? ($CS_CONF['ERROR_STACK_TRACE_MODE'] === true ? true : false) : false);
+			//set error log storage mode
+			csl_debug :: record(array_key_exists('ERROR_LOG_MODE', $CS_CONF) ? ($CS_CONF['ERROR_LOG_MODE'] === true ? true : false) : true);
 			//source IP verification tester
 			self :: $tester = (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? true : (preg_match('/^(localhost|127.0.0.1)$/i', (isset ($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) ? true : in_array(csl_browser :: info('ip'), (isset ($CS_CONF['TESTER_IP']) && is_array($CS_CONF['TESTER_IP']) ? $CS_CONF['TESTER_IP'] : array ()), true)));
 			//set tester mode
@@ -113,17 +121,9 @@ if (!class_exists('csl_mvc')) {
 				csl_debug :: display(array_key_exists('TESTER_DEBUG_MODE', $CS_CONF) ? ($CS_CONF['TESTER_DEBUG_MODE'] === true ? true : false) : true);
 				//develop mode
 				self :: $develop = (array_key_exists('TESTER_DEVELOP_MODE', $CS_CONF) ? ($CS_CONF['TESTER_DEVELOP_MODE'] === true ? true : false) : true);
-			}
-			//check languages xml options
-			if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $langXmlVersion)) {
-				self :: ERROR500();
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): System failed - invalid language configuration XML version number ' . $langXmlVersion, E_USER_ERROR, 3, 'CS');
-			}
-			elseif (!csl_inspect :: is_iconv_encoding($langXmlEnciding)) {
-				self :: ERROR500();
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): System failed - invalid language configuration XML encoding scheme ' . $langXmlEnciding, E_USER_ERROR, 3, 'CS');
 			} else {
-				self :: $language = new csl_language('language', $langXmlVersion, $langXmlEnciding);
+				//set erorr display none
+				csl_debug :: display(false);
 			}
 		}
 		/** Turns off all output buffers.

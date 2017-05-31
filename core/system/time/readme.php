@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.8.0
+	Revision	: 2.9.0
 	Notes		:
 
 	Revision History:
@@ -11,6 +11,7 @@
 	---------------------------------------------------------------------------
 	05-30-2011		Poen		05-30-2011	Poen		Create the program.
 	03-30-2017		Poen		03-30-2017	Poen		Reforming the program.
+	05-31-2017		Poen		05-31-2017	Poen		Modify set_timezone function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -94,14 +95,14 @@
 	==============================================================
 
 	==============================================================
-	Set the script default time zone by GMT.
-	Usage : csl_time::set_timezone($GMT)
-	Param : integer $GMT (offset hours -12 ~ 14)
+	Set the script default timezone by timezone id.
+	Usage : csl_time::set_timezone($timezoneId)
+	Param : string $timezoneId (timezone id)
 	Return : boolean
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_time::set_timezone(8);
+	csl_time::set_timezone('Asia/Taipei');
 	==============================================================
 
 	==============================================================

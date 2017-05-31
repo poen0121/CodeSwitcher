@@ -11,13 +11,13 @@
 $CS_CONF['INTRO'] = 'home';
 /*
  ==============================================================
- Set the default host time zone for the script with a value of -12 ~ 14 by GMT.
+ Use the timezone identifier, like UTC or Europe/Lisbon to set the default timezone for the script.
  Example :
  Taipei time zone :
- $CS_CONF['DEFAULT_TIMEZONE'] = 8;
+ $CS_CONF['DEFAULT_TIMEZONE'] = 'Asia/Taipei';
  ==============================================================
  */
-$CS_CONF['DEFAULT_TIMEZONE'] = 8;
+$CS_CONF['DEFAULT_TIMEZONE'] = 'Asia/Taipei';
 /*
  ==============================================================
  Languages xml file version code.

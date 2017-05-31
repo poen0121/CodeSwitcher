@@ -150,16 +150,16 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Set the script default time zone by GMT.
+		/** Set the script default timezone by timezone id.
 		 * @access - public function
-		 * @param - integer $GMT (offset hours -12 ~ 14)
+		 * @param - string $timezoneId (timezone id)
 		 * @return - boolean
-		 * @usage - csl_time::set_timezone($GMT)
+		 * @usage - csl_time::set_timezone($timezoneId)
 		 */
-		public static function set_timezone($GMT = null) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: int2error(0)) {
+		public static function set_timezone($timezoneId = null) {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				set_error_handler(__CLASS__ . '::ErrorHandler');
-				$result = date_default_timezone_set('Etc/GMT' . ($GMT > 0 ? '-' : '+') . abs($GMT));
+				$result = date_default_timezone_set($timezoneId);
 				restore_error_handler();
 				return $result;
 			}

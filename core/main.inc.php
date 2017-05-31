@@ -80,7 +80,7 @@ if (!class_exists('csl_mvc')) {
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//set timezone
 			if (array_key_exists('DEFAULT_TIMEZONE', $CS_CONF) && is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
-				if(!csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])){
+				if (!csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
 				}
 			}
@@ -105,7 +105,7 @@ if (!class_exists('csl_mvc')) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$logDate = date('Y-m-d'); //local date
-				if(!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')){
+				if (!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change error log storage directory \'' . $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
 				}
 			}

@@ -94,7 +94,7 @@
 	==============================================================
 
 	==============================================================
-	Set the script host time zone by GMT.
+	Set the script default time zone by GMT.
 	Usage : csl_time::set_timezone($GMT)
 	Param : integer $GMT (offset hours -12 ~ 14)
 	Return : boolean

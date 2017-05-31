@@ -150,7 +150,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Set the script host time zone by GMT.
+		/** Set the script default time zone by GMT.
 		 * @access - public function
 		 * @param - integer $GMT (offset hours -12 ~ 14)
 		 * @return - boolean

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.13.12
+	Revision	: 1.13.13
 	Notes		:
 
 	Revision History:
@@ -35,6 +35,7 @@
 	05-31-2017		Poen		05-31-2017	Poen		Change the timezone by timezone id.
 	05-31-2017		Poen		06-01-2017	Poen		Improve the program initialization error display.
 	06-01-2017		Poen		06-01-2017	Poen		Add timezone default mechanism.
+	06-01-2017		Poen		06-01-2017	Poen		Fix the program initialization error message.
 	---------------------------------------------------------------------------
 
 >> About

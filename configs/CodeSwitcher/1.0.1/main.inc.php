@@ -37,6 +37,17 @@ $CS_CONF['LANGUAGE_XML_VERSION'] = '1.0';
 $CS_CONF['LANGUAGE_XML_ENCODING'] = 'utf-8';
 /*
  ==============================================================
+ Error log storage directory location.
+ Example :
+ $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
+ --------------------------------------------------------------
+ Note : The void value automatically uses the PHP default error_log location.
+ Note : Whether the directory exists and whether the directory permissions are writable.
+ ==============================================================
+ */
+$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_mvc :: formPath('/storage/logs');
+/*
+ ==============================================================
  Error stack trace is set to true or false.
  Example :
  $CS_CONF['ERROR_STACK_TRACE_MODE'] = false;
@@ -57,17 +68,6 @@ $CS_CONF['ERROR_STACK_TRACE_MODE'] = true;
  ==============================================================
  */
 $CS_CONF['ERROR_LOG_MODE'] = true;
-/*
- ==============================================================
- Error log storage directory location.
- Example :
- $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
- --------------------------------------------------------------
- Note : The void value automatically uses the PHP default error_log location.
- Note : Whether the directory exists and whether the directory permissions are writable.
- ==============================================================
- */
-$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_mvc :: formPath('/storage/logs');
 /*
  ==============================================================
  Testers debug display mode is set to true or false.

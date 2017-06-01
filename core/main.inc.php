@@ -73,30 +73,23 @@ if (!class_exists('csl_mvc')) {
 		 * @usage -  self::init();
 		 */
 		private static function init() {
-			//---load-system-config---
+			/*---load-system-config---*/
 			self :: $tripSystem = true;
 			$CS_CONF = self :: cueConfig('CodeSwitcher');
 			self :: $tripSystem = false; //system default running state
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//intro page
-			if (isset ($CS_CONF['INTRO']) && is_string($CS_CONF['INTRO'])) {
-				self :: $intro = trim(csl_path :: clean(self :: $rootDir . $CS_CONF['INTRO']), '/');
-			} else {
+			if (!isset ($CS_CONF['INTRO']) || !is_string($CS_CONF['INTRO'])) {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown introduction page configuration', E_USER_ERROR, 3, 'CS');
 			}
 			//timezone
-			if (isset ($CS_CONF['DEFAULT_TIMEZONE']) && is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
-				//set timezone
-				if (strlen($CS_CONF['DEFAULT_TIMEZONE']) > 0 && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
-				}
-			} else {
+			if (!isset ($CS_CONF['DEFAULT_TIMEZONE']) || !is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown timezone id configuration', E_USER_ERROR, 3, 'CS');
 			}
 			//languages xml version
 			if (isset ($CS_CONF['LANGUAGE_XML_VERSION']) && is_string($CS_CONF['LANGUAGE_XML_VERSION'])) {
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $CS_CONF['LANGUAGE_XML_VERSION'])) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - invalid language configuration XML version number \'' . $CS_CONF['LANGUAGE_XML_VERSION'] . '\'', E_USER_ERROR, 3, 'CS');
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - invalid language XML version number \'' . $CS_CONF['LANGUAGE_XML_VERSION'] . '\' configuration', E_USER_ERROR, 3, 'CS');
 				}
 			} else {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown language XML version number configuration', E_USER_ERROR, 3, 'CS');
@@ -109,15 +102,9 @@ if (!class_exists('csl_mvc')) {
 			} else {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown language XML encoding scheme configuration', E_USER_ERROR, 3, 'CS');
 			}
-			//build languages xml object
-			self :: $language = new csl_language('language', $CS_CONF['LANGUAGE_XML_VERSION'], $CS_CONF['LANGUAGE_XML_ENCODING']);
-			//testers debug display mode
-			if (!isset ($CS_CONF['TESTER_DEBUG_MODE']) || !is_bool($CS_CONF['TESTER_DEBUG_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown testers debug display mode configuration', E_USER_ERROR, 3, 'CS');
-			}
-			//testers develop mode
-			if (!isset ($CS_CONF['TESTER_DEVELOP_MODE']) || !is_bool($CS_CONF['TESTER_DEVELOP_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown testers develop mode configuration', E_USER_ERROR, 3, 'CS');
+			//error log storage directory
+			if (!isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) || !is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'])) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown error log storage directory configuration', E_USER_ERROR, 3, 'CS');
 			}
 			//error stack trace mode
 			if (!isset ($CS_CONF['ERROR_STACK_TRACE_MODE']) || !is_bool($CS_CONF['ERROR_STACK_TRACE_MODE'])) {
@@ -127,19 +114,31 @@ if (!class_exists('csl_mvc')) {
 			if (!isset ($CS_CONF['ERROR_LOG_MODE']) || !is_bool($CS_CONF['ERROR_LOG_MODE'])) {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown error log storage mode configuration', E_USER_ERROR, 3, 'CS');
 			}
-			//error log storage directory
-			if (isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) && is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'])) {
-				//set error log storage file
-				if (strlen($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) > 0) {
-					$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-					$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-					$logDate = date('Y-m-d');
-					if (!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')) {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change error log storage directory \'' . $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
-					}
+			//testers debug display mode
+			if (!isset ($CS_CONF['TESTER_DEBUG_MODE']) || !is_bool($CS_CONF['TESTER_DEBUG_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown testers debug display mode configuration', E_USER_ERROR, 3, 'CS');
+			}
+			//testers develop mode
+			if (!isset ($CS_CONF['TESTER_DEVELOP_MODE']) || !is_bool($CS_CONF['TESTER_DEVELOP_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown testers develop mode configuration', E_USER_ERROR, 3, 'CS');
+			}
+			/*---setting---*/
+			//set intro page
+			self :: $intro = trim(csl_path :: clean(self :: $rootDir . $CS_CONF['INTRO']), '/');
+			//set timezone
+			if (strlen($CS_CONF['DEFAULT_TIMEZONE']) > 0 && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
+			}
+			//build languages xml object
+			self :: $language = new csl_language('language', $CS_CONF['LANGUAGE_XML_VERSION'], $CS_CONF['LANGUAGE_XML_ENCODING']);
+			//set error log storage file
+			if (strlen($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) > 0) {
+				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
+				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
+				$logDate = date('Y-m-d');
+				if (!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')) {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change error log storage directory \'' . $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
 				}
-			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - unknown error log storage directory configuration', E_USER_ERROR, 3, 'CS');
 			}
 			//set error stack trace mode
 			csl_debug :: set_trace_error_handler($CS_CONF['ERROR_STACK_TRACE_MODE']);
@@ -151,7 +150,7 @@ if (!class_exists('csl_mvc')) {
 			if (self :: $tester) {
 				//set debug mode
 				csl_debug :: display($CS_CONF['TESTER_DEBUG_MODE']);
-				//develop mode
+				//set develop mode
 				self :: $develop = $CS_CONF['TESTER_DEVELOP_MODE'];
 			} else {
 				//set erorr display none

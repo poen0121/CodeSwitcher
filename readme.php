@@ -309,6 +309,15 @@
 	==============================================================
 
 	==============================================================
+	Error log storage directory location.
+	Example :
+	$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
+	--------------------------------------------------------------
+	Note : The void value automatically uses the PHP default error_log location.
+	Note : Whether the directory exists and whether the directory permissions are writable.
+	==============================================================
+
+	==============================================================
 	Error stack trace is set to true or false.
 	Example :
 	$CS_CONF['ERROR_STACK_TRACE_MODE'] = false;
@@ -324,15 +333,6 @@
 	Param : boolean $mode (temporarily change mode does not support tester mode)
 	Return : integer
 	Return Note : Returns FALSE on failure.
-	==============================================================
-
-	==============================================================
-	Error log storage directory location.
-	Example :
-	$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
-	--------------------------------------------------------------
-	Note : The void value automatically uses the PHP default error_log location.
-	Note : Whether the directory exists and whether the directory permissions are writable.
 	==============================================================
 
 	==============================================================

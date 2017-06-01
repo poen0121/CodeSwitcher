@@ -5,6 +5,7 @@ if (!class_exists('csl_time')) {
 	 * @about - time-related functions.
 	 */
 	class csl_time {
+		private static $DateTime;
 		/** Get the date range of the number of working days and weekend days.
 		 * @access - public function
 		 * @param - string $firstDate (YYYY-MM-DD)
@@ -335,133 +336,16 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_datetime($datetime)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
 				} else {
-					$datetime = ($offsetSec < 0 ? self :: deduct_datetime($datetime, $offsetSec) : $datetime);
-					$datetime = ($offsetSec > 0 ? self :: add_datetime($datetime, $offsetSec) : $datetime);
-					return $datetime;
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
+					}
+					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
+					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+					$datetime = self :: $DateTime->modify(($offsetSec < 0 ? '-' : '+') . abs($offsetSec) . ' sec')->format('Y-m-d H:i:s');
+					return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
 				}
 			}
 			return false;
-		}
-		/** Additional time, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
-		 * @access - private function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
-		 * @param - integer $offsetSec (offset sec number 0 ~ 2147483647)
-		 * @return - string|boolean
-		 * @usage - self::add_datetime($datetime,$offsetSec);
-		 */
-		private static function add_datetime($datetime = null, $offsetSec = null) {
-			$month = (int) self :: sub_datetime($datetime, 'm');
-			$year = (int) self :: sub_datetime($datetime, 'y');
-			$daysInMonth = array (1 => 31,2 => 28,3 => 31,4 => 30,5 => 31,6 => 30,7 => 31,8 => 31,9 => 30,10 => 31,11 => 30,12 => 31);
-			if ($month == 2 && checkdate($month, 29, $year)) {
-				$daysInMonth[2] = 29;
-			}
-			$ms = abs($offsetSec);
-			$ns = ((int) self :: sub_datetime($datetime, 's') + $ms); //total sec
-			$ds = ($ns % 60);
-			$S = ($ds < 10 ? '0' . $ds : $ds);
-			$rm = floor($ns / 60);
-			$rm = (int) self :: sub_datetime($datetime, 'i') + $rm; //total minute
-			$dm = ($rm % 60); //need minute
-			$M = ($dm < 10 ? '0' . $dm : $dm);
-			$rh = floor($rm / 60);
-			$nh = (int) self :: sub_datetime($datetime, 'h') + $rh; //total hour
-			$dh = ($nh % 24);
-			$H = ($dh < 10 ? '0' . $dh : $dh);
-			$nd = floor($nh / 24);
-			//----------------------------------------
-			$dd = ((int) self :: sub_datetime($datetime, 'd')) + $nd; //total day
-			if ($dd <= $daysInMonth[$month]) {
-				$D = ($dd < 10 ? '0' . $dd : $dd);
-				$Mn = self :: sub_datetime($datetime, 'm');
-				$Y = self :: sub_datetime($datetime, 'y');
-			} else {
-				$setY = (int) self :: sub_datetime($datetime, 'y');
-				$setMn = (int) self :: sub_datetime($datetime, 'm');
-				$nowDay = $dd;
-				while ($nowDay > $daysInMonth[$setMn]) {
-					if ($setMn == 2 && checkdate($setMn, 29, $setY)) {
-						$daysInMonth[2] = 29;
-					} else {
-						$daysInMonth[2] = 28;
-					}
-					$nowDay = $nowDay - $daysInMonth[$setMn];
-					$setMn = ($setMn +1);
-					$setY = ($setMn > 12 ? ($setY +1) : $setY);
-					$setMn = ($setMn > 12 ? 1 : $setMn);
-					if ($nowDay <= $daysInMonth[$setMn]) {
-						$Y = $setY;
-						$Mn = ($setMn < 10 ? '0' . $setMn : $setMn);
-						$D = ($nowDay < 10 ? '0' . $nowDay : $nowDay);
-					}
-				}
-			}
-			$datetime = $Y . '-' . $Mn . '-' . $D . ' ' . $H . ':' . $M . ':' . $S;
-			return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
-		}
-		/** Deduct time, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
-		 * @access - private function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
-		 * @param - integer $offsetSec (offset sec number 0 ~ 2147483647)
-		 * @return - string|boolean
-		 * @usage - self::deduct_datetime($datetime,$offsetSec);
-		 */
-		private static function deduct_datetime($datetime = null, $offsetSec = null) {
-			$month = (int) self :: sub_datetime($datetime, 'm');
-			$year = (int) self :: sub_datetime($datetime, 'y');
-			$daysInMonth = array (1 => 31,2 => 28,3 => 31,4 => 30,5 => 31,6 => 30,7 => 31,8 => 31,9 => 30,10 => 31,11 => 30,12 => 31);
-			if ($month == 2 && checkdate($month, 29, $year)) {
-				$daysInMonth[2] = 29;
-			}
-			$ms = abs($offsetSec);
-			$ns = ($ms % 60); //need sec
-			$ds = (int) self :: sub_datetime($datetime, 's') - $ns;
-			$S = ($ds < 0 ? ((60 + $ds) < 10 ? '0' . (60 + $ds) : (60 + $ds)) : ($ds < 10 ? '0' . $ds : $ds));
-			$rm = floor($ms / 60);
-			$nm = ($rm % 60); //need minute
-			$dm = ((int) self :: sub_datetime($datetime, 'i')) - $nm - ($ds < 0 ? 1 : 0);
-			$M = ($dm < 0 ? ((60 + $dm) < 10 ? '0' . (60 + $dm) : (60 + $dm)) : ($dm < 10 ? '0' . $dm : $dm));
-			$rh = floor($rm / 60);
-			$nh = ($rh % 24); //need hour
-			$dh = ((int) self :: sub_datetime($datetime, 'h')) - $nh - ($dm < 0 ? 1 : 0);
-			$H = ($dh < 0 ? ((24 + $dh) < 10 ? '0' . (24 + $dh) : (24 + $dh)) : ($dh < 10 ? '0' . $dh : $dh));
-			$nd = ($dh < 0 ? (1 + floor($rh / 24)) : floor($rh / 24)); //need day
-			if ($nd == 0) {
-				$D = self :: sub_datetime($datetime, 'd');
-				$Mn = self :: sub_datetime($datetime, 'm');
-				$Y = self :: sub_datetime($datetime, 'y');
-			} else {
-				$setY = (int) self :: sub_datetime($datetime, 'y');
-				$setMn = (int) self :: sub_datetime($datetime, 'm');
-				$nowDay = (int) self :: sub_datetime($datetime, 'd');
-				while ($nd > 0) {
-					if ($nowDay > 0) {
-						$nowDay = $nowDay -1;
-						$nd = $nd -1;
-					}
-					if ($nowDay < 1) {
-						$setY = (($setMn -1) < 1 ? ($setY -1) : $setY);
-						$setMn = (($setMn -1) < 1 ? 12 : ($setMn -1));
-						if ($setMn == 2 && checkdate($setMn, 29, $setY)) {
-							$daysInMonth[2] = 29;
-						} else {
-							$daysInMonth[2] = 28;
-						}
-						$nowDay = $daysInMonth[$setMn];
-						if ($nd > 0) {
-							$nowDay = $nowDay -1;
-							$nd = $nd -1;
-						}
-					}
-					if ($nd == 0) {
-						$Y = $setY;
-						$Mn = ($setMn < 10 ? '0' . $setMn : $setMn);
-						$D = ($nowDay < 10 ? '0' . $nowDay : $nowDay);
-					}
-				}
-			}
-			$datetime = (isset ($Y) ? $Y : '0000') . '-' . (isset ($Mn) ? $Mn : '00') . '-' . (isset ($D) ? $D : '00') . ' ' . $H . ':' . $M . ':' . $S;
-			return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
 		}
 		/** Datetime conversion total number of seconds.
 		 * @access - public function

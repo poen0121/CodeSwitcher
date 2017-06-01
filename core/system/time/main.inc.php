@@ -5,27 +5,6 @@ if (!class_exists('csl_time')) {
 	 * @about - time-related functions.
 	 */
 	class csl_time {
-		/** Error handler.
-		 * @access - private function
-		 * @param - integer $errno (error number)
-		 * @param - string $message (error message)
-		 * @return - boolean|null
-		 * @usage - set_error_handler(__CLASS__.'::ErrorHandler');
-		 */
-		private static function ErrorHandler($errno = null, $message = null) {
-			if (!(error_reporting() & $errno)) {
-				// This error code is not included in error_reporting
-				return;
-			}
-			//replace message target function
-			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
-			$caller = end($caller);
-			$message = __CLASS__ . '::' . $caller['function'] . '(): ' . $message;
-			//echo message
-			csl_error :: cast($message, $errno, 3);
-			/* Don't execute PHP internal error handler */
-			return true;
-		}
 		/** Get the date range of the number of working days and weekend days.
 		 * @access - public function
 		 * @param - string $firstDate (YYYY-MM-DD)
@@ -158,10 +137,20 @@ if (!class_exists('csl_time')) {
 		 */
 		public static function set_timezone($timezoneId = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				set_error_handler(__CLASS__ . '::ErrorHandler');
-				$result = date_default_timezone_set($timezoneId);
-				restore_error_handler();
-				return $result;
+				if (function_exists('date_default_timezone_set')) {
+					if ($timezoneId) {
+						$errorLevel = error_reporting();
+						if (ini_set('error_reporting', 0) !== false) { //avoid showing error message
+							$result = date_default_timezone_set($timezoneId);
+							ini_set('error_reporting', $errorLevel);
+						} else {
+							$result = @ date_default_timezone_set($timezoneId); //avoid showing error message
+						}
+						return ($result === false ? false : true);
+					}
+				} else {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Call to undefined date_default_timezone_set()', E_USER_ERROR, 1);
+				}
 			}
 			return false;
 		}

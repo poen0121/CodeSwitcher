@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.9.0
+	Revision	: 2.10.0
 	Notes		:
 
 	Revision History:
@@ -12,6 +12,7 @@
 	05-30-2011		Poen		05-30-2011	Poen		Create the program.
 	03-30-2017		Poen		03-30-2017	Poen		Reforming the program.
 	05-31-2017		Poen		05-31-2017	Poen		Modify set_timezone function.
+	06-01-2017		Poen		06-01-2017	Poen		Remove set_timezone function error message.
 	---------------------------------------------------------------------------
 
 >> About
@@ -99,10 +100,13 @@
 	Usage : csl_time::set_timezone($timezoneId)
 	Param : string $timezoneId (timezone id)
 	Return : boolean
-	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
 	csl_time::set_timezone('Asia/Taipei');
+	Output >> TRUE
+	Example :
+	csl_time::set_timezone('Test');
+	Output >> FALSE
 	==============================================================
 
 	==============================================================

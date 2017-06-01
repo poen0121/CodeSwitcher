@@ -13,8 +13,9 @@ $CS_CONF['INTRO'] = 'home';
  ==============================================================
  Use the timezone identifier, like UTC or Europe/Lisbon to set the default timezone for the script.
  Example :
- Taipei time zone :
- $CS_CONF['DEFAULT_TIMEZONE'] = 'Asia/Taipei';
+ $CS_CONF['DEFAULT_TIMEZONE'] = '';
+ --------------------------------------------------------------
+ Note : The void value automatically uses the PHP default timezone.
  ==============================================================
  */
 $CS_CONF['DEFAULT_TIMEZONE'] = 'Asia/Taipei';
@@ -62,7 +63,7 @@ $CS_CONF['ERROR_LOG_MODE'] = true;
  Example :
  $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
  --------------------------------------------------------------
- Note : The void value automatically uses the php.ini error_log location.
+ Note : The void value automatically uses the PHP default error_log location.
  Note : Whether the directory exists and whether the directory permissions are writable.
  ==============================================================
  */

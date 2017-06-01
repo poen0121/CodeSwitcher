@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.12.12
+	Revision	: 1.13.12
 	Notes		:
 
 	Revision History:
@@ -33,7 +33,8 @@
 	05-19-2016		Poen		05-19-2017	Poen		Debug the formPath function by client URI analysis mode.
 	05-24-2016		Poen		05-24-2017	Poen		Improve the http state 500 status information flexibility customization.
 	05-31-2017		Poen		05-31-2017	Poen		Change the timezone by timezone id.
-	05-31-2017		Poen		05-31-2017	Poen		Improve the program initialization error display.
+	05-31-2017		Poen		06-01-2017	Poen		Improve the program initialization error display.
+	06-01-2017		Poen		06-01-2017	Poen		Add timezone default mechanism.
 	---------------------------------------------------------------------------
 
 >> About

@@ -71,7 +71,7 @@
 	==============================================================
 
 	==============================================================
-	Date format verification.
+	Date format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_inspect::is_date($data);
 	Param : string $data (date YYYY-MM-DD)
 	Return : boolean
@@ -93,7 +93,7 @@
 	==============================================================
 
 	==============================================================
-	Datetime format verification.
+	Datetime format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_inspect::is_datetime($data);
 	Param : string $data (datetime YYYY-MM-DD hh:ii:ss)
 	Return : boolean

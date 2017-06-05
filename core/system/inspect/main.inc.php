@@ -59,7 +59,7 @@ if (!class_exists('csl_inspect')) {
 			}
 			return false;
 		}
-		/** Date format verification.
+		/** Date format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $data (date YYYY-MM-DD)
 		 * @return - boolean
@@ -95,7 +95,7 @@ if (!class_exists('csl_inspect')) {
 			}
 			return false;
 		}
-		/** Datetime format verification.
+		/** Datetime format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $data (datetime YYYY-MM-DD hh:ii:ss)
 		 * @return - boolean

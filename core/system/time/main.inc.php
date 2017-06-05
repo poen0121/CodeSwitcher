@@ -28,10 +28,7 @@ if (!class_exists('csl_time')) {
 					$startWeekday = self :: date2week($min);
 					$startReduce = ($startWeekday == 7) ? 1 : 0;
 					$endWeekday = self :: date2week($max);
-					in_array($endWeekday, array (
-						6,
-						7
-					)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
+					in_array($endWeekday, array (6,7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
 					$allDays = ((self :: datetime2sec($max . ' 00:00:00') - self :: datetime2sec($min . ' 00:00:00')) / 86400) + 1;
 					$weekEndDays = floor(($allDays + $startWeekday -1 - $endWeekday) / 7) * 2 - $startReduce + $endAdd;
 					if ($type) {

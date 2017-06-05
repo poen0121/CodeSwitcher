@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.10.1
+	Revision	: 2.10.2
 	Notes		:
 
 	Revision History:
@@ -14,6 +14,7 @@
 	05-31-2017		Poen		05-31-2017	Poen		Modify set_timezone function.
 	06-01-2017		Poen		06-01-2017	Poen		Remove set_timezone function error message.
 	06-01-2017		Poen		06-01-2017	Poen		Improve jump_datetime function.
+	06-05-2017		Poen		06-05-2017	Poen		Modify document.
 	---------------------------------------------------------------------------
 
 >> About
@@ -28,7 +29,7 @@
 	==============================================================
 
 	==============================================================
-	Get the date range of the number of working days and weekend days.
+	Get the date range of the number of working days and weekend days, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::part_days($firstDate,$secondDate,$type)
 	Param : string $firstDate (YYYY-MM-DD)
 	Param : string $secondDate (YYYY-MM-DD)
@@ -51,7 +52,7 @@
 	==============================================================
 
 	==============================================================
-	Check the now datetime within limits range.
+	Check the now datetime within limits range, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::in_range($nowDatetime,$firstDatetime,$secondDatetime)
 	Param : string $nowDatetime (YYYY-MM-DD hh:ii:ss)
 	Param : string $firstDatetime (YYYY-MM-DD hh:ii:ss)
@@ -68,7 +69,7 @@
 	==============================================================
 
 	==============================================================
-	Get date day (1 ~ 7 : monday ~ sunday) of the week.
+	Get date day (1 ~ 7 : monday ~ sunday) of the week, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::date2week($date)
 	Param : string $date (YYYY-MM-DD)
 	Return : integer
@@ -80,7 +81,7 @@
 	==============================================================
 
 	==============================================================
-	Calculation date range list.
+	Calculation date range list, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::date_range($firstDate,$secondDate)
 	Param : string $firstDate (YYYY-MM-DD)
 	Param : string $secondDate (YYYY-MM-DD)
@@ -111,7 +112,7 @@
 	==============================================================
 
 	==============================================================
-	Return part info of date.
+	Return part info of date, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::sub_date($date,$index)
 	Param : string $date (YYYY-MM-DD)
 	Param : string $index (index y,m,d)
@@ -151,7 +152,7 @@
 	==============================================================
 
 	==============================================================
-	Return part info of datetime.
+	Return part info of datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::sub_datetime($datetime,$index)
 	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
 	Param : string $index (index y,m,d,h,i,s,date,24h,12h)
@@ -246,7 +247,7 @@
 	==============================================================
 
 	==============================================================
-	Datetime conversion total number of seconds.
+	Datetime conversion total number of seconds, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::datetime2sec($datetime);
 	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
 	Return : double

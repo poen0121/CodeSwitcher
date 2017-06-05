@@ -6,7 +6,7 @@ if (!class_exists('csl_time')) {
 	 */
 	class csl_time {
 		private static $DateTime;
-		/** Get the date range of the number of working days and weekend days.
+		/** Get the date range of the number of working days and weekend days, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $firstDate (YYYY-MM-DD)
 		 * @param - string $secondDate (YYYY-MM-DD)
@@ -28,7 +28,10 @@ if (!class_exists('csl_time')) {
 					$startWeekday = self :: date2week($min);
 					$startReduce = ($startWeekday == 7) ? 1 : 0;
 					$endWeekday = self :: date2week($max);
-					in_array($endWeekday, array (6,7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
+					in_array($endWeekday, array (
+						6,
+						7
+					)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
 					$allDays = ((self :: datetime2sec($max . ' 00:00:00') - self :: datetime2sec($min . ' 00:00:00')) / 86400) + 1;
 					$weekEndDays = floor(($allDays + $startWeekday -1 - $endWeekday) / 7) * 2 - $startReduce + $endAdd;
 					if ($type) {
@@ -40,7 +43,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Check the now datetime within limits range.
+		/** Check the now datetime within limits range, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $nowDatetime (YYYY-MM-DD hh:ii:ss)
 		 * @param - string $firstDatetime (YYYY-MM-DD hh:ii:ss)
@@ -66,7 +69,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Get date day (1 ~ 7 : monday ~ sunday) of the week.
+		/** Get date day (1 ~ 7 : monday ~ sunday) of the week, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $date (YYYY-MM-DD)
 		 * @return - integer|boolean
@@ -89,14 +92,14 @@ if (!class_exists('csl_time')) {
 					$c = floor($year / 100);
 					$m = $month;
 					$d = $day;
-					$w = $y +floor($y / 4) + floor($c / 4) - (2 * $c) + floor((26 * ($m +1)) / 10) + $d + ($date <= '1582-10-04' ? 2 : -1);
+					$w = $y + floor($y / 4) + floor($c / 4) - (2 * $c) + floor((26 * ($m +1)) / 10) + $d + ($date <= '1582-10-04' ? 2 : -1);
 					$w = ($w % 7 + 7) % 7;
 					return ($w > 0 ? $w : 7);
 				}
 			}
 			return false;
 		}
-		/** Calculation date range list.
+		/** Calculation date range list, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $firstDate (YYYY-MM-DD)
 		 * @param - string $secondDate (YYYY-MM-DD)
@@ -155,7 +158,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Return part info of date.
+		/** Return part info of date, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $date (YYYY-MM-DD)
 		 * @param - string $index (index y,m,d)
@@ -220,7 +223,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Return part info of datetime.
+		/** Return part info of datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
 		 * @param - string $index (index y,m,d,h,i,s,date,24h,12h)
@@ -347,7 +350,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Datetime conversion total number of seconds.
+		/** Datetime conversion total number of seconds, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
 		 * @return - double|boolean

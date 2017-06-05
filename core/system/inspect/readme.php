@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.1.0
+	Revision	: 3.1.1
 	Notes		:
 
 	Revision History:
@@ -11,6 +11,7 @@
 	---------------------------------------------------------------------------
 	02-08-2010		Poen		02-08-2010	Poen		Create the program.
 	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
+	06-05-2017		Poen		06-05-2017	Poen		Modify document.
 	---------------------------------------------------------------------------
 
 >> About

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_file function
-	Revision	: 4.2.0
+	Revision	: 4.2.1
 	Notes		:
 
 	Revision History:
@@ -11,6 +11,9 @@
 	---------------------------------------------------------------------------
 	02-04-2010		Poen		05-28-2015	Poen		Create the program.
 	08-05-2016		Poen		02-22-2017	Poen		Reforming the program.
+	06-07-2017		Poen		06-07-2017	Poen		Debug size2unit function.
+	06-07-2017		Poen		06-07-2017	Poen		Debug unit2min function.
+	06-07-2017		Poen		06-07-2017	Poen		Debug unit2max function.
 	---------------------------------------------------------------------------
 
 >> About

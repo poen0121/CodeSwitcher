@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.1.1
+	Revision	: 3.2.1
 	Notes		:
 
 	Revision History:
@@ -12,6 +12,7 @@
 	02-08-2010		Poen		02-08-2010	Poen		Create the program.
 	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
 	06-05-2017		Poen		06-05-2017	Poen		Modify document.
+	06-07-2017		Poen		06-07-2017	Poen		Remove is_number_format function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -23,26 +24,6 @@
 	==============================================================
 	Include file
 	Usage : include('inspect/main.inc.php');
-	==============================================================
-
-	==============================================================
-	Verification number string for each group of thousand comma (",").
-	Usage : csl_inspect::is_number_format($data);
-	Param : string $data (numeric string)
-	Return : boolean
-	--------------------------------------------------------------
-	Example :
-	csl_inspect::is_number_format('5,666.00');
-	Output >> TRUE
-	Example :
-	csl_inspect::is_number_format('-5,666.00');
-	Output >> TRUE
-	Example :
-	csl_inspect::is_number_format('5,666');
-	Output >> TRUE
-	Example :
-	csl_inspect::is_number_format('-5,666');
-	Output >> TRUE
 	==============================================================
 
 	==============================================================

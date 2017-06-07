@@ -5,18 +5,6 @@ if (!class_exists('csl_inspect')) {
 	 * @about - inspect data format.
 	 */
 	class csl_inspect {
-		/** Verification number string for each group of thousand comma (",").
-		 * @access - public function
-		 * @param - string $data (numeric string)
-		 * @return - boolean
-		 * @usage - csl_inspect::is_number_format($data);
-		 */
-		public static function is_number_format($data = null) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				return (bool) preg_match('/^(\+|-)?([0-9]|[1-9]{1}[0-9]{0,2}|([1-9]{1}[0-9]{0,2}([,]{1}[0-9]{3})+)*){1}([.]{1}[0-9]*){0,1}$/i', $data);
-			}
-			return false;
-		}
 		/** Iconv encoding type code verification.
 		 * @access - public function
 		 * @param - string $data (encoding type code)

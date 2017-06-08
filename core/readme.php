@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.14.13
+	Revision	: 1.15.13
 	Notes		:
 
 	Revision History:
@@ -39,6 +39,7 @@
 	06-08-2017		Poen		06-08-2017	Poen		Rename index function to the isPage.
 	06-08-2017		Poen		06-08-2017	Poen		Add isEvent function.
 	06-08-2017		Poen		06-08-2017	Poen		Modify the error log file name format.
+	06-08-2017		Poen		06-08-2017	Poen		Rename isPage function to the isPortal.
 	---------------------------------------------------------------------------
 
 >> About

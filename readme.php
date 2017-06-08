@@ -113,16 +113,16 @@
 
 	==============================================================
 	Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
-	Usage : csl_mvc::isPage($eventName);
+	Usage : csl_mvc::isPortal($eventName);
 	Param : string $eventName (events script directory path name)
 	Return : boolean
 	Return Note : FALSE when it fails or does not exist.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::isPage('example');
+	csl_mvc::isPortal('example');
 	Output >> TRUE
 	Example :
-	csl_mvc::isPage('home');
+	csl_mvc::isPortal('home');
 	Output >> TRUE
 	==============================================================
 

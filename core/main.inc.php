@@ -311,9 +311,9 @@ if (!class_exists('csl_mvc')) {
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
 		 * @return - boolean
-		 * @usage - csl_mvc::isPage($eventName);
+		 * @usage - csl_mvc::isPortal($eventName);
 		 */
-		public static function isPage($eventName = null) {
+		public static function isPortal($eventName = null) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {

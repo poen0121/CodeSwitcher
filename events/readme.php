@@ -43,7 +43,8 @@
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 	-----------------------------------------------------
 
-	Step 6 : Create link file `index.php` in the main directory.
+	Step 6 : Create link file `index.php` in the main directory to display the page.
+	Note : This is not necessary unless you have to create a link to display the page.
 	-----------------------------------------------------
 	<?php
 	chdir(dirname(__FILE__));
@@ -125,6 +126,47 @@
 	Example :
 	csl_mvc::version('events/example',TRUE);
 	Output >> Directory Relative Path
+	==============================================================
+
+	==============================================================
+	Captures the name of the script event that is currently running.
+	Usage : csl_mvc::scriptEvent();
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : __FILE__ >> /var/www/events/example/index.php
+	csl_mvc::scriptEvent();
+	Output >> example
+	==============================================================
+
+	==============================================================
+	Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
+	Usage : csl_mvc::isPage($eventName);
+	Param : string $eventName (events script directory path name)
+	Return : boolean
+	Return Note : FALSE when it fails or does not exist.
+	--------------------------------------------------------------
+	Example :
+	csl_mvc::isPage('example');
+	Output >> TRUE
+	Example :
+	csl_mvc::isPage('home');
+	Output >> TRUE
+	==============================================================
+
+	==============================================================
+	Returns whether the event controller file exists from the events script directory path name of the CodeSwitcher root directory.
+	Usage : csl_mvc::isEvent($eventName);
+	Param : string $eventName (events script directory path name)
+	Return : boolean
+	Return Note : FALSE when it fails or does not exist.
+	--------------------------------------------------------------
+	Example :
+	csl_mvc::isEvent('example');
+	Output >> TRUE
+	Example :
+	csl_mvc::isEvent('home');
+	Output >> TRUE
 	==============================================================
 
 */

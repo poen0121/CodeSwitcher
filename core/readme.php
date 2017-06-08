@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.13.13
+	Revision	: 1.14.13
 	Notes		:
 
 	Revision History:
@@ -36,6 +36,9 @@
 	05-31-2017		Poen		06-01-2017	Poen		Improve the program initialization error display.
 	06-01-2017		Poen		06-01-2017	Poen		Add timezone default mechanism.
 	06-01-2017		Poen		06-01-2017	Poen		Fix the program initialization error message.
+	06-08-2017		Poen		06-08-2017	Poen		Rename index function to the isPage.
+	06-08-2017		Poen		06-08-2017	Poen		Add isEvent function.
+	06-08-2017		Poen		06-08-2017	Poen		Modify the error log file name format.
 	---------------------------------------------------------------------------
 
 >> About

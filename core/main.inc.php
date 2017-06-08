@@ -135,8 +135,7 @@ if (!class_exists('csl_mvc')) {
 			if (strlen($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) > 0) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-				$logDate = csl_time :: get_date('host');
-				if (!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . hash('crc32', md5($logDate)) . '-' . $logDate . '.log')) {
+				if (!csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log')) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change error log storage directory \'' . $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '\' is invalid', E_USER_ERROR, 3, 'CS');
 				}
 			}
@@ -308,13 +307,13 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns whether the index page exists from the events script directory path name of the CodeSwitcher root directory.
+		/** Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
 		 * @return - boolean
-		 * @usage - csl_mvc::index($eventName);
+		 * @usage - csl_mvc::isPage($eventName);
 		 */
-		public static function index($eventName = null) {
+		public static function isPage($eventName = null) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
@@ -337,6 +336,49 @@ if (!class_exists('csl_mvc')) {
 								$file = (is_file($file) ? true : null);
 							}
 							return isset ($file);
+						}
+					}
+				}
+			} else {
+				self :: ERROR500();
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1, 'CS');
+			}
+			return false;
+		}
+		/** Returns whether the event controller file exists from the events script directory path name of the CodeSwitcher root directory.
+		 * @access - public function
+		 * @param - string $eventName (events script directory path name)
+		 * @return - boolean
+		 * @usage - csl_mvc::isEvent($eventName);
+		 */
+		public static function isEvent($eventName = null) {
+			self :: start();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+					if (strlen($eventName) == 0 || csl_path :: is_absolute($eventName) || !csl_path :: is_relative($eventName)) {
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
+					} else {
+						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
+						if (strlen($eventName) == 0) {
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
+						} else {
+							if (is_dir(BASEPATH . 'events/' . $eventName)) {
+								$maxVersion = BASEPATH . 'events/' . $eventName . '/ini/version.php';
+								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
+									return false;
+								}
+								if (!self :: $versionClass->is_exists(BASEPATH . 'events/' . $eventName, $maxVersion)) {
+									return false;
+								}
+								$version = self :: $versionClass->get(BASEPATH . 'events/' . $eventName, (!self :: $tester || !self :: $develop ? $maxVersion : ''));
+								if ($version) {
+									$file = BASEPATH . 'events/' . $eventName . '/' . $version . '/main.inc.php';
+									if (is_file($file) && is_readable($file)) {
+										return true;
+									}
+								}
+							}
 						}
 					}
 				}

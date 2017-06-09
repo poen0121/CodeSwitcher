@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.15.15
+	Revision	: 1.15.16
 	Notes		:
 
 	Revision History:
@@ -43,6 +43,7 @@
 	06-09-2017		Poen		06-09-2017	Poen		Improve isPortal function.
 	06-09-2017		Poen		06-09-2017	Poen		Improve isEvent function.
 	06-09-2017		Poen		06-09-2017	Poen		Modify the formPath function error message.
+	06-09-2017		Poen		06-09-2017	Poen		Improve formPath function.
 	---------------------------------------------------------------------------
 
 >> About

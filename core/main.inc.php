@@ -244,7 +244,7 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
-					if (!csl_path :: is_absolute($pathName) && csl_path :: is_relative($pathName)) {
+					if (csl_path :: is_relative($pathName)) {
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
 						if ($uriMode && isset ($_SERVER['REQUEST_URI'])) {
 							if (is_null(self :: $uriLayer)) {
@@ -315,7 +315,7 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) > 0 && !csl_path :: is_absolute($eventName) && csl_path :: is_relative($eventName)) {
+					if (strlen($eventName) > 0 && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
 						if (strlen($eventName) > 0) {
 							if ($eventName == self :: $intro) {
@@ -349,7 +349,7 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) > 0 && !csl_path :: is_absolute($eventName) && csl_path :: is_relative($eventName)) {
+					if (strlen($eventName) > 0 && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
 						if (strlen($eventName) > 0) {
 							if (is_dir(BASEPATH . 'events/' . $eventName)) {

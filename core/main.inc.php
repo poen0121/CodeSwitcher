@@ -244,9 +244,7 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
-					if (csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
-					} else {
+					if (!csl_path :: is_absolute($pathName) && csl_path :: is_relative($pathName)) {
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
 						if ($uriMode && isset ($_SERVER['REQUEST_URI'])) {
 							if (is_null(self :: $uriLayer)) {

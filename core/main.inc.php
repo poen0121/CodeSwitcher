@@ -317,13 +317,9 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) == 0 || csl_path :: is_absolute($eventName) || !csl_path :: is_relative($eventName)) {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
-					} else {
+					if (strlen($eventName) > 0 && !csl_path :: is_absolute($eventName) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (strlen($eventName) == 0) {
-							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
-						} else {
+						if (strlen($eventName) > 0) {
 							if ($eventName == self :: $intro) {
 								$file = BASEPATH . 'index.php';
 								$file = (is_file($file) ? true : null);
@@ -355,13 +351,9 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) == 0 || csl_path :: is_absolute($eventName) || !csl_path :: is_relative($eventName)) {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
-					} else {
+					if (strlen($eventName) > 0 && !csl_path :: is_absolute($eventName) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (strlen($eventName) == 0) {
-							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
-						} else {
+						if (strlen($eventName) > 0) {
 							if (is_dir(BASEPATH . 'events/' . $eventName)) {
 								$maxVersion = BASEPATH . 'events/' . $eventName . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');

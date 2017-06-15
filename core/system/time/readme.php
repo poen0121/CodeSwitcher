@@ -14,8 +14,8 @@
 	05-31-2017		Poen		05-31-2017	Poen		Modify set_timezone function.
 	06-01-2017		Poen		06-01-2017	Poen		Remove set_timezone function error message.
 	06-01-2017		Poen		06-01-2017	Poen		Improve jump_datetime function.
-	06-05-2017		Poen		06-05-2017	Poen		Modify document.
-	06-05-2017		Poen		06-05-2017	Poen		Improve cdoe.
+	06-05-2017		Poen		06-05-2017	Poen		Modify the document.
+	06-05-2017		Poen		06-05-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

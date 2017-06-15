@@ -12,14 +12,14 @@
 	03-09-2016		Poen		04-18-2017	Poen		Create the program.
 	09-22-2016		Poen		03-30-2017	Poen		Reforming the program.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the index function to correct the info on the intro page.
-	04-06-2016		Poen		04-06-2017	Poen		Improve the callEvent function.
+	04-06-2016		Poen		04-06-2017	Poen		Improve callEvent function.
 	04-07-2016		Poen		05-05-2017	Poen		Improve the program code.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	04-20-2017		Poen		04-20-2017	Poen		Restricting the CLI mode is the tester mode.
 	04-24-2017		Poen		04-24-2017	Poen		Confirm that the script information is available.
 	04-24-2017		Poen		04-24-2017	Poen		Modify the control error message to throw.
 	04-24-2017		Poen		04-24-2017	Poen		Debug run event start.
-	04-26-2016		Poen		04-26-2017	Poen		Add the importEvent function.
+	04-26-2016		Poen		04-26-2017	Poen		Add importEvent function.
 	05-04-2016		Poen		05-04-2017	Poen		Debug the error 500 loop error.
 	05-04-2016		Poen		05-04-2017	Poen		Add the begin program mechanism.
 	05-04-2016		Poen		05-04-2017	Poen		Add the commit program mechanism.
@@ -27,7 +27,7 @@
 	05-05-2016		Poen		05-16-2017	Poen		Improve the commit program mechanism.
 	05-05-2016		Poen		05-05-2017	Poen		Debug the viewTemplate function.
 	05-05-2016		Poen		05-08-2017	Poen		Debug the $_SERVER['SCRIPT_FILENAME'] realpath.
-	05-16-2016		Poen		05-16-2017	Poen		Add the scriptEvent function.
+	05-16-2016		Poen		05-16-2017	Poen		Add scriptEvent function.
 	05-18-2016		Poen		05-18-2017	Poen		Modify the formPath function to add client URI analysis mode.
 	05-18-2016		Poen		05-18-2017	Poen		Modify the index function only to exist for detection.
 	05-19-2016		Poen		05-19-2017	Poen		Debug the formPath function by client URI analysis mode.
@@ -39,10 +39,10 @@
 	06-08-2017		Poen		06-08-2017	Poen		Rename index function to the isPage.
 	06-08-2017		Poen		06-08-2017	Poen		Add isEvent function.
 	06-08-2017		Poen		06-08-2017	Poen		Modify the error log file name format.
-	06-08-2017		Poen		06-08-2017	Poen		Rename isPage function to the isPortal.
+	06-08-2017		Poen		06-08-2017	Poen		Rename isPage function to isPortal.
 	06-09-2017		Poen		06-09-2017	Poen		Improve isPortal function.
 	06-09-2017		Poen		06-09-2017	Poen		Improve isEvent function.
-	06-09-2017		Poen		06-09-2017	Poen		Modify the formPath function error message.
+	06-09-2017		Poen		06-09-2017	Poen		Modify formPath function error message.
 	06-09-2017		Poen		06-09-2017	Poen		Improve formPath function.
 	---------------------------------------------------------------------------
 

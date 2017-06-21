@@ -328,7 +328,7 @@
 	Example :
 	$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
 	--------------------------------------------------------------
-	Note : The void value automatically uses the PHP default error_log location.
+	Note : The void value automatically uses the CodeSwitcher default error_log location /storage/logs.
 	Note : Whether the directory exists and whether the directory permissions are writable.
 	==============================================================
 

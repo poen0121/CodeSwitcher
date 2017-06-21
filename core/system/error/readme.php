@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.7.0
+	Revision	: 2.8.0
 	Notes		:
 
 	Revision History:
@@ -12,6 +12,7 @@
 	07-29-2016		Poen		07-29-2016	Poen		Create the program.
 	08-05-2016		Poen		03-27-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
+	06-21-2017		Poen		06-21-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

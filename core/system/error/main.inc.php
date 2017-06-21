@@ -79,7 +79,12 @@ if (!class_exists('csl_error')) {
 				if ((error_reporting() & $errno)) {
 					$message = '<br /><b>' . $title . '</b>: ' . trim($errorMessage) . self :: where($echoDepth);
 					if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'))) {
-						error_log(strtoupper(trim($logTitle)) . ' ' . strip_tags($message), 0);
+						$file = (isset ($_SERVER['ERROR_LOG_FILE']) ? str_replace('\\', '/', $_SERVER['ERROR_LOG_FILE']) : '');
+						if (strlen($file) > 0 && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
+							error_log(strtoupper(trim($logTitle)) . ' ' . strip_tags($message), 3, $file);
+						} else {
+							error_log(strtoupper(trim($logTitle)) . ' ' . strip_tags($message), 0);
+						}
 					}
 					if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
 						echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;

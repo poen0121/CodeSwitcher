@@ -93,7 +93,12 @@ if (!class_exists('csl_debug')) {
 				}
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'))) {
-				error_log('PHP ' . strip_tags($message), 0);
+				$file = (isset ($_SERVER['ERROR_LOG_FILE']) ? str_replace('\\', '/', $_SERVER['ERROR_LOG_FILE']) : '');
+				if (strlen($file) > 0 && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
+					error_log('PHP ' . strip_tags($message), 3, $file);
+				} else {
+					error_log('PHP ' . strip_tags($message), 0);
+				}
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
 				echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
@@ -110,9 +115,9 @@ if (!class_exists('csl_debug')) {
 		 * @note - $switch `true` is open $_SERVER['ERROR_STACK_TRACE'] = On.
 		 * @note - $switch `false` is close $_SERVER['ERROR_STACK_TRACE'] = Off.
 		 * @return - boolean
-		 * @usage - csl_debug::set_trace_error_handler($switch);
+		 * @usage - csl_debug::trace_error_handler($switch);
 		 */
-		public static function set_trace_error_handler($switch = true) {
+		public static function trace_error_handler($switch = true) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: bool2error(0)) {
 				$_SERVER['ERROR_STACK_TRACE'] = ($switch ? 'On' : 'Off');
 				set_error_handler(__CLASS__ . '::TraceErrorHandler');
@@ -185,21 +190,31 @@ if (!class_exists('csl_debug')) {
 			}
 			return false;
 		}
-		/** Set PHP log errors to specified default file.
+		/** Set PHP log errors to specified default file if true , sync the information to the $_SERVER['ERROR_LOG_FILE'].
 		 * @access - public function
 		 * @param - string $path (file path)
+		 * @param - boolean $outMode (out of system ini) Default : false
 		 * @return - boolean
-		 * @usage - csl_debug::error_log_file($path);
+		 * @usage - csl_debug::error_log_file($path, $outMode);
 		 */
-		public static function error_log_file($path = null) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+		public static function error_log_file($path = null, $outMode = false) {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
 				if (strlen($path) == 0) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
 				} else {
 					if (!csl_path :: is_absolute($path) && csl_path :: is_files($path)) {
 						$path = csl_path :: norm($path);
-						ini_set('error_log', $path);
-						return (csl_path :: norm(ini_get('error_log')) === $path ? true : false);
+						if (!$outMode) {
+							ini_set('error_log', $path);
+							if (csl_path :: norm(ini_get('error_log')) === $path) {
+								$_SERVER['ERROR_LOG_FILE'] = $path;
+								return true;
+							}
+						} else {
+							$_SERVER['ERROR_LOG_FILE'] = $path;
+							return true;
+						}
+
 					}
 				}
 			}

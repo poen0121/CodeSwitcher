@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_import function
-	Revision	: 2.8.0
+	Revision	: 2.9.0
 	Notes		:
 
 	Revision History:

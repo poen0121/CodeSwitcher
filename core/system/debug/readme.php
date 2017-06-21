@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.1.0
+	Revision	: 3.3.0
 	Notes		:
 
 	Revision History:
@@ -12,6 +12,8 @@
 	10-20-2010		Poen		10-20-2010	Poen		Create the program.
 	08-17-2016		Poen		02-22-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Add set_trace_error_handler function.
+	06-21-2017		Poen		06-21-2017	Poen		Rename set_trace_error_handler function to trace_error_handler.
+	06-21-2017		Poen		06-21-2017	Poen		Improve error_log_file function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -27,7 +29,7 @@
 
 	==============================================================
 	Set the PHP error stack trace mode to initialize the set_error_handler call hp_debug::TraceErrorHandler.
-	Usage : csl_debug::set_trace_error_handler($switch);
+	Usage : csl_debug::trace_error_handler($switch);
 	Param : boolean $switch (open or close the stack trace error mode) : Default true
 	Note : $switch `true` is open to $_SERVER['ERROR_STACK_TRACE'] = On.
 	Note : $switch `false` is close to $_SERVER['ERROR_STACK_TRACE'] = Off.
@@ -35,10 +37,10 @@
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example : Open the stack trace error.
-	csl_debug::set_trace_error_handler(true);
+	csl_debug::trace_error_handler(true);
 	Output >> TRUE
 	Example : Close the stack trace error.
-	csl_debug::set_trace_error_handler(false);
+	csl_debug::trace_error_handler(false);
 	Output >> TRUE
 	==============================================================
 
@@ -110,9 +112,10 @@
 	==============================================================
 
 	==============================================================
-	Set PHP log errors to specified default file.
-	Usage : csl_debug::error_log_file($path);
+	Set PHP log errors to specified default file if true , sync the information to the $_SERVER['ERROR_LOG_FILE'].
+	Usage : csl_debug::error_log_file($path,$outMode);
 	Param : string $path (file path)
+	Param : boolean $outMode (out of system ini) Default : false
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -121,6 +124,9 @@
 	Output >> TRUE
 	Example :
 	csl_debug::error_log_file('./test_log');
+	Output >> TRUE
+	Example : Mode that does not change the system ini.
+	csl_debug::error_log_file('./test_log',true);
 	Output >> TRUE
 	Example :
 	csl_debug::error_log_file('http://example/test_log');

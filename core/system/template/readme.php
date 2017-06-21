@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_template function
-	Revision	: 3.5.0
+	Revision	: 3.5.1
 	Notes		:
 
 	Revision History:
@@ -13,6 +13,7 @@
 	08-26-2016		Poen		03-10-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	06-21-2017		Poen		06-21-2017	Poen		Improve the program.
+	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	---------------------------------------------------------------------------
 
 >> About

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.3.0
+	Revision	: 3.3.1
 	Notes		:
 
 	Revision History:
@@ -14,6 +14,7 @@
 	04-20-2017		Poen		04-20-2017	Poen		Add set_trace_error_handler function.
 	06-21-2017		Poen		06-21-2017	Poen		Rename set_trace_error_handler function to trace_error_handler.
 	06-21-2017		Poen		06-21-2017	Poen		Improve error_log_file function.
+	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	---------------------------------------------------------------------------
 
 >> About

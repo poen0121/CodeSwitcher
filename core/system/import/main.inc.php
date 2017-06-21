@@ -125,7 +125,7 @@ if (!class_exists('csl_import')) {
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'))) {
 				$file = (isset ($_SERVER['ERROR_LOG_FILE']) ? str_replace('\\', '/', $_SERVER['ERROR_LOG_FILE']) : '');
 				if (strlen($file) > 0 && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
-					error_log('PHP ' . strip_tags($message), 3, $file);
+					error_log(date('[d-M-Y H:i:s e] ') . 'PHP ' . strip_tags($message) . PHP_EOL, 3, $file);
 				} else {
 					error_log('PHP ' . strip_tags($message), 0);
 				}

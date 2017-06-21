@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_import function
-	Revision	: 2.9.0
+	Revision	: 2.9.1
 	Notes		:
 
 	Revision History:
@@ -12,6 +12,7 @@
 	03-23-2016		Poen		03-23-2016	Poen		Create the program.
 	08-01-2016		Poen		03-10-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
+	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	---------------------------------------------------------------------------
 
 >> About

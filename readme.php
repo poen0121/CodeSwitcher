@@ -38,6 +38,8 @@
 
 	10.commit : Control events end program relies on the version control mechanism.
 
+	11.storage : System storage directory.
+
 >> Version Control - Revision Rule
 
  	[Main version number] . [Minor version number] . [Revision number]
@@ -333,7 +335,7 @@
 	==============================================================
 
 	==============================================================
-	Error stack trace is set to true or false.
+	Error stack trace is set to true or false , the system default is false.
 	Example :
 	$CS_CONF['ERROR_STACK_TRACE_MODE'] = false;
 	==============================================================

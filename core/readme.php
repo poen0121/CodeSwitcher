@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.17.16
+	Revision	: 1.17.17
 	Notes		:
 
 	Revision History:
@@ -44,6 +44,7 @@
 	06-09-2017		Poen		06-09-2017	Poen		Improve isEvent function.
 	06-09-2017		Poen		06-09-2017	Poen		Modify formPath function error message.
 	06-09-2017		Poen		06-09-2017	Poen		Improve formPath function.
+	06-21-2017		Poen		06-21-2017	Poen		The system default closes the error stack track.
 	---------------------------------------------------------------------------
 
 >> About
@@ -75,6 +76,10 @@
 	10.begin : Control events begin program relies on the version control mechanism.
 
 	11.commit : Control events end program relies on the version control mechanism.
+
+	12.storage : System storage directory.
+
+	13.storage/logs : System error logs storage directory.
 
 */
 ?>

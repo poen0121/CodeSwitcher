@@ -48,7 +48,7 @@ $CS_CONF['LANGUAGE_XML_ENCODING'] = 'utf-8';
 $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = '';
 /*
  ==============================================================
- Error stack trace is set to true or false.
+ Error stack trace is set to true or false , the system default is false.
  Example :
  $CS_CONF['ERROR_STACK_TRACE_MODE'] = false;
  ==============================================================

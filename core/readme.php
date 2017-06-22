@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.17.17
+	Revision	: 1.18.18
 	Notes		:
 
 	Revision History:
@@ -45,6 +45,9 @@
 	06-09-2017		Poen		06-09-2017	Poen		Modify formPath function error message.
 	06-09-2017		Poen		06-09-2017	Poen		Improve formPath function.
 	06-21-2017		Poen		06-21-2017	Poen		The system default closes the error stack track.
+	06-22-2016		Poen		06-22-2017	Poen		Improve logs function.
+	06-22-2016		Poen		06-22-2017	Poen		Improve debug function.
+	06-22-2017		Poen		06-22-2017	Poen		Add peel error log mechanism.
 	---------------------------------------------------------------------------
 
 >> About

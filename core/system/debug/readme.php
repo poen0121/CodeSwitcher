@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.3.1
+	Revision	: 3.4.1
 	Notes		:
 
 	Revision History:
@@ -15,6 +15,8 @@
 	06-21-2017		Poen		06-21-2017	Poen		Rename set_trace_error_handler function to trace_error_handler.
 	06-21-2017		Poen		06-21-2017	Poen		Improve error_log_file function.
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
+	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
+	06-22-2017		Poen		06-22-2017	Poen		Improve error_log_file function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -50,16 +52,16 @@
 	Usage : csl_debug::report($switch);
 	Param : boolean $switch (open or close the report error mode) : Default true
 	Note : $switch `true` is open the report error types E_ALL.
-    Note : $switch `false` is close the report error types 0.
+	Note : $switch `false` is close the report error types 0.
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example : Open the report error.
- 	csl_debug::report(true);
- 	Output >> TRUE
- 	Example : Close the report error.
- 	csl_debug::report(false);
- 	Output >> TRUE
+	csl_debug::report(true);
+	Output >> TRUE
+	Example : Close the report error.
+	csl_debug::report(false);
+	Output >> TRUE
 	==============================================================
 
 	==============================================================
@@ -69,8 +71,8 @@
 	--------------------------------------------------------------
 	Example :
 	csl_debug::report(true);
- 	csl_debug::is_all_report();
- 	Output >> TRUE
+	csl_debug::is_all_report();
+	Output >> TRUE
 	==============================================================
 
 	==============================================================
@@ -113,26 +115,28 @@
 	==============================================================
 
 	==============================================================
-	Set PHP log errors to specified default file if true , sync the information to the $_SERVER['ERROR_LOG_FILE'].
-	Usage : csl_debug::error_log_file($path,$outMode);
+	Set PHP log errors to specified default file.
+	Usage : csl_debug::error_log_file($path,$peelName);
 	Param : string $path (file path)
-	Param : boolean $outMode (out of system ini) Default : false
+	Param : string $peelName (set the species name to peel off the system error log file) : Default 'PHP' is system reserved words
+	Note : $peelName use $_SERVER['PEEL_OFF_ERROR_LOG_FILE'] to save the peel off error log file location.
+	Note : $peelName use $_SERVER['PEEL_OFF_NAME'] to save the peel off name.
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
-	Example :
+	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
 	csl_debug::error_log_file('./test.log');
 	Output >> TRUE
-	Example :
-	csl_debug::error_log_file('./test_log');
+	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
+	csl_debug::error_log_file('./test_log','PHP');
 	Output >> TRUE
-	Example : Mode that does not change the system ini.
-	csl_debug::error_log_file('./test_log',true);
+	Example : Use the error class to strip the system error log file , PHP error is still stored in the system error_log file.
+	csl_debug::error_log_file('./test_log','TEST');
 	Output >> TRUE
-	Example :
+	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
 	csl_debug::error_log_file('http://example/test_log');
 	Output >> FALSE
-	Example :
+	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
 	csl_debug::error_log_file('./');
 	Output >> FALSE
 	==============================================================

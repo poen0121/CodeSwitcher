@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_template function
-	Revision	: 3.5.1
+	Revision	: 3.6.1
 	Notes		:
 
 	Revision History:
@@ -13,7 +13,7 @@
 	08-26-2016		Poen		03-10-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	06-21-2017		Poen		06-21-2017	Poen		Improve the program.
-	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
+	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
 	---------------------------------------------------------------------------
 
 >> About
@@ -46,7 +46,7 @@
 	View content.
 	Usage : csl_template::view($path,$data,$process);
 	Param : string $path (template file path)
-	Param : array $data (template param data array) : Default void array
+	Param : array $data (template param data array) : Default empty
 	Param : boolean $process (return content string mode) : Default false
 	Note : $process is false echo display and the function returns boolean or true returns content string.
 	Return : boolean|string

@@ -146,7 +146,7 @@
 	==============================================================
 	Returns error log storage status 0 or 1, a temporarily change.
 	Usage : csl_mvc::logs($mode);
-	Param : boolean $mode (temporarily change mode does not support tester mode) : Default null
+	Param : boolean $mode (temporarily change mode does not support tester mode) : Default empty
 	Return : integer
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -167,7 +167,7 @@
 	==============================================================
 	Returns debug display state 0 or 1, a temporarily change.
 	Usage : csl_mvc::debug($mode);
-	Param : boolean $mode (temporarily change mode does not support tester mode) : Default null
+	Param : boolean $mode (temporarily change mode does not support tester mode) : Default empty
 	Return : integer
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -276,7 +276,7 @@
 	Load the page's template file to view the contents from the CodeSwitcher templates directory.
 	Usage : csl_mvc::viewTemplate($model,$data,$process);
 	Param : string $model (model name)
-	Param : array $data (data array) : Default void array
+	Param : array $data (data array) : Default empty
 	Param : boolean $process (return content string mode) : Default false
 	Return : string
 	Return Note : Returns FALSE on error.

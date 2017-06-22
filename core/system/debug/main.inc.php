@@ -93,12 +93,7 @@ if (!class_exists('csl_debug')) {
 				}
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'))) {
-				$file = (isset ($_SERVER['ERROR_LOG_FILE']) ? str_replace('\\', '/', $_SERVER['ERROR_LOG_FILE']) : '');
-				if (strlen($file) > 0 && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
-					error_log(date('[d-M-Y H:i:s e] ') . 'PHP ' . strip_tags($message) . PHP_EOL, 3, $file);
-				} else {
-					error_log('PHP ' . strip_tags($message), 0);
-				}
+				error_log('PHP ' . strip_tags($message), 0);
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
 				echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
@@ -190,28 +185,37 @@ if (!class_exists('csl_debug')) {
 			}
 			return false;
 		}
-		/** Set PHP log errors to specified default file if true , sync the information to the $_SERVER['ERROR_LOG_FILE'].
+		/** Set PHP log errors to specified default file.
 		 * @access - public function
 		 * @param - string $path (file path)
-		 * @param - boolean $outMode (out of system ini) Default : false
+		 * @param - string $peelName (set the species name to peel off the system error log file) : Default 'PHP' is system reserved words
+		 * @note - $peelName use $_SERVER['PEEL_OFF_ERROR_LOG_FILE'] to save the peel off error log file location.
+		 * @note - $peelName use $_SERVER['PEEL_OFF_NAME'] to save the peel off name.
 		 * @return - boolean
-		 * @usage - csl_debug::error_log_file($path, $outMode);
+		 * @usage - csl_debug::error_log_file($path,$peelName);
 		 */
-		public static function error_log_file($path = null, $outMode = false) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
+		public static function error_log_file($path = null, $peelName = 'PHP') {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
 				if (strlen($path) == 0) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
 				} else {
 					if (!csl_path :: is_absolute($path) && csl_path :: is_files($path)) {
 						$path = csl_path :: norm($path);
-						if (!$outMode) {
+						$peelName = strtoupper(trim($peelName));
+						if ($peelName == 'PHP') {
 							ini_set('error_log', $path);
 							if (csl_path :: norm(ini_get('error_log')) === $path) {
-								$_SERVER['ERROR_LOG_FILE'] = $path;
+								if (isset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE'])) {
+									unset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE']);
+								}
+								if (isset ($_SERVER['PEEL_OFF_NAME'])) {
+									unset ($_SERVER['PEEL_OFF_NAME']);
+								}
 								return true;
 							}
 						} else {
-							$_SERVER['ERROR_LOG_FILE'] = $path;
+							$_SERVER['PEEL_OFF_ERROR_LOG_FILE'] = $path;
+							$_SERVER['PEEL_OFF_NAME'] = $peelName;
 							return true;
 						}
 

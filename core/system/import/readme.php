@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_import function
-	Revision	: 2.10.1
+	Revision	: 2.10.2
 	Notes		:
 
 	Revision History:
@@ -14,6 +14,7 @@
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
+	06-30-2017		Poen		06-30-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

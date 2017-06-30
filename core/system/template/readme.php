@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_template function
-	Revision	: 3.6.1
+	Revision	: 3.6.2
 	Notes		:
 
 	Revision History:
@@ -12,7 +12,7 @@
 	02-25-2016		Poen		04-11-2016	Poen		Create the program.
 	08-26-2016		Poen		03-10-2017	Poen		Reforming the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
-	06-21-2017		Poen		06-21-2017	Poen		Improve the program.
+	06-21-2017		Poen		06-30-2017	Poen		Improve the program.
 	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
 	---------------------------------------------------------------------------
 

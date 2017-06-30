@@ -28,7 +28,7 @@ if (!class_exists('csl_template')) {
 				$caller = end($caller);
 				$message = __CLASS__ . '::' . $caller['function'] . '(): ' . $message;
 			}
-			//echo message
+			//response message
 			$title = '';
 			switch ($errno) {
 				case E_PARSE :

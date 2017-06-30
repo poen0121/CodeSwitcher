@@ -19,6 +19,7 @@ if (!class_exists('csl_debug')) {
 				// This error code is not included in error_reporting
 				return;
 			}
+			//response message
 			$title = '';
 			switch ($errno) {
 				case E_PARSE :

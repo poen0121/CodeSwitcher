@@ -195,7 +195,7 @@ if (!class_exists('csl_debug')) {
 		 */
 		public static function error_log_file($path = null, $peelName = 'PHP') {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
-				if (strlen($path) == 0) {
+				if (!isset ($path { 0 })) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
 				} else {
 					if (!csl_path :: is_absolute($path) && csl_path :: is_files($path)) {

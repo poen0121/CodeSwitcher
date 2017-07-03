@@ -3,21 +3,29 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.4.2
+	Revision	: 3.5.2
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	10-20-2010		Poen		10-20-2010	Poen		Create the program.
-	08-17-2016		Poen		02-22-2017	Poen		Reforming the program.
+	08-17-2016		Poen		08-18-2016	Poen		Reforming the program.
+	09-08-2016		Poen		06-21-2017	Poen		Improve error_log_file function.
+	09-23-2016		Poen		07-03-2017	Poen		Improve the program.
+	09-23-2016		Poen		09-23-2016	Poen		Change logs function name become record.
+	10-06-2016		Poen		10-06-2016	Poen		Add is_all_report function.
+	10-06-2016		Poen		10-06-2016	Poen		Add is_close_report function.
+	10-06-2016		Poen		10-06-2016	Poen		Add is_display function.
+	10-06-2016		Poen		10-06-2016	Poen		Add is_record function.
+	10-07-2016		Poen		10-07-2016	Poen		Debug is_display function.
+	10-07-2016		Poen		10-07-2016	Poen		Debug is_record function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug error_log_file function.
 	04-20-2017		Poen		04-20-2017	Poen		Add set_trace_error_handler function.
 	06-21-2017		Poen		06-21-2017	Poen		Rename set_trace_error_handler function to trace_error_handler.
-	06-21-2017		Poen		06-21-2017	Poen		Improve error_log_file function.
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
 	06-22-2017		Poen		06-22-2017	Poen		Improve error_log_file function.
-	06-30-2017		Poen		06-30-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

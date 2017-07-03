@@ -10,7 +10,13 @@
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	07-27-2016		Poen		07-28-2016	Poen		Create the program.
-	07-27-2016		Poen		03-22-2017	Poen		Reforming the program.
+	07-29-2016		Poen		07-29-2016	Poen		Use error function throw an error.
+	08-03-2016		Poen		08-03-2016	Poen		Add delimit2error function.
+	08-05-2016		Poen		08-05-2016	Poen		Check the amount of defined arguments.
+	08-17-2016		Poen		08-17-2016	Poen		Debug returns any internal error is true.
+	11-22-2016		Poen		11-22-2016	Poen		Debug the program error messages.
+	03-22-2017		Poen		03-22-2017	Poen		Improve the program.
+	03-22-2017		Poen		03-22-2017	Poen		Fix the program error message.
 	---------------------------------------------------------------------------
 
 >> About

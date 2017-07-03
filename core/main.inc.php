@@ -1,7 +1,7 @@
 <?php
 if (!class_exists('csl_mvc')) {
 	//default document root directory
-	$_SERVER['DOCUMENT_ROOT'] = (isset ($_SERVER['DOCUMENT_ROOT']) && strlen($_SERVER['DOCUMENT_ROOT']) > 0 ? $_SERVER['DOCUMENT_ROOT'] : dirname(dirname(__FILE__)));
+	$_SERVER['DOCUMENT_ROOT'] = (isset ($_SERVER['DOCUMENT_ROOT'] { 0 }) && is_string($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : dirname(dirname(__FILE__)));
 	//defines the path of the CodeSwitcher root directory
 	define('BASEPATH', rtrim(str_replace('\\', '/', dirname(dirname(__FILE__))), '/') . '/');
 	//including the CodeSwitcher system library
@@ -57,7 +57,7 @@ if (!class_exists('csl_mvc')) {
 				self :: $obStartLevel = ob_get_level();
 				self :: $portal = false; //portal script state
 				self :: $versionClass = new csl_version(); //version controller
-				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(realpath($_SERVER['SCRIPT_FILENAME'])) : false); //script path
+				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) && is_string($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(realpath($_SERVER['SCRIPT_FILENAME'])) : false); //script path
 				if (self :: $script !== false) {
 					$hostDir = csl_path :: clean(BASEPATH);
 					self :: $portal = (bool) preg_match('/^' . str_replace('/', '\/', $hostDir) . '(events\/.+\/){0,1}index.php$/i', self :: $script);
@@ -129,13 +129,13 @@ if (!class_exists('csl_mvc')) {
 			//set intro page
 			self :: $intro = trim(csl_path :: clean(self :: $rootDir . $CS_CONF['INTRO']), '/');
 			//set timezone
-			if (strlen($CS_CONF['DEFAULT_TIMEZONE']) > 0 && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
+			if (isset ($CS_CONF['DEFAULT_TIMEZONE'] { 0 }) && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 3);
 			}
 			//build languages xml object
 			self :: $language = new csl_language('language', $CS_CONF['LANGUAGE_XML_VERSION'], $CS_CONF['LANGUAGE_XML_ENCODING']);
 			//set error log storage file
-			if (strlen($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) > 0) {
+			if (isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] { 0 })) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
@@ -197,11 +197,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
-					if (strlen($pathName) == 0 || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
+					if (!isset ($pathName { 0 }) || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 					} else {
 						$pathName = trim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						if (strlen($pathName) == 0) {
+						if (!isset ($pathName { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . $pathName)) {
@@ -248,37 +248,39 @@ if (!class_exists('csl_mvc')) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
 					if (csl_path :: is_relative($pathName)) {
 						$pathName = ltrim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						if ($uriMode && isset ($_SERVER['REQUEST_URI'])) {
-							if (is_null(self :: $uriLayer)) {
-								self :: $uriLayer = 0;
-								$partStop = false;
-								$uriPart = explode('/', $_SERVER['REQUEST_URI']);
-								$uriEnd = count($uriPart) - 1;
-								$scriptPart = explode('/', csl_path :: clean($_SERVER['SCRIPT_NAME']));
-								$partEnd = count($scriptPart) - 1;
-								$partName = current($scriptPart);
-								$partKey = key($scriptPart);
-								foreach ($uriPart as $uriKey => $uriName) {
-									if (!$partStop && $uriName === $partName) {
-										if ($partKey !== $partEnd) {
-											$partName = next($scriptPart);
-											$partKey = key($scriptPart);
+						if ($uriMode) {
+							if (isset ($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']) && is_string($_SERVER['REQUEST_URI']) && is_string($_SERVER['SCRIPT_NAME'])) {
+								if (is_null(self :: $uriLayer)) {
+									self :: $uriLayer = 0;
+									$partStop = false;
+									$uriPart = explode('/', $_SERVER['REQUEST_URI']);
+									$uriEnd = count($uriPart) - 1;
+									$scriptPart = explode('/', csl_path :: clean($_SERVER['SCRIPT_NAME']));
+									$partEnd = count($scriptPart) - 1;
+									$partName = current($scriptPart);
+									$partKey = key($scriptPart);
+									foreach ($uriPart as $uriKey => $uriName) {
+										if (!$partStop && $uriName === $partName) {
+											if ($partKey !== $partEnd) {
+												$partName = next($scriptPart);
+												$partKey = key($scriptPart);
+											} else {
+												$partStop = true;
+											}
 										} else {
-											$partStop = true;
-										}
-									} else {
-										if (!$partStop && ($uriName !== '' || $uriKey == $uriEnd)) {
-											$partStop = true;
-										} else {
-											self :: $uriLayer++;
+											if (!$partStop && ($uriName !== '' || $uriKey == $uriEnd)) {
+												$partStop = true;
+											} else {
+												self :: $uriLayer++;
+											}
 										}
 									}
+									self :: $uriLayer = str_repeat('../', self :: $uriLayer);
 								}
-								self :: $uriLayer = str_repeat('../', self :: $uriLayer);
+								$path = csl_path :: relative(BASEPATH . $pathName);
+								$path = (self :: $uriLayer && strpos($path, './') === 0 ? substr($path, 2) : $path);
+								return self :: $uriLayer . $path;
 							}
-							$path = csl_path :: relative(BASEPATH . $pathName);
-							$path = (self :: $uriLayer && strpos($path, './') === 0 ? substr($path, 2) : $path);
-							return self :: $uriLayer . $path;
 						} else {
 							return csl_path :: relative(BASEPATH . $pathName);
 						}
@@ -317,9 +319,9 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) > 0 && csl_path :: is_relative($eventName)) {
+					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (strlen($eventName) > 0) {
+						if (isset ($eventName { 0 })) {
 							if ($eventName == self :: $intro) {
 								$file = BASEPATH . 'index.php';
 								$file = (is_file($file) ? true : null);
@@ -351,9 +353,9 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($eventName) > 0 && csl_path :: is_relative($eventName)) {
+					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (strlen($eventName) > 0) {
+						if (isset ($eventName { 0 })) {
 							if (is_dir(BASEPATH . 'events/' . $eventName)) {
 								$maxVersion = BASEPATH . 'events/' . $eventName . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -444,11 +446,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'configs/' . $model)) {
@@ -517,11 +519,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'languages/' . $model)) {
@@ -715,7 +717,7 @@ if (!class_exists('csl_mvc')) {
 						if (ob_start()) {
 							$obStartLevel = ob_get_level();
 							$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
-							if (strlen($model) > 0 && is_dir(BASEPATH . 'events/' . $model)) {
+							if (isset ($model { 0 }) && is_dir(BASEPATH . 'events/' . $model)) {
 								$maxVersion = BASEPATH . 'events/' . $model . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
@@ -797,11 +799,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'events/' . $model)) {
@@ -869,11 +871,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'models/' . $model)) {
@@ -941,11 +943,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'libraries/' . $model)) {
@@ -1015,11 +1017,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: array2error(1) && !csl_func_arg :: bool2error(2)) {
-					if (strlen($model) == 0 || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (strlen($model) == 0) {
+						if (!isset ($model { 0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'templates/' . $model)) {

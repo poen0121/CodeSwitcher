@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
-if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
+if (!class_exists('csl_language_content') && !class_exists('csl_language')) {;
 	/**
 	 * @about - language XML content processing.
 	 * @param - string &$handle (a valid pointer)
@@ -82,7 +82,7 @@ if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				clearstatcache();
 				$path = csl_path :: norm($path);
-				if (strlen($path) == 0) {
+				if (!isset ($path { 0 })) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
 				}
 				elseif (csl_path :: is_absolute($path) || (!csl_path :: is_root_model($path) && !csl_path :: is_relative($path))) {

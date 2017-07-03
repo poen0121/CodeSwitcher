@@ -20,7 +20,7 @@ if (!class_exists('csl_browser')) {
 					'HTTP_FORWARDED',
 					'REMOTE_ADDR'
 				) as $key) {
-				if (isset ($_SERVER[$key])) {
+				if (isset ($_SERVER[$key]) && is_string($_SERVER[$key])) {
 					foreach (explode(',', $_SERVER[$key]) as $ip) {
 						$ip = trim($ip);
 						if ((bool) filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -53,39 +53,35 @@ if (!class_exists('csl_browser')) {
 		public static function info($index = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$index = strtolower($index);
-				$userAgent = (isset ($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
+				$userAgent = (isset ($_SERVER['HTTP_USER_AGENT']) && is_string($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
 				$info = null;
 				switch ($index) {
 					case 'language' :
-						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) > 0) {
+						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE'] { 0 }) && is_string($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 							$info = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 2);
-							$info = (isset ($info[0]) ? $info[0] : null);
+							$info = $info[0];
 						}
 						break;
 					case 'server' :
-						$info = (isset ($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '');
-						$info = (strlen($info) > 0 ? $info : null);
+						$info = (isset ($_SERVER['SERVER_ADDR'] { 0 }) && is_string($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : null);
 						break;
 					case 'host' :
-						$info = (isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
-						$info = (strlen($info) > 0 ? $info : null);
+						$info = (isset ($_SERVER['HTTP_HOST'] { 0 }) && is_string($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null);
 						break;
 					case 'source' :
-						$info = (isset ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
-						$info = (strlen($info) > 0 ? $info : null);
+						$info = (isset ($_SERVER['HTTP_REFERER'] { 0 }) && is_string($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
 						break;
 					case 'url' :
-						if (isset ($_SERVER['REQUEST_SCHEME'], $_SERVER['HTTP_HOST']) && strlen($_SERVER['REQUEST_SCHEME']) > 0 && strlen($_SERVER['HTTP_HOST']) > 0) {
-							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
+						if (isset ($_SERVER['REQUEST_SCHEME'] { 0 }, $_SERVER['HTTP_HOST'] { 0 }) && is_string($_SERVER['REQUEST_SCHEME']) && is_string($_SERVER['HTTP_HOST'])) {
+							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI']) && is_string($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
 						}
 						break;
 					case 'ip' :
 						$info = self :: client_ip();
 						break;
 					case 'proxy' :
-						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR'], $_SERVER['REMOTE_ADDR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
-							$info = $_SERVER['REMOTE_ADDR'];
-							$info = (strlen($info) > 0 ? $info : null);
+						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR']) && is_string($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
+							$info = (isset ($_SERVER['REMOTE_ADDR'] { 0 }) && is_string($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
 						}
 						break;
 					case 'name' :
@@ -178,10 +174,9 @@ if (!class_exists('csl_browser')) {
 		 */
 		public static function in_source() {
 			if (!csl_func_arg :: delimit2error()) {
-				$source = self :: info('source');
-				if ($source) {
-					$source = parse_url($source);
-					if (isset ($source['host'], $_SERVER['SERVER_NAME']) && strlen($source['host']) > 0 && strlen($_SERVER['SERVER_NAME']) > 0 && $source['host'] == $_SERVER['SERVER_NAME']) {
+				if (isset ($_SERVER['HTTP_REFERER'] { 0 }, $_SERVER['SERVER_NAME'] { 0 }) && is_string($_SERVER['HTTP_REFERER']) && is_string($_SERVER['SERVER_NAME'])) {
+					$source = parse_url($_SERVER['HTTP_REFERER']);
+					if (isset ($source['host'] { 0 }) && $source['host'] == $_SERVER['SERVER_NAME']) {
 						return true;
 					}
 				}

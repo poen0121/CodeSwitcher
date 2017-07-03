@@ -3,14 +3,44 @@
 >> Information
 
 	Title		: csl_file function
-	Revision	: 4.2.2
+	Revision	: 4.3.2
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	02-04-2010		Poen		05-28-2015	Poen		Create the program.
-	08-05-2016		Poen		02-22-2017	Poen		Reforming the program.
+	08-05-2016		Poen		08-05-2016	Poen		Reforming the program.
+	08-22-2016		Poen		08-22-2016	Poen		Change basename function name become fullname.
+	08-23-2016		Poen		08-23-2016	Poen		Change fullname function $query_keep default false.
+	09-01-2016		Poen		09-01-2016	Poen		Add save function $mode options.
+	09-01-2016		Poen		09-01-2016	Poen		Add load function $mode parameter.
+	09-01-2016		Poen		09-05-2016	Poen		Improve load function.
+	09-01-2016		Poen		09-01-2016	Poen		Improve size function.
+	09-01-2016		Poen		09-02-2016	Poen		Add unit2size function.
+	09-01-2016		Poen		09-02-2016	Poen		Improve size2unit function.
+	09-01-2016		Poen		09-02-2016	Poen		Improve unit2min function.
+	09-01-2016		Poen		09-02-2016	Poen		Improve unit2max function.
+	09-01-2016		Poen		09-01-2016	Poen		Remove content_replace function.
+	09-01-2016		Poen		09-13-2016	Poen		Improve save function.
+	09-05-2016		Poen		09-05-2016	Poen		Improve create_dir function.
+	09-06-2016		Poen		09-06-2016	Poen		Debug unit string preg_match regular expression.
+	09-07-2016		Poen		09-07-2016	Poen		Improve memory function.
+	09-07-2016		Poen		09-07-2016	Poen		Change create_dir function name become mk_dir.
+	09-08-2016		Poen		07-03-2017	Poen		Improve the program.
+	09-08-2016		Poen		09-08-2016	Poen		Change get_mode function name become get_mod.
+	09-08-2016		Poen		09-08-2016	Poen		Change set_mode function name become ch_mod.
+	09-14-2016		Poen		09-14-2016	Poen		Debug save function.
+	09-14-2016		Poen		09-14-2016	Poen		Debug mk_dir function.
+	09-20-2016		Poen		09-20-2016	Poen		Debug memory function.
+	09-29-2016		Poen		11-21-2016	Poen		Debug the program error messages.
+	09-30-2016		Poen		09-30-2016	Poen		Debug clearstatcache().
+	02-22-2017		Poen		02-22-2017	Poen		Debug get_mod function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug ch_mod function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug directory function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug size function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug load function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug save function.
 	06-07-2017		Poen		06-07-2017	Poen		Debug size2unit function.
 	06-07-2017		Poen		06-07-2017	Poen		Debug unit2min function.
 	06-07-2017		Poen		06-07-2017	Poen		Debug unit2max function.
@@ -183,7 +213,7 @@
 	$mode :
 	'r' 	>> Open for reading only; place the file pointer at the beginning of the file.
 	'rb' 	>> Open for reading only; place the bit file pointer at the beginning of the file.
-    Param : boolean $lock (lock file mode) : Default true
+	Param : boolean $lock (lock file mode) : Default true
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------

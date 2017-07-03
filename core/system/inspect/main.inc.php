@@ -173,7 +173,7 @@ if (!class_exists('csl_inspect')) {
 		 */
 		public static function is_taiwan_ban($data = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				if (strlen($data) != 8 || !preg_match('/[0-9]{8}/', $data)) {
+				if (!preg_match('/[0-9]{8}/', $data)) {
 					return false;
 				}
 				$tbl = array (1,2,1,2,1,2,4,1);
@@ -197,7 +197,7 @@ if (!class_exists('csl_inspect')) {
 		 */
 		public static function is_taiwan_phone($data = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				return (strlen($data) > 8 && strlen($data) < 11 && preg_match('/^[0][1-9]{1,3}[0-9]{6,8}$/', $data) ? true : false);
+				return (bool) preg_match('/^[0][1-9]{1,3}[0-9]{6,8}$/', $data);
 			}
 			return false;
 		}

@@ -10,12 +10,28 @@
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	05-30-2011		Poen		05-30-2011	Poen		Create the program.
-	03-30-2017		Poen		03-30-2017	Poen		Reforming the program.
+	08-09-2016		Poen		08-12-2016	Poen		Reforming the program.
+	08-31-2016		Poen		08-31-2016	Poen		Improve part_days function.
+	08-31-2016		Poen		08-31-2016	Poen		Debug part_days function.
+	09-21-2016		Poen		09-21-2016	Poen		Debug get_datetime function.
+	09-29-2016		Poen		11-21-2016	Poen		Debug the program error messages.
+	11-23-2016		Poen		11-23-2016	Poen		Improve get_date function.
+	11-23-2016		Poen		11-23-2016	Poen		Improve get_time function.
+	11-23-2016		Poen		11-23-2016	Poen		Improve get_datetime function.
+	12-14-2016		Poen		12-14-2016	Poen		Improve datetime2sec function.
+	03-27-2017		Poen		03-27-2017	Poen		Fix part_days function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix in_range function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix date2week function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix date_range function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix sub_date function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix sub_time function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix sub_datetime function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix jump_datetime function error message.
+	03-27-2017		Poen		03-27-2017	Poen		Fix datetime2sec function error message.
 	05-31-2017		Poen		05-31-2017	Poen		Modify set_timezone function.
 	06-01-2017		Poen		06-01-2017	Poen		Remove set_timezone function error message.
 	06-01-2017		Poen		06-01-2017	Poen		Improve jump_datetime function.
 	06-05-2017		Poen		06-05-2017	Poen		Modify the document.
-	06-05-2017		Poen		06-05-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

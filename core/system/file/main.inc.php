@@ -35,7 +35,7 @@ if (!class_exists('csl_file')) {
 		public static function get_mod($path = null) {
 			$result = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					clearstatcache();
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && (is_file($path) || is_dir($path))) {
@@ -61,7 +61,7 @@ if (!class_exists('csl_file')) {
 		public static function ch_mod($path = null, $power = null) {
 			$result = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: int2error(1)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					clearstatcache();
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && (is_file($path) || is_dir($path))) {
@@ -142,7 +142,7 @@ if (!class_exists('csl_file')) {
 		public static function directory($path = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$path = pathInfo($path, PATHINFO_DIRNAME);
-				return (strlen($path) > 0 ? (($path == '\\' ? '.' : csl_path :: norm($path)) . '/') : '');
+				return (isset ($path { 0 }) ? (($path == '\\' ? '.' : csl_path :: norm($path)) . '/') : '');
 			}
 			return false;
 		}
@@ -258,7 +258,7 @@ if (!class_exists('csl_file')) {
 		public static function size($path = null) {
 			$sizeUnit = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					clearstatcache();
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && is_file($path)) {
@@ -295,7 +295,7 @@ if (!class_exists('csl_file')) {
 		public static function load($path = null, $mode = 'r', $lock = true) {
 			$result = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1) && !csl_func_arg :: bool2error(2)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					clearstatcache();
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && is_file($path) && is_readable($path)) {
@@ -313,7 +313,7 @@ if (!class_exists('csl_file')) {
 								$bytes = filesize($path);
 								if ($bytes !== false) {
 									$result = stream_get_contents($fp, -1);
-									$result = ($result !== false && strlen($result) == 0 && $bytes > 0 ? false : $result);
+									$result = ($result !== false && !isset($result { 0 }) && $bytes > 0 ? false : $result);
 									if ($result === false) {
 										csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unable to read file ' . $path, E_USER_NOTICE, 1);
 									}
@@ -348,7 +348,7 @@ if (!class_exists('csl_file')) {
 		public static function save($path = null, $content = null, $mode = 'w', $lock = true) {
 			$result = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1) && !csl_func_arg :: string2error(2) && !csl_func_arg :: bool2error(3)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && csl_path :: is_files($path) && self :: fullname($path)) {
 						$mode = strtolower($mode);

@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit ('No direct script access allowed');
 if (!class_exists('csl_error')) {
 	/**
 	 * @about - Throw an error by error_reporting control, and save the log records.
@@ -81,10 +80,10 @@ if (!class_exists('csl_error')) {
 					$message = '<br /><b>' . $title . '</b>: ' . trim($errorMessage) . self :: where($echoDepth);
 					if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'))) {
 						$logTitle = strtoupper(trim($logTitle));
-						if (isset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE']) && isset ($_SERVER['PEEL_OFF_NAME'])) {
-							$file = (isset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE']) ? str_replace('\\', '/', $_SERVER['PEEL_OFF_ERROR_LOG_FILE']) : '');
-							$peelName = (isset ($_SERVER['PEEL_OFF_NAME']) ? strtoupper(trim($_SERVER['PEEL_OFF_NAME'])) : '');
-							if (($numargs < 4 || ($numargs == 4 && $logTitle != 'PHP')) && $peelName != 'PHP' && strlen($file) > 0 && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
+						if (isset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE'], $_SERVER['PEEL_OFF_NAME']) && is_string($_SERVER['PEEL_OFF_ERROR_LOG_FILE']) && is_string($_SERVER['PEEL_OFF_NAME'])) {
+							$file = str_replace('\\', '/', $_SERVER['PEEL_OFF_ERROR_LOG_FILE']);
+							$peelName = strtoupper(trim($_SERVER['PEEL_OFF_NAME']));
+							if (($numargs < 4 || ($numargs == 4 && $logTitle != 'PHP')) && $peelName != 'PHP' && isset ($file { 0 }) && !filter_var($file, FILTER_VALIDATE_URL) && substr($file, -1, 1) !== '/') {
 								error_log(date('[d-M-Y H:i:s e] ') . ($numargs == 4 ? $logTitle : $peelName) . ' ' . strip_tags($message) . PHP_EOL, 3, $file);
 							} else {
 								error_log($logTitle . ' ' . strip_tags($message), 0);

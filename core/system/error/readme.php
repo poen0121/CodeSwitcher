@@ -3,16 +3,26 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.9.2
+	Revision	: 2.10.2
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	07-29-2016		Poen		07-29-2016	Poen		Create the program.
-	08-05-2016		Poen		03-27-2017	Poen		Reforming the program.
+	08-02-2016		Poen		08-02-2016	Poen		Line to increase "<br />\n" end.
+	08-03-2016		Poen		08-03-2016	Poen		Join display_errors mechanism.
+	08-03-2016		Poen		08-03-2016	Poen		Join E_USER_ERROR interrupt exit.
+	08-05-2016		Poen		08-05-2016	Poen		Check the amount of defined arguments.
+	08-18-2016		Poen		08-18-2016	Poen		Check the log_errors status to save logs.
+	09-23-2016		Poen		09-23-2016	Poen		Debug cast function.
+	11-21-2016		Poen		11-21-2016	Poen		Modify the usage error level by error_reporting.
+	11-22-2016		Poen		11-22-2016	Poen		Debug the program error messages.
+	12-05-2016		Poen		07-03-2017	Poen		Improve the program.
+	03-09-2017		Poen		03-15-2017	Poen		Modify cast function to add stack trace.
+	03-15-2017		Poen		03-15-2017	Poen		Debug cast function uses the wrong error level to throw a file line error.
+	03-22-2017		Poen		03-22-2017	Poen		Fix cast function error message.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
-	06-21-2017		Poen		06-30-2017	Poen		Improve the program.
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	06-22-2017		Poen		06-22-2017	Poen		Add peel error log mechanism.
 	---------------------------------------------------------------------------

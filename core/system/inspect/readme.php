@@ -3,16 +3,29 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.2.1
+	Revision	: 3.3.0
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	02-08-2010		Poen		02-08-2010	Poen		Create the program.
-	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
-	06-05-2017		Poen		06-05-2017	Poen		Modify document.
+	08-01-2016		Poen		08-02-2016	Poen		Reforming the program.
+	08-29-2016		Poen		08-29-2016	Poen		Add is_iconv_encoding function.
+	08-29-2016		Poen		08-29-2016	Poen		Add is_taiwan_phone function.
+	08-29-2016		Poen		08-29-2016	Poen		Add is_taiwan_mobile function.
+	08-31-2016		Poen		01-06-2017	Poen		Improve is_date function.
+	09-02-2016		Poen		09-02-2016	Poen		Debug is_iconv_encoding function.
+	09-06-2016		Poen		09-06-2016	Poen		Add is_number_format function.
+	09-06-2016		Poen		09-07-2016	Poen		Improve is_iconv_encoding function.
+	09-10-2016		Poen		09-10-2016	Poen		Improve is_number_format function.
+	09-10-2016		Poen		09-10-2016	Poen		Improve is_taiwan_mobile function.
+	10-27-2016		Poen		10-28-2016	Poen		Improve is_iconv_encoding function.
+	01-06-2017		Poen		01-06-2017	Poen		Improve is_time function.
+	01-06-2017		Poen		01-06-2017	Poen		Improve is_datetime function.
+	04-11-2017		Poen		04-11-2017	Poen		Improve is_ip function special purposes.
 	06-07-2017		Poen		06-07-2017	Poen		Remove is_number_format function.
+	07-03-2017		Poen		07-03-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

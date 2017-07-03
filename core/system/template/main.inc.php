@@ -145,7 +145,7 @@ if (!class_exists('csl_template')) {
 		 */
 		public static function view($path = null, $data = array (), $process = false) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: array2error(1) && !csl_func_arg :: bool2error(2)) {
-				if (strlen($path) > 0) {
+				if (isset ($path { 0 })) {
 					clearstatcache();
 					$path = csl_path :: norm($path);
 					if (!csl_path :: is_absolute($path) && is_file($path) && is_readable($path) && preg_match('/^(.)*\.php$/i', $path)) {

@@ -3,18 +3,47 @@
 >> Information
 
 	Title		: csl_path function
-	Revision	: 3.8.6
+	Revision	: 3.9.6
 	Notes		: You can use chdir() change current script parent directories.
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	04-02-2010		Poen		05-28-2015	Poen		Create the program.
-	10-19-2016		Poen		04-21-2017	Poen		Reforming the program.
+	08-02-2016		Poen		08-02-2016	Poen		Reforming the program.
+	08-16-2016		Poen		08-16-2016	Poen		Add is_root_model function.
+	08-22-2016		Poen		08-22-2016	Poen		Add full function.
+	08-22-2016		Poen		08-22-2016	Poen		Improve relative function.
+	08-22-2016		Poen		08-22-2016	Poen		Improve absolute function.
+	08-22-2016		Poen		08-22-2016	Poen		Improve parent function.
+	08-22-2016		Poen		08-22-2016	Poen		Change parent function name become cut_root.
+	08-23-2016		Poen		08-23-2016	Poen		Remove cut_root function.
+	08-23-2016		Poen		08-23-2016	Poen		Add cutdir function.
+	08-24-2016		Poen		08-24-2016	Poen		Add relative_layer_count function.
+	08-24-2016		Poen		08-24-2016	Poen		Add full_relative function.
+	08-24-2016		Poen		08-24-2016	Poen		Add nexus_full_relative function.
+	08-25-2016		Poen		08-25-2016	Poen		Change full function name become script.
+	09-08-2016		Poen		07-03-2017	Poen		Improve the program.
+	09-09-2016		Poen		09-09-2016	Poen		Debug nexus_full_relative function.
+	09-09-2016		Poen		09-09-2016	Poen		Improve full_relative function.
+	09-09-2016		Poen		09-09-2016	Poen		Improve script function.
+	09-09-2016		Poen		09-09-2016	Poen		Improve relative function.
+	09-10-2016		Poen		09-10-2016	Poen		Add is_relative function.
+	09-10-2016		Poen		09-10-2016	Poen		Add document_root function.
+	09-10-2016		Poen		09-10-2016	Poen		Add clean function.
+	09-10-2016		Poen		09-10-2016	Poen		Add is_files function.
+	09-19-2016		Poen		09-19-2016	Poen		Add arrive function.
+	10-14-2016		Poen		10-18-2016	Poen		Improve arrive function.
+	10-14-2016		Poen		10-18-2016	Poen		Improve clean function.
+	10-14-2016		Poen		10-14-2016	Poen		Improve is_files function.
+	10-18-2016		Poen		10-18-2016	Poen		Add is_self function.
+	10-19-2016		Poen		04-27-2017	Poen		Improve is_self function.
+	02-22-2017		Poen		05-08-2017	Poen		Debug is_self function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug arrive function.
+	02-22-2017		Poen		02-22-2017	Poen		Debug clean function.
+	03-27-2017		Poen		03-27-2017	Poen		Fix nexus_full_relative function error message.
 	04-27-2017		Poen		04-27-2017	Poen		Debug document_root function.
 	04-27-2017		Poen		04-28-2017	Poen		Debug absolute function.
-	04-27-2017		Poen		04-27-2017	Poen		Improve is_self function.
-	05-05-2017		Poen		05-08-2017	Poen		Debug is_self function.
 	---------------------------------------------------------------------------
 
 >> About

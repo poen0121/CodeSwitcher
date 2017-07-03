@@ -3,14 +3,20 @@
 >> Information
 
 	Title		: csl_language function
-	Revision	: 2.6.0
+	Revision	: 2.7.0
 	Notes		: Use root XML tag names , the default is `language`.
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	07-01-2011		Poen		07-01-2011	Poen		Create the program.
-	09-13-2016		Poen		02-22-2017	Poen		Reforming the program.
+	09-13-2016		Poen		09-20-2016	Poen		Reforming the program.
+	09-26-2016		Poen		09-26-2016	Poen		Change open function name become load.
+	09-26-2016		Poen		09-26-2016	Poen		Create load function returns csl_language_content object.
+	09-30-2016		Poen		09-30-2016	Poen		Debug clearstatcache().
+	09-30-2016		Poen		11-23-2016	Poen		Debug load function error messages.
+	02-22-2017		Poen		02-22-2017	Poen		Debug load function.
+	07-03-2017		Poen		07-03-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

@@ -3,14 +3,18 @@
 >> Information
 
 	Title		: csl_header function
-	Revision	: 2.6.1
+	Revision	: 2.7.1
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	08-22-2012		Poen		08-22-2012	Poen		Create the program.
-	08-12-2016		Poen		03-27-2017	Poen		Reforming the program.
+	08-12-2016		Poen		08-12-2016	Poen		Reforming the program.
+	09-21-2016		Poen		10-13-2016	Poen		Improve location function.
+	11-24-2016		Poen		11-24-2016	Poen		Add http function.
+	12-05-2016		Poen		07-03-2017	Poen		Improve the program.
+	03-27-2017		Poen		03-27-2017	Poen		Fix http function error message.
 	04-28-2017		Poen		04-28-2017	Poen		Debug http function.
 	---------------------------------------------------------------------------
 

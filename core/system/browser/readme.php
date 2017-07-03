@@ -3,16 +3,20 @@
 >> Information
 
 	Title		: csl_browser function
-	Revision	: 2.9.2
+	Revision	: 2.10.2
 	Notes		:
 
 	Revision History:
 	When			Create		When		Edit		Description
 	---------------------------------------------------------------------------
 	09-21-2011		Poen		09-25-2015	Poen		Create the program.
-	08-01-2016		Poen		04-11-2017	Poen		Reforming the program.
-	04-27-2016		Poen		04-28-2017	Poen		Debug info function.
-	04-27-2016		Poen		04-28-2017	Poen		Debug in_source function.
+	08-01-2016		Poen		08-02-2016	Poen		Reforming the program.
+	08-11-2016		Poen		08-11-2016	Poen		Add info function index `device`.
+	08-16-2016		Poen		08-16-2016	Poen		Modify info function index `language` output.
+	08-18-2016		Poen		08-18-2016	Poen		Modify in_source function delimit argument.
+	09-02-2016		Poen		04-28-2017	Poen		Debug info function.
+	09-02-2016		Poen		04-28-2017	Poen		Debug in_source function.
+	10-12-2016		Poen		07-03-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

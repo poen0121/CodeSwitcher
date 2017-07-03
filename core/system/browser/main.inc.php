@@ -81,7 +81,7 @@ if (!class_exists('csl_browser')) {
 						break;
 					case 'proxy' :
 						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR']) && is_string($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
-							$info = (isset ($_SERVER['REMOTE_ADDR'] { 0 }) && is_string($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
+							$info = (isset ($_SERVER['REMOTE_ADDR'] { 0 }) && is_string($_SERVER['REMOTE_ADDR']) ? (filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) ? $_SERVER['REMOTE_ADDR'] : null) : null);
 						}
 						break;
 					case 'name' :

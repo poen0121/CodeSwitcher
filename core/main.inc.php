@@ -3,7 +3,7 @@ if (!class_exists('csl_mvc')) {
 	//default document root directory
 	$_SERVER['DOCUMENT_ROOT'] = (isset ($_SERVER['DOCUMENT_ROOT'] { 0 }) && is_string($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : dirname(dirname(__FILE__)));
 	//defines the path of the CodeSwitcher root directory
-	define('BASEPATH', rtrim(str_replace('\\', '/', dirname(dirname(__FILE__))), '/') . '/');
+	define('BASEPATH', rtrim(strtr(dirname(dirname(__FILE__)), '\\', '/'), '/') . '/');
 	//including the CodeSwitcher system library
 	include (BASEPATH . 'core/system/error/main.inc.php');
 	include (BASEPATH . 'core/system/func_arg/main.inc.php');

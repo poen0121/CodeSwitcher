@@ -13,7 +13,7 @@ if (!class_exists('csl_path')) {
 		 */
 		public static function norm($path = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				return str_replace('\\', '/', $path);
+				return strtr($path, '\\', '/');
 			}
 			return false;
 		}

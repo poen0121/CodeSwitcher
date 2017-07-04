@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.10.2
+	Revision	: 2.11.2
 	Notes		:
 
 	Revision History:
@@ -32,6 +32,7 @@
 	06-01-2017		Poen		06-01-2017	Poen		Remove set_timezone function error message.
 	06-01-2017		Poen		06-01-2017	Poen		Improve jump_datetime function.
 	06-05-2017		Poen		06-05-2017	Poen		Modify the document.
+	07-04-2017		Poen		07-04-2017	Poen		Improve the program.
 	---------------------------------------------------------------------------
 
 >> About

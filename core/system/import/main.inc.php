@@ -144,7 +144,7 @@ if (!class_exists('csl_import')) {
 				set_error_handler(__CLASS__ . '::ErrorHandler');
 				//note that the error is all access
 				self :: $line = __LINE__;
-				$result = include (str_replace('\\', '/', $file)); //mark the line number
+				$result = include (strtr($file, '\\', '/')); //mark the line number
 				restore_error_handler();
 				return $result;
 			}
@@ -161,7 +161,7 @@ if (!class_exists('csl_import')) {
 				set_error_handler(__CLASS__ . '::ErrorHandler');
 				//note that the error is all access
 				self :: $line = __LINE__;
-				$result = include_once (str_replace('\\', '/', $file)); //mark the line number
+				$result = include_once (strtr($file, '\\', '/')); //mark the line number
 				restore_error_handler();
 				return $result;
 			}

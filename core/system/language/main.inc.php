@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
-if (!class_exists('csl_language_content') && !class_exists('csl_language')) {;
+if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
 	/**
 	 * @about - language XML content processing.
 	 * @param - string &$handle (a valid pointer)

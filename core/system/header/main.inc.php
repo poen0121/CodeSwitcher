@@ -105,7 +105,7 @@ if (!class_exists('csl_header')) {
 							$urlQuery = (isset ($parseUrl['query']) ? $parseUrl['query'] : '');
 							$urlFragment = (isset ($parseUrl['fragment']) ? $parseUrl['fragment'] : '');
 							$urlPrefix = ($urlQuery ? substr($url, 0, strpos($url, '?' . $urlQuery)) : ($urlFragment ? substr($url, 0, strpos($url, '#' . $urlFragment)) : $url));
-							$urlPrefix = str_replace('\\', '/', (substr($urlPrefix, -1, 1) === '?' ? substr($urlPrefix, 0, -1) : $urlPrefix));
+							$urlPrefix = strtr((substr($urlPrefix, -1, 1) === '?' ? substr($urlPrefix, 0, -1) : $urlPrefix), '\\', '/');
 							//Refresh URI
 							$url = $urlPrefix . ($urlFragment ? '#' : '') . $urlFragment;
 							$queryList = array ();

@@ -113,7 +113,7 @@ if (!class_exists('csl_header')) {
 							$form = '<!DOCTYPE html>' . PHP_EOL;
 							$form .= '<html>' . PHP_EOL;
 							$form .= '<head>' . PHP_EOL;
-							$form .= '<title>Location</title>' . PHP_EOL;
+							$form .= '<title>Redirect</title>' . PHP_EOL;
 							$form .= '</head>' . PHP_EOL;
 							$form .= '<body>' . PHP_EOL;
 							$form .= '<form target="' . $target . '" id="send" action="' . $url . '" method="' . $method . '" >' . PHP_EOL;

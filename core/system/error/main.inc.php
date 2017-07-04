@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit ('No direct script access allowed');
 if (!class_exists('csl_error')) {
 	/**
 	 * @about - Throw an error by error_reporting control, and save the log records.
@@ -93,7 +94,7 @@ if (!class_exists('csl_error')) {
 						}
 					}
 					if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
-						echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
+						echo PHP_EOL , (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) , PHP_EOL;
 					}
 				}
 				if ($title == 'Fatal error') {

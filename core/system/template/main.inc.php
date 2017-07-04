@@ -127,7 +127,7 @@ if (!class_exists('csl_template')) {
 				error_log('PHP ' . strip_tags($message), 0);
 			}
 			if (preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'))) {
-				echo PHP_EOL . (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) . PHP_EOL;
+				echo PHP_EOL , (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) , PHP_EOL;
 			}
 			if ($title == 'Fatal error') {
 				exit;

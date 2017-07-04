@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.5.2
+	Revision	: 3.6.2
 	Notes		:
 
 	Revision History:
@@ -26,6 +26,7 @@
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
 	06-22-2017		Poen		06-22-2017	Poen		Improve error_log_file function.
+	07-04-2017		Poen		07-04-2017	Poen		Improve trace_error_handler function.
 	---------------------------------------------------------------------------
 
 >> About

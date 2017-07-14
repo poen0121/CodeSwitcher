@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.19.18
+	Revision	: 1.19.19
 	Notes		:
 
 	Revision History:
@@ -23,8 +23,8 @@
 	05-04-2016		Poen		05-04-2017	Poen		Debug the error 500 loop error.
 	05-04-2016		Poen		05-04-2017	Poen		Add the begin program mechanism.
 	05-04-2016		Poen		05-04-2017	Poen		Add the commit program mechanism.
-	05-05-2016		Poen		05-16-2017	Poen		Improve the begin program mechanism.
-	05-05-2016		Poen		05-16-2017	Poen		Improve the commit program mechanism.
+	05-05-2016		Poen		07-14-2017	Poen		Improve the begin program mechanism.
+	05-05-2016		Poen		07-14-2017	Poen		Improve the commit program mechanism.
 	05-05-2016		Poen		05-05-2017	Poen		Debug the viewTemplate function.
 	05-05-2016		Poen		05-08-2017	Poen		Debug the $_SERVER['SCRIPT_FILENAME'] realpath.
 	05-16-2016		Poen		05-16-2017	Poen		Add scriptEvent function.
@@ -48,6 +48,9 @@
 	06-22-2016		Poen		06-22-2017	Poen		Improve logs function.
 	06-22-2016		Poen		06-22-2017	Poen		Improve debug function.
 	06-22-2017		Poen		06-22-2017	Poen		Add peel error log mechanism.
+	07-14-2017		Poen		07-14-2017	Poen		Fix the program error 500 display.
+	07-14-2017		Poen		07-14-2017	Poen		Improve bufferClean function.
+	07-14-2017		Poen		07-14-2017	Poen		Modify bufferClean function to public.
 	---------------------------------------------------------------------------
 
 >> About
@@ -83,6 +86,16 @@
 	12.storage : System storage directory.
 
 	13.storage/logs : System error logs storage directory.
+
+>> Note
+
+	PHP headers_sent function can not work in the output buffer.
+
+	PHP output buffer function should be careful to use the ob_start function and the ob_end_clean function.
+
+	CodeSwitcher clean output buffer function csl_mvc::bufferClean() should be used with caution and
+
+	used in the portal controller scripts otherwise would be an error return.
 
 */
 ?>

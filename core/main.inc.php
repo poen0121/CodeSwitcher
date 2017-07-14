@@ -33,8 +33,8 @@ if (!class_exists('csl_mvc')) {
 		private static $tester;
 		private static $develop;
 		private static $tripSystem;
-		private static $obStartLevel;
 		private static $error500;
+		private static $bufferClean;
 		private static $uriLayer;
 		/** Start info.
 		 * @access - private function
@@ -54,7 +54,6 @@ if (!class_exists('csl_mvc')) {
 				self :: $rootDir = csl_path :: document_root();
 				self :: $tester = false; //tester mode
 				self :: $develop = false; //develop mode by tester
-				self :: $obStartLevel = ob_get_level();
 				self :: $portal = false; //portal script state
 				self :: $versionClass = new csl_version(); //version controller
 				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) && is_string($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(realpath($_SERVER['SCRIPT_FILENAME'])) : false); //script path
@@ -158,13 +157,13 @@ if (!class_exists('csl_mvc')) {
 				csl_debug :: display(false);
 			}
 		}
-		/** Turns off all output buffers.
+		/** Turns off all output buffers by the output control function.
 		 * @access - private function
 		 * @return - null
-		 * @usage -  self::bufferClean();
+		 * @usage -  self::obClean();
 		 */
-		private static function bufferClean() {
-			while (ob_get_level() > self :: $obStartLevel) {
+		private static function obClean() {
+			while (ob_get_level() > 0) {
 				ob_end_clean();
 			}
 			return;
@@ -177,7 +176,7 @@ if (!class_exists('csl_mvc')) {
 		private static function ERROR500() {
 			if (!csl_debug :: is_display() && !headers_sent() && !self :: $error500) {
 				self :: $error500 = true;
-				self :: bufferClean();
+				self :: obClean();
 				self :: $tripSystem = true;
 				self :: viewTemplate('error/500');
 				self :: $tripSystem = false;
@@ -228,6 +227,25 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - target \'' . $pathName . '\' does not exist', E_USER_ERROR, 1);
 						}
 					}
+				}
+			} else {
+				self :: ERROR500();
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+			}
+			return false;
+		}
+		/** Turns off all output buffers and exit the commit controller.
+		 * @note - Use in the portal controller scripts otherwise would be an error return.
+		 * @access - public function
+		 * @return - boolean
+		 * @usage -  csl_mvc::bufferClean();
+		 */
+		public static function bufferClean() {
+			self :: start();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error()) {
+					self :: obClean();
+					return self :: $bufferClean = true;
 				}
 			} else {
 				self :: ERROR500();
@@ -585,12 +603,10 @@ if (!class_exists('csl_mvc')) {
 				$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - unknown defined version number', E_USER_ERROR, 2);
 				}
 				if (!self :: $versionClass->is_exists(BASEPATH . 'begin', $maxVersion)) {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
 				}
 				$version = self :: $versionClass->get(BASEPATH . 'begin', (!self :: $tester || !self :: $develop ? $maxVersion : ''));
@@ -606,33 +622,28 @@ if (!class_exists('csl_mvc')) {
 								$output = ob_get_contents();
 								ob_end_clean();
 								if ($import !== true) {
-									self :: bufferClean();
+									self :: obClean();
 								}
 								echo $output;
 								return ($import === true ? true : false);
 							} else {
 								self :: ERROR500();
-								self :: bufferClean();
 								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
 							}
 						} else {
 							self :: ERROR500();
-							self :: bufferClean();
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): System failed - open output buffer failed to start', E_USER_ERROR, 2);
 						}
 					} else {
 						self :: ERROR500();
-						self :: bufferClean();
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
 					}
 				} else {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - unable to get version', E_USER_ERROR, 2);
 				}
 			} else {
 				self :: ERROR500();
-				self :: bufferClean();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Begin failed - file does not exist', E_USER_ERROR, 2);
 			}
 			return false;
@@ -648,12 +659,10 @@ if (!class_exists('csl_mvc')) {
 				$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - unknown defined version number', E_USER_ERROR, 2);
 				}
 				if (!self :: $versionClass->is_exists(BASEPATH . 'commit', $maxVersion)) {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
 				}
 				$version = self :: $versionClass->get(BASEPATH . 'commit', (!self :: $tester || !self :: $develop ? $maxVersion : ''));
@@ -669,33 +678,28 @@ if (!class_exists('csl_mvc')) {
 								$output = ob_get_contents();
 								ob_end_clean();
 								if ($import !== true) {
-									self :: bufferClean();
+									self :: obClean();
 								}
 								echo $output;
 								return ($import === true ? true : false);
 							} else {
 								self :: ERROR500();
-								self :: bufferClean();
 								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
 							}
 						} else {
 							self :: ERROR500();
-							self :: bufferClean();
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): System failed - open output buffer failed to start', E_USER_ERROR, 2);
 						}
 					} else {
 						self :: ERROR500();
-						self :: bufferClean();
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
 					}
 				} else {
 					self :: ERROR500();
-					self :: bufferClean();
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - unable to get version', E_USER_ERROR, 2);
 				}
 			} else {
 				self :: ERROR500();
-				self :: bufferClean();
 				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Commit failed - file does not exist', E_USER_ERROR, 2);
 			}
 			return false;
@@ -746,7 +750,9 @@ if (!class_exists('csl_mvc')) {
 													}
 												} else {
 													self :: ERROR500();
-													csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate the buffer loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
+													if (!self :: $bufferClean) {
+														csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate the buffer loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
+													}
 												}
 											} else {
 												self :: ERROR500();

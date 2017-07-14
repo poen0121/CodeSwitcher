@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.19.20
+	Revision	: 1.19.19
 	Notes		:
 
 	Revision History:
@@ -51,7 +51,6 @@
 	07-14-2017		Poen		07-14-2017	Poen		Fix the program error 500 display.
 	07-14-2017		Poen		07-14-2017	Poen		Improve bufferClean function.
 	07-14-2017		Poen		07-14-2017	Poen		Modify bufferClean function to public.
-	07-14-2017		Poen		07-14-2017	Poen		Priority processing error log after HTTP error 500 judgment.
 	---------------------------------------------------------------------------
 
 >> About

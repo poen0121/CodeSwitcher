@@ -742,16 +742,19 @@ if (!class_exists('csl_mvc')) {
 											$import = csl_import :: from($file);
 											self :: $tripSystem = false;
 											if ($import !== false) {
-												if (ob_get_level() >= $obStartLevel) {
+												if (!self :: $bufferClean && ob_get_level() >= $obStartLevel) {
 													$output = ob_get_contents();
 													ob_end_clean();
 													if (self :: commit()) {
 														echo $output;
 													}
 												} else {
+													$obStartLevel = ob_get_level();
 													self :: ERROR500();
 													if (!self :: $bufferClean) {
 														csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate the buffer loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
+													} elseif ($obStartLevel > 0){
+														csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - buffer is not cleared from the \'' . $model . '\' version \'' . $version . '\' script', E_USER_ERROR, 1);
 													}
 												}
 											} else {

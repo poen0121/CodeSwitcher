@@ -42,13 +42,9 @@
 
 >> Note
 
-	PHP headers_sent function can not work in the output buffer.
+	PHP headers_sent function can not work in the CodeSwitcher framework.
 
 	PHP output buffer function should be careful to use the ob_start function and the ob_end_clean function.
-
-	CodeSwitcher clean output buffer function csl_mvc::bufferClean() should be used with caution and
-
-	used in the portal controller scripts otherwise would be an error return.
 
 >> Version Control - Revision Rule
 
@@ -94,18 +90,6 @@
 	Example :
 	csl_mvc::version('resources/example',TRUE);
 	Output >> Directory Relative Path
-	==============================================================
-
-	==============================================================
-	Turns off all output buffers and exit the commit controller.
-	Note : Use in the portal controller scripts otherwise would be an error return.
-	Usage : csl_mvc::bufferClean();
-	Return : boolean
-	Return Note : Returns FALSE on failure.
-	--------------------------------------------------------------
-	Example :
-	csl_mvc::bufferClean();
-	Output >> TRUE
 	==============================================================
 
 	==============================================================

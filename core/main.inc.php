@@ -34,7 +34,6 @@ if (!class_exists('csl_mvc')) {
 		private static $develop;
 		private static $tripSystem;
 		private static $error500;
-		private static $bufferClean;
 		private static $uriLayer;
 		/** Start info.
 		 * @access - private function
@@ -227,25 +226,6 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - target \'' . $pathName . '\' does not exist', E_USER_ERROR, 1);
 						}
 					}
-				}
-			} else {
-				self :: ERROR500();
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
-			}
-			return false;
-		}
-		/** Turns off all output buffers and exit the commit controller.
-		 * @note - Use in the portal controller scripts otherwise would be an error return.
-		 * @access - public function
-		 * @return - boolean
-		 * @usage -  csl_mvc::bufferClean();
-		 */
-		public static function bufferClean() {
-			self :: start();
-			if (self :: $tripSystem) {
-				if (!csl_func_arg :: delimit2error()) {
-					self :: obClean();
-					return self :: $bufferClean = true;
 				}
 			} else {
 				self :: ERROR500();
@@ -742,20 +722,15 @@ if (!class_exists('csl_mvc')) {
 											$import = csl_import :: from($file);
 											self :: $tripSystem = false;
 											if ($import !== false) {
-												if (!self :: $bufferClean && ob_get_level() >= $obStartLevel) {
+												if (ob_get_level() >= $obStartLevel) {
 													$output = ob_get_contents();
 													ob_end_clean();
 													if (self :: commit()) {
 														echo $output;
 													}
 												} else {
-													$obStartLevel = ob_get_level();
 													self :: ERROR500();
-													if (!self :: $bufferClean) {
-														csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate the buffer loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
-													} elseif ($obStartLevel > 0){
-														csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - buffer is not cleared from the \'' . $model . '\' version \'' . $version . '\' script', E_USER_ERROR, 1);
-													}
+													csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - terminate the buffer loading \'' . $model . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
 												}
 											} else {
 												self :: ERROR500();

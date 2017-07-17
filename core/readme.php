@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.19.20
+	Revision	: 1.20.20
 	Notes		:
 
 	Revision History:
@@ -52,6 +52,7 @@
 	07-14-2017		Poen		07-14-2017	Poen		Improve bufferClean function.
 	07-14-2017		Poen		07-14-2017	Poen		Modify bufferClean function to public.
 	07-14-2017		Poen		07-14-2017	Poen		Add an error status message at the bufferClean function buffer level.
+	07-17-2017		Poen		07-17-2017	Poen		Remove bufferClean function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -90,13 +91,9 @@
 
 >> Note
 
-	PHP headers_sent function can not work in the output buffer.
+	PHP headers_sent function can not work in the CodeSwitcher framework.
 
 	PHP output buffer function should be careful to use the ob_start function and the ob_end_clean function.
-
-	CodeSwitcher clean output buffer function csl_mvc::bufferClean() should be used with caution and
-
-	used in the portal controller scripts otherwise would be an error return.
 
 */
 ?>

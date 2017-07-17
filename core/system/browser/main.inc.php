@@ -63,7 +63,8 @@ if (!class_exists('csl_browser')) {
 						}
 						break;
 					case 'server' :
-						$info = (isset ($_SERVER['SERVER_ADDR'] { 0 }) && is_string($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : null);
+						$info = (isset ($_SERVER['LOCAL_ADDR'] { 0 }) && is_string($_SERVER['LOCAL_ADDR']) ? $_SERVER['LOCAL_ADDR'] : null); //Windows IIS
+						$info = (isset ($_SERVER['SERVER_ADDR'] { 0 }) && is_string($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : $info);
 						break;
 					case 'host' :
 						$info = (isset ($_SERVER['HTTP_HOST'] { 0 }) && is_string($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null);

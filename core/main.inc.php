@@ -68,7 +68,7 @@ if (!class_exists('csl_mvc')) {
 				self :: init();
 			}
 		}
-		/** Init system config info.
+		/** Initialize system config info.
 		 * @access - private function
 		 * @return - null
 		 * @usage -  self::init();

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.12.4
+	Revision	: 2.12.5
 	Notes		:
 
 	Revision History:
@@ -36,6 +36,8 @@
 	08-04-2017		Poen		08-04-2017	Poen		Add get_timezone function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix jump_datetime function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date2week function.
+	08-04-2017		Poen		08-04-2017	Poen		Fix datetime2sec function.
+	08-04-2017		Poen		08-04-2017	Poen		Fix date_range function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -288,7 +290,10 @@
 	--------------------------------------------------------------
 	Example :
 	csl_time::datetime2sec('2011-12-10 13:20:30');
-	Output >> 63460416030
+	Output >> 63459120030
+	Example :
+	csl_time::datetime2sec('1-01-01 00:00:00');
+	Output >> 0
 	==============================================================
 
 */

@@ -28,7 +28,7 @@ if (!class_exists('csl_time')) {
 					$startWeekday = self :: date2week($min);
 					$startReduce = ($startWeekday == 7) ? 1 : 0;
 					$endWeekday = self :: date2week($max);
-					in_array($endWeekday, array (6,7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
+					in_array($endWeekday, array (6, 7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
 					$allDays = ((self :: datetime2sec($max . ' 00:00:00') - self :: datetime2sec($min . ' 00:00:00')) / 86400) + 1;
 					$weekEndDays = floor(($allDays + $startWeekday -1 - $endWeekday) / 7) * 2 - $startReduce + $endAdd;
 					if ($type) {
@@ -112,6 +112,9 @@ if (!class_exists('csl_time')) {
 						$dateList[] = self :: sub_datetime($startDate, 'date');
 						if ($startDate != $endDate) {
 							$startDate = self :: jump_datetime($startDate, 86400); //1 day
+							if($startDate === false){
+								return false;
+							}
 						} else {
 							$push = false;
 						}
@@ -364,20 +367,13 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_datetime($datetime)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
 				} else {
-					$datetimeArray = explode(' ', $datetime);
-					$dateArray = explode('-', $datetimeArray[0]);
-					$timeArray = explode(':', $datetimeArray[1]);
-					$setY = (double) $dateArray[0];
-					$setMn = (double) $dateArray[1] - 1;
-					$yearSecs = ((($setY -1) * 365) + floor(($setY -1) / 4)) * 86400;
-					$daySecs = (double) $dateArray[2] * 86400;
-					$timeSecs = (((double) $timeArray[0]) * 3600) + (((double) $timeArray[1]) * 60) + (double) $timeArray[2];
-					$mDay = 0;
-					for ($j = 1; $j <= $setMn; $j++) {
-						$mDay = $mDay + (double) date('t', mktime(0, 0, 0, $j, 1, $setY));
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
 					}
-					$monthSecs = ($mDay -1) * 86400;
-					return (double) ($yearSecs + $monthSecs + $daySecs + $timeSecs);
+					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
+					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+					$secs = self :: $DateTime->format('U');
+					return ($secs !== false ? (62135625600 + (double) $secs) : false);
 				}
 			}
 			return false;

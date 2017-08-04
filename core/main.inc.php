@@ -69,10 +69,11 @@ if (!class_exists('csl_mvc')) {
 		}
 		/** Initialize system config info.
 		 * @access - private function
+		 * @param - string $__FUNCTION__ (error display function name)
 		 * @return - null
-		 * @usage -  self::init();
+		 * @usage -  self::init($__FUNCTION__);
 		 */
-		private static function init() {
+		private static function init($__FUNCTION__) {
 			/*---load-system-config---*/
 			self :: $tripSystem = true;
 			$CS_CONF = self :: cueConfig('CodeSwitcher');
@@ -80,54 +81,54 @@ if (!class_exists('csl_mvc')) {
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//intro page
 			if (!isset ($CS_CONF['INTRO']) || !is_string($CS_CONF['INTRO'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown introduction page configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown introduction page configuration', E_USER_ERROR, 2);
 			}
 			//timezone
 			if (!isset ($CS_CONF['DEFAULT_TIMEZONE']) || !is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown timezone id configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown timezone id configuration', E_USER_ERROR, 2);
 			}
 			//languages xml version
 			if (isset ($CS_CONF['LANGUAGE_XML_VERSION']) && is_string($CS_CONF['LANGUAGE_XML_VERSION'])) {
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $CS_CONF['LANGUAGE_XML_VERSION'])) {
-					csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - invalid language XML version number \'' . $CS_CONF['LANGUAGE_XML_VERSION'] . '\' configuration', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - invalid language XML version number \'' . $CS_CONF['LANGUAGE_XML_VERSION'] . '\' configuration', E_USER_ERROR, 2);
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown language XML version number configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown language XML version number configuration', E_USER_ERROR, 2);
 			}
 			//languages xml enciding
 			if (isset ($CS_CONF['LANGUAGE_XML_ENCODING']) && is_string($CS_CONF['LANGUAGE_XML_ENCODING'])) {
 				if (!csl_inspect :: is_iconv_encoding($CS_CONF['LANGUAGE_XML_ENCODING'])) {
-					csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - invalid language XML encoding scheme \'' . $CS_CONF['LANGUAGE_XML_ENCODING'] . '\' configuration', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - invalid language XML encoding scheme \'' . $CS_CONF['LANGUAGE_XML_ENCODING'] . '\' configuration', E_USER_ERROR, 2);
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown language XML encoding scheme configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown language XML encoding scheme configuration', E_USER_ERROR, 2);
 			}
 			//error log storage directory
 			if (!isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) || !is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error log storage directory configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown error log storage directory configuration', E_USER_ERROR, 2);
 			}
 			//error stack trace mode
 			if (!isset ($CS_CONF['ERROR_STACK_TRACE_MODE']) || !is_bool($CS_CONF['ERROR_STACK_TRACE_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error stack trace mode configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown error stack trace mode configuration', E_USER_ERROR, 2);
 			}
 			//error log storage mode
 			if (!isset ($CS_CONF['ERROR_LOG_MODE']) || !is_bool($CS_CONF['ERROR_LOG_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error log storage mode configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown error log storage mode configuration', E_USER_ERROR, 2);
 			}
 			//testers debug display mode
 			if (!isset ($CS_CONF['TESTER_DEBUG_MODE']) || !is_bool($CS_CONF['TESTER_DEBUG_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown testers debug display mode configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown testers debug display mode configuration', E_USER_ERROR, 2);
 			}
 			//testers develop mode
 			if (!isset ($CS_CONF['TESTER_DEVELOP_MODE']) || !is_bool($CS_CONF['TESTER_DEVELOP_MODE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown testers develop mode configuration', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - unknown testers develop mode configuration', E_USER_ERROR, 2);
 			}
 			/*---setting---*/
 			//set intro page
 			self :: $intro = trim(csl_path :: clean(self :: $rootDir . $CS_CONF['INTRO']), '/');
 			//set timezone
 			if (isset ($CS_CONF['DEFAULT_TIMEZONE'] { 0 }) && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
-				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 2);
 			}
 			//build languages xml object
 			self :: $language = new csl_language('language', $CS_CONF['LANGUAGE_XML_VERSION'], $CS_CONF['LANGUAGE_XML_ENCODING']);
@@ -194,11 +195,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
-					if (!isset ($pathName { 0 }) || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
+					if (!isset ($pathName {
+						0 }) || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 					} else {
 						$pathName = trim(csl_path :: clean(self :: $rootDir . $pathName), '/');
-						if (!isset ($pathName { 0 })) {
+						if (!isset ($pathName {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . $pathName)) {
@@ -316,9 +319,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
+					if (isset ($eventName {
+						0 }) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (isset ($eventName { 0 })) {
+						if (isset ($eventName {
+							0 })) {
 							if ($eventName == self :: $intro) {
 								$file = BASEPATH . 'index.php';
 								$file = (is_file($file) ? true : null);
@@ -350,9 +355,11 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
+					if (isset ($eventName {
+						0 }) && csl_path :: is_relative($eventName)) {
 						$eventName = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
-						if (isset ($eventName { 0 })) {
+						if (isset ($eventName {
+							0 })) {
 							if (is_dir(BASEPATH . 'events/' . $eventName)) {
 								$maxVersion = BASEPATH . 'events/' . $eventName . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -443,11 +450,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'configs/' . $model)) {
@@ -516,11 +525,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'languages/' . $model)) {
@@ -573,20 +584,21 @@ if (!class_exists('csl_mvc')) {
 		}
 		/** Load the begin program form the CodeSwitcher begin directory.
 		 * @access - private function
+		 * @param - string $__FUNCTION__ (error display function name)
 		 * @return - error|boolean
 		 * @usage - self::begin();
 		 */
-		private static function begin() {
+		private static function begin($__FUNCTION__) {
 			if (is_dir(BASEPATH . 'begin')) {
 				$maxVersion = BASEPATH . 'begin/ini/version.php';
 				$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - unknown defined version number', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - unknown defined version number', E_USER_ERROR, 2);
 				}
 				if (!self :: $versionClass->is_exists(BASEPATH . 'begin', $maxVersion)) {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
 				}
 				$version = self :: $versionClass->get(BASEPATH . 'begin', (!self :: $tester || !self :: $develop ? $maxVersion : ''));
 				if ($version) {
@@ -607,42 +619,43 @@ if (!class_exists('csl_mvc')) {
 								return ($import === true ? true : false);
 							} else {
 								self :: ERROR500();
-								csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
+								csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
 							}
 						} else {
 							self :: ERROR500();
-							csl_error :: cast(__CLASS__ . '::callEvent(): System failed - open output buffer failed to start', E_USER_ERROR, 2);
+							csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': System failed - open output buffer failed to start', E_USER_ERROR, 2);
 						}
 					} else {
 						self :: ERROR500();
-						csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
+						csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
 					}
 				} else {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - unable to get version', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - unable to get version', E_USER_ERROR, 2);
 				}
 			} else {
 				self :: ERROR500();
-				csl_error :: cast(__CLASS__ . '::callEvent(): Begin failed - file does not exist', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Begin failed - file does not exist', E_USER_ERROR, 2);
 			}
 			return false;
 		}
 		/** Load the commit program form the CodeSwitcher commit directory.
 		 * @access - private function
+		 * @param - string $__FUNCTION__ (error display function name)
 		 * @return - error|boolean
-		 * @usage - self::commit();
+		 * @usage - self::commit($__FUNCTION__);
 		 */
-		private static function commit() {
+		private static function commit($__FUNCTION__) {
 			if (is_dir(BASEPATH . 'commit')) {
 				$maxVersion = BASEPATH . 'commit/ini/version.php';
 				$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - unknown defined version number', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - unknown defined version number', E_USER_ERROR, 2);
 				}
 				if (!self :: $versionClass->is_exists(BASEPATH . 'commit', $maxVersion)) {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - defined version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 2);
 				}
 				$version = self :: $versionClass->get(BASEPATH . 'commit', (!self :: $tester || !self :: $develop ? $maxVersion : ''));
 				if ($version) {
@@ -663,23 +676,23 @@ if (!class_exists('csl_mvc')) {
 								return ($import === true ? true : false);
 							} else {
 								self :: ERROR500();
-								csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
+								csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - terminate the buffer loading version \'' . $version . '\' main file', E_USER_ERROR, 2);
 							}
 						} else {
 							self :: ERROR500();
-							csl_error :: cast(__CLASS__ . '::callEvent(): System failed - open output buffer failed to start', E_USER_ERROR, 2);
+							csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': System failed - open output buffer failed to start', E_USER_ERROR, 2);
 						}
 					} else {
 						self :: ERROR500();
-						csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
+						csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - could not load version \'' . $version . '\' main file', E_USER_ERROR, 2);
 					}
 				} else {
 					self :: ERROR500();
-					csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - unable to get version', E_USER_ERROR, 2);
+					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - unable to get version', E_USER_ERROR, 2);
 				}
 			} else {
 				self :: ERROR500();
-				csl_error :: cast(__CLASS__ . '::callEvent(): Commit failed - file does not exist', E_USER_ERROR, 2);
+				csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . ': Commit failed - file does not exist', E_USER_ERROR, 2);
 			}
 			return false;
 		}
@@ -698,10 +711,11 @@ if (!class_exists('csl_mvc')) {
 				if (!headers_sent($fileName, $lineNum)) {
 					if (!csl_func_arg :: delimit2error()) {
 						if (ob_start()) {
-							self :: init();
+							self :: init(__FUNCTION__);
 							$obStartLevel = ob_get_level();
 							$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
-							if (isset ($model { 0 }) && is_dir(BASEPATH . 'events/' . $model)) {
+							if (isset ($model {
+								0 }) && is_dir(BASEPATH . 'events/' . $model)) {
 								$maxVersion = BASEPATH . 'events/' . $model . '/ini/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
@@ -717,7 +731,7 @@ if (!class_exists('csl_mvc')) {
 									$file = BASEPATH . 'events/' . $model . '/' . $version . '/main.inc.php';
 									if (is_file($file) && is_readable($file)) {
 										self :: $scriptEvent = $model;
-										if (self :: begin()) {
+										if (self :: begin(__FUNCTION__)) {
 											self :: $tripSystem = true;
 											$import = csl_import :: from($file);
 											self :: $tripSystem = false;
@@ -725,7 +739,7 @@ if (!class_exists('csl_mvc')) {
 												if (ob_get_level() >= $obStartLevel) {
 													$output = ob_get_contents();
 													ob_end_clean();
-													if (self :: commit()) {
+													if (self :: commit(__FUNCTION__)) {
 														echo $output;
 													}
 												} else {
@@ -783,11 +797,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'events/' . $model)) {
@@ -855,11 +871,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'models/' . $model)) {
@@ -927,11 +945,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'libraries/' . $model)) {
@@ -1001,11 +1021,13 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: array2error(1) && !csl_func_arg :: bool2error(2)) {
-					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+					if (!isset ($model {
+						0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 					} else {
 						$model = trim(csl_path :: clean(self :: $rootDir . $model), '/');
-						if (!isset ($model { 0 })) {
+						if (!isset ($model {
+							0 })) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'templates/' . $model)) {

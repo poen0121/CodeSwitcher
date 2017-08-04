@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.12.5
+	Revision	: 2.13.5
 	Notes		:
 
 	Revision History:
@@ -38,6 +38,7 @@
 	08-04-2017		Poen		08-04-2017	Poen		Fix date2week function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix datetime2sec function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date_range function.
+	08-04-2017		Poen		08-04-2017	Poen		Add switch_by_timezone function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -294,6 +295,19 @@
 	Example :
 	csl_time::datetime2sec('1-01-01 00:00:00');
 	Output >> 0
+	==============================================================
+
+	==============================================================
+	Get switching time is based on the timezone, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
+	Usage : csl_time::switch_by_timezone($datetime);
+	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example :
+	csl_time::set_timezone('Asia/Taipei');
+    csl_time::switch_by_timezone('2017-01-01 00:00:00');
+	Output >> 2017-01-01 08:00:00
 	==============================================================
 
 */

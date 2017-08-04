@@ -112,7 +112,7 @@ if (!class_exists('csl_time')) {
 						$dateList[] = self :: sub_datetime($startDate, 'date');
 						if ($startDate != $endDate) {
 							$startDate = self :: jump_datetime($startDate, 86400); //1 day
-							if($startDate === false){
+							if ($startDate === false) {
 								return false;
 							}
 						} else {
@@ -374,6 +374,33 @@ if (!class_exists('csl_time')) {
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
 					$secs = self :: $DateTime->format('U');
 					return ($secs !== false ? (62135625600 + (double) $secs) : false);
+				}
+			}
+			return false;
+		}
+		/** Get switching time is based on the timezone, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
+		 * @access - public function
+		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @return - string|boolean
+		 * @usage - csl_time::switch_by_timezone($datetime);
+		 */
+		public static function switch_by_timezone($datetime = null) {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+				if (!csl_inspect :: is_datetime($datetime)) {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+				} else {
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
+					}
+					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
+					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+					$offsetTime = self :: $DateTime->format('P');
+					if ($offsetTime !== false) {
+						$offsetTime = explode(':', $offsetTime);
+						$offsetSec = ($offsetTime[0] * 60 * 60);
+						$offsetSec += ($offsetSec > 0 ? + ($offsetTime[1] * 60) : - ($offsetTime[1] * 60));
+						return csl_time :: jump_datetime($datetime, $offsetSec);
+					}
 				}
 			}
 			return false;

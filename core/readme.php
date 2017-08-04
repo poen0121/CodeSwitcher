@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.20.20
+	Revision	: 1.20.21
 	Notes		:
 
 	Revision History:
@@ -35,7 +35,7 @@
 	05-31-2017		Poen		05-31-2017	Poen		Change the timezone by timezone id.
 	05-31-2017		Poen		06-01-2017	Poen		Improve the program initialization error display.
 	06-01-2017		Poen		06-01-2017	Poen		Add timezone default mechanism.
-	06-01-2017		Poen		06-01-2017	Poen		Fix the program initialization error message.
+	06-01-2017		Poen		08-04-2017	Poen		Fix the program initialization error message.
 	06-08-2017		Poen		06-08-2017	Poen		Rename index function to the isPage.
 	06-08-2017		Poen		06-08-2017	Poen		Add isEvent function.
 	06-08-2017		Poen		06-08-2017	Poen		Modify the error log file name format.
@@ -53,6 +53,8 @@
 	07-14-2017		Poen		07-14-2017	Poen		Modify bufferClean function to public.
 	07-14-2017		Poen		07-14-2017	Poen		Add an error status message at the bufferClean function buffer level.
 	07-17-2017		Poen		07-17-2017	Poen		Remove bufferClean function.
+	08-04-2017		Poen		08-04-2017	Poen		Fix the program begin error message.
+	08-04-2017		Poen		08-04-2017	Poen		Fix the program commit error message.
 	---------------------------------------------------------------------------
 
 >> About

@@ -77,21 +77,12 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_date($date)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be date YYYY-MM-DD', E_USER_WARNING, 1);
 				} else {
-					$year = (int) self :: sub_date($date, 'y');
-					$month = (int) self :: sub_date($date, 'm');
-					$day = (int) self :: sub_date($date, 'd');
-					if ($month == 1 || $month == 2) {
-						$month += 12;
-						$year -= 1;
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
 					}
-					//Calculate
-					$y = $year % 100;
-					$c = floor($year / 100);
-					$m = $month;
-					$d = $day;
-					$w = $y + floor($y / 4) + floor($c / 4) - (2 * $c) + floor((26 * ($m +1)) / 10) + $d + ($date <= '1582-10-04' ? 2 : -1);
-					$w = ($w % 7 + 7) % 7;
-					return ($w > 0 ? $w : 7);
+					self :: $DateTime->setDate(self :: sub_date($date, 'y'), self :: sub_date($date, 'm'), self :: sub_date($date, 'd'));
+					$w = self :: $DateTime->format('w');
+					return ($w !== false ? ($w > 0 ? $w : 7) : false);
 				}
 			}
 			return false;

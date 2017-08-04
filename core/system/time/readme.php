@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.12.2
+	Revision	: 2.12.3
 	Notes		:
 
 	Revision History:
@@ -34,6 +34,7 @@
 	06-05-2017		Poen		06-05-2017	Poen		Modify the document.
 	07-04-2017		Poen		07-04-2017	Poen		Improve the program.
 	08-04-2017		Poen		08-04-2017	Poen		Add get_timezone function.
+	08-04-2017		Poen		08-04-2017	Poen		Fix jump_datetime function.
 	---------------------------------------------------------------------------
 
 >> About

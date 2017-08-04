@@ -80,42 +80,54 @@ if (!class_exists('csl_mvc')) {
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//intro page
 			if (!isset ($CS_CONF['INTRO']) || !is_string($CS_CONF['INTRO'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown introduction page configuration', E_USER_ERROR, 2);
 			}
 			//timezone
 			if (!isset ($CS_CONF['DEFAULT_TIMEZONE']) || !is_string($CS_CONF['DEFAULT_TIMEZONE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown timezone id configuration', E_USER_ERROR, 2);
 			}
 			//languages xml version
 			if (isset ($CS_CONF['LANGUAGE_XML_VERSION']) && is_string($CS_CONF['LANGUAGE_XML_VERSION'])) {
 				if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $CS_CONF['LANGUAGE_XML_VERSION'])) {
+					csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - invalid language XML version number \'' . $CS_CONF['LANGUAGE_XML_VERSION'] . '\' configuration', E_USER_ERROR, 2);
 				}
 			} else {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown language XML version number configuration', E_USER_ERROR, 2);
 			}
 			//languages xml enciding
 			if (isset ($CS_CONF['LANGUAGE_XML_ENCODING']) && is_string($CS_CONF['LANGUAGE_XML_ENCODING'])) {
 				if (!csl_inspect :: is_iconv_encoding($CS_CONF['LANGUAGE_XML_ENCODING'])) {
+					csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - invalid language XML encoding scheme \'' . $CS_CONF['LANGUAGE_XML_ENCODING'] . '\' configuration', E_USER_ERROR, 2);
 				}
 			} else {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown language XML encoding scheme configuration', E_USER_ERROR, 2);
 			}
 			//error log storage directory
 			if (!isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']) || !is_string($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error log storage directory configuration', E_USER_ERROR, 2);
 			}
 			//error stack trace mode
 			if (!isset ($CS_CONF['ERROR_STACK_TRACE_MODE']) || !is_bool($CS_CONF['ERROR_STACK_TRACE_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error stack trace mode configuration', E_USER_ERROR, 2);
 			}
 			//error log storage mode
 			if (!isset ($CS_CONF['ERROR_LOG_MODE']) || !is_bool($CS_CONF['ERROR_LOG_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown error log storage mode configuration', E_USER_ERROR, 2);
 			}
 			//testers debug display mode
 			if (!isset ($CS_CONF['TESTER_DEBUG_MODE']) || !is_bool($CS_CONF['TESTER_DEBUG_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown testers debug display mode configuration', E_USER_ERROR, 2);
 			}
 			//testers develop mode
 			if (!isset ($CS_CONF['TESTER_DEVELOP_MODE']) || !is_bool($CS_CONF['TESTER_DEVELOP_MODE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - unknown testers develop mode configuration', E_USER_ERROR, 2);
 			}
 			/*---setting---*/
 			//set intro page
 			self :: $intro = trim(csl_path :: clean(self :: $rootDir . $CS_CONF['INTRO']), '/');
 			//set timezone
 			if (isset ($CS_CONF['DEFAULT_TIMEZONE'] { 0 }) && !csl_time :: set_timezone($CS_CONF['DEFAULT_TIMEZONE'])) {
+				csl_error :: cast(__CLASS__ . '::callEvent(): Init failed - change timezone id \'' . $CS_CONF['DEFAULT_TIMEZONE'] . '\' is invalid', E_USER_ERROR, 2);
 			}
 			//build languages xml object
 			self :: $language = new csl_language('language', $CS_CONF['LANGUAGE_XML_VERSION'], $CS_CONF['LANGUAGE_XML_ENCODING']);

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.11.2
+	Revision	: 2.12.2
 	Notes		:
 
 	Revision History:
@@ -33,6 +33,7 @@
 	06-01-2017		Poen		06-01-2017	Poen		Improve jump_datetime function.
 	06-05-2017		Poen		06-05-2017	Poen		Modify the document.
 	07-04-2017		Poen		07-04-2017	Poen		Improve the program.
+	08-04-2017		Poen		08-04-2017	Poen		Add get_timezone function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -127,6 +128,18 @@
 	Example :
 	csl_time::set_timezone('Test');
 	Output >> FALSE
+	==============================================================
+
+	==============================================================
+	Get the script default timezone id.
+	Usage : csl_time::get_timezone()
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example :
+	csl_time::set_timezone('Asia/Taipei');
+	csl_time::get_timezone();
+	Output >> Asia/Taipei
 	==============================================================
 
 	==============================================================

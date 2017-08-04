@@ -155,6 +155,21 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
+		/** Get the script default timezone id.
+		 * @access - public function
+		 * @return - string|boolean
+		 * @usage - csl_time::get_timezone()
+		 */
+		public static function get_timezone() {
+			if (!csl_func_arg :: delimit2error()) {
+				if (function_exists('date_default_timezone_get')) {
+					return date_default_timezone_get();
+				} else {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Call to undefined date_default_timezone_get()', E_USER_ERROR, 1);
+				}
+			}
+			return false;
+		}
 		/** Return part info of date, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $date (YYYY-MM-DD)

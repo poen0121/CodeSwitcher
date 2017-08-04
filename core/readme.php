@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.20.22
+	Revision	: 1.20.23
 	Notes		:
 
 	Revision History:
@@ -55,6 +55,7 @@
 	07-17-2017		Poen		07-17-2017	Poen		Remove bufferClean function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix the program begin error message.
 	08-04-2017		Poen		08-04-2017	Poen		Fix the program commit error message.
+	08-04-2017		Poen		08-04-2017	Poen		Fix the program initialization starting point.
 	---------------------------------------------------------------------------
 
 >> About

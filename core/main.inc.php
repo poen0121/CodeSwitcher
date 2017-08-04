@@ -703,6 +703,7 @@ if (!class_exists('csl_mvc')) {
 		 */
 		public static function callEvent() {
 			self :: start();
+			self :: init(__FUNCTION__);
 			//restrictions can only be called once
 			if (!self :: $runEvent && self :: $portal) {
 				self :: $runEvent = true;
@@ -711,7 +712,6 @@ if (!class_exists('csl_mvc')) {
 				if (!headers_sent($fileName, $lineNum)) {
 					if (!csl_func_arg :: delimit2error()) {
 						if (ob_start()) {
-							self :: init(__FUNCTION__);
 							$obStartLevel = ob_get_level();
 							$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
 							if (isset ($model {

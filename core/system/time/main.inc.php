@@ -28,7 +28,10 @@ if (!class_exists('csl_time')) {
 					$startWeekday = self :: date2week($min);
 					$startReduce = ($startWeekday == 7) ? 1 : 0;
 					$endWeekday = self :: date2week($max);
-					in_array($endWeekday, array (6, 7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
+					in_array($endWeekday, array (
+						6,
+						7
+					)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
 					$allDays = ((self :: datetime2sec($max . ' 00:00:00') - self :: datetime2sec($min . ' 00:00:00')) / 86400) + 1;
 					$weekEndDays = floor(($allDays + $startWeekday -1 - $endWeekday) / 7) * 2 - $startReduce + $endAdd;
 					if ($type) {
@@ -390,23 +393,23 @@ if (!class_exists('csl_time')) {
 				$output = strtolower($output);
 				if (!csl_inspect :: is_datetime($datetime)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
-				} else
-					if ($output != 'host' && $output != 'gmt') {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid output type specified', E_USER_WARNING, 1);
-					} else {
-						if (is_null(self :: $DateTime)) {
-							self :: $DateTime = new DateTime();
-						}
-						self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
-						self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-						$offsetTime = self :: $DateTime->format('P');
-						if ($offsetTime !== false) {
-							$offsetTime = explode(':', $offsetTime);
-							$offsetSec = ($offsetTime[0] * 60 * 60);
-							$offsetSec += ($offsetSec > 0 ? + ($offsetTime[1] * 60) : - ($offsetTime[1] * 60));
-							return csl_time :: jump_datetime($datetime, ($output == 'gmt' ? - $offsetSec : $offsetSec));
-						}
+				}
+				elseif ($output != 'host' && $output != 'gmt') {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid output type specified', E_USER_WARNING, 1);
+				} else {
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
 					}
+					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
+					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+					$offsetTime = self :: $DateTime->format('P');
+					if ($offsetTime !== false) {
+						$offsetTime = explode(':', $offsetTime);
+						$offsetSec = ($offsetTime[0] * 60 * 60);
+						$offsetSec += ($offsetSec > 0 ? + ($offsetTime[1] * 60) : - ($offsetTime[1] * 60));
+						return csl_time :: jump_datetime($datetime, ($output == 'gmt' ? - $offsetSec : $offsetSec));
+					}
+				}
 			}
 			return false;
 		}

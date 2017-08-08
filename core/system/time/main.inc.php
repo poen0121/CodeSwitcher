@@ -381,27 +381,32 @@ if (!class_exists('csl_time')) {
 		/** Get switching time is based on the timezone, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
 		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $output (output type `host` or `gmt`) : Default gmt
 		 * @return - string|boolean
-		 * @usage - csl_time::switch_by_timezone($datetime);
+		 * @usage - csl_time::switch_by_timezone($datetime,$output);
 		 */
-		public static function switch_by_timezone($datetime = null) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
+		public static function switch_by_timezone($datetime = null, $output = 'gmt') {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
+				$output = strtolower($output);
 				if (!csl_inspect :: is_datetime($datetime)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
-				} else {
-					if (is_null(self :: $DateTime)) {
-						self :: $DateTime = new DateTime();
+				} else
+					if ($output != 'host' && $output != 'gmt') {
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid output type specified', E_USER_WARNING, 1);
+					} else {
+						if (is_null(self :: $DateTime)) {
+							self :: $DateTime = new DateTime();
+						}
+						self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
+						self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+						$offsetTime = self :: $DateTime->format('P');
+						if ($offsetTime !== false) {
+							$offsetTime = explode(':', $offsetTime);
+							$offsetSec = ($offsetTime[0] * 60 * 60);
+							$offsetSec += ($offsetSec > 0 ? + ($offsetTime[1] * 60) : - ($offsetTime[1] * 60));
+							return csl_time :: jump_datetime($datetime, ($output == 'gmt' ? - $offsetSec : $offsetSec));
+						}
 					}
-					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
-					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-					$offsetTime = self :: $DateTime->format('P');
-					if ($offsetTime !== false) {
-						$offsetTime = explode(':', $offsetTime);
-						$offsetSec = ($offsetTime[0] * 60 * 60);
-						$offsetSec += ($offsetSec > 0 ? + ($offsetTime[1] * 60) : - ($offsetTime[1] * 60));
-						return csl_time :: jump_datetime($datetime, $offsetSec);
-					}
-				}
 			}
 			return false;
 		}

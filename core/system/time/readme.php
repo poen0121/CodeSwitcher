@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.14.6
+	Revision	: 2.14.7
 	Notes		:
 
 	Revision History:
@@ -36,7 +36,7 @@
 	08-04-2017		Poen		08-04-2017	Poen		Add get_timezone function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix jump_datetime function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date2week function.
-	08-04-2017		Poen		08-04-2017	Poen		Fix datetime2sec function.
+	08-04-2017		Poen		09-05-2017	Poen		Fix datetime2sec function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date_range function.
 	08-04-2017		Poen		08-04-2017	Poen		Add switch_by_timezone function.
 	08-08-2017		Poen		08-08-2017	Poen		Add switch_by_timezone function output type parameter.

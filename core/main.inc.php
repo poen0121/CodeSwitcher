@@ -138,6 +138,9 @@ if (!class_exists('csl_mvc')) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
 				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log', 'PHP-CS'); //peel of system log file
+			} else {
+				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
+				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', 'PHP-CS'); //peel of system log file
 			}
 			//set error stack trace mode
 			csl_debug :: trace_error_handler($CS_CONF['ERROR_STACK_TRACE_MODE']);

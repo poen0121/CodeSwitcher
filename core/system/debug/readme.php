@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.6.2
+	Revision	: 3.6.3
 	Notes		:
 
 	Revision History:
@@ -12,7 +12,7 @@
 	10-20-2010		Poen		10-20-2010	Poen		Create the program.
 	08-17-2016		Poen		08-18-2016	Poen		Reforming the program.
 	09-08-2016		Poen		06-21-2017	Poen		Improve error_log_file function.
-	09-23-2016		Poen		07-03-2017	Poen		Improve the program.
+	09-23-2016		Poen		09-13-2017	Poen		Improve the program.
 	09-23-2016		Poen		09-23-2016	Poen		Change logs function name become record.
 	10-06-2016		Poen		10-06-2016	Poen		Add is_all_report function.
 	10-06-2016		Poen		10-06-2016	Poen		Add is_close_report function.

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_template function
-	Revision	: 3.8.2
+	Revision	: 3.8.3
 	Notes		:
 
 	Revision History:
@@ -15,7 +15,7 @@
 	09-29-2016		Poen		11-23-2016	Poen		Debug the program error messages.
 	09-30-2016		Poen		09-30-2016	Poen		Debug clearstatcache().
 	11-23-2016		Poen		11-23-2016	Poen		Debug view function buffer level.
-	12-05-2016		Poen		07-04-2017	Poen		Improve the program.
+	12-05-2016		Poen		09-13-2017	Poen		Improve the program.
 	02-22-2017		Poen		02-22-2017	Poen		Debug view function.
 	03-10-2017		Poen		03-10-2017	Poen		Modify the program to add error stack trace.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.

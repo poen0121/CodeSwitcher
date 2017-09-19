@@ -12,6 +12,7 @@ if (!class_exists('csl_error')) {
 		private static $trace;
 		private static $errorHandler;
 		private static $errorHandlerList;
+		private static $exit;
 		/** Error handler.
 		 * @access - public function
 		 * @return - boolean|null
@@ -186,10 +187,11 @@ if (!class_exists('csl_error')) {
 		}
 		/** Capture error_handler information output error.
 		 * @access - public function
+		 * @param - boolean $exit (fatal error exit script) : Default true
 		 * @return - boolean|null
 		 * @usage - csl_error::capture();
 		 */
-		public static function capture() {
+		public static function capture($exit = true) {
 			/* default native */
 			$native = true;
 			$echoDepth = 3;
@@ -203,8 +205,11 @@ if (!class_exists('csl_error')) {
 			}
 			/* limit num args */
 			$numArgs = func_num_args();
-			if ($numArgs > 0) {
-				self :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Expects at most 0 parameters, ' . $numArgs . ' given', E_USER_WARNING, 1);
+			if ($numArgs > 1) {
+				self :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Expects at most 1 parameters, ' . $numArgs . ' given', E_USER_WARNING, 1);
+			}
+			elseif (!is_bool($exit)) {
+				self :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Expects parameter 1 to be boolean, ' . strtolower(gettype($exit)) . ' given', E_USER_WARNING, 1);
 			}
 			/* gets error message */
 			if (isset ($caller[1]['args'][1]) && is_string($caller[1]['args'][1]) && preg_match('/^ERROR_TOUCH_SIGNAL:[0-9]+$/', $caller[1]['args'][1])) {
@@ -239,7 +244,7 @@ if (!class_exists('csl_error')) {
 				}
 			}
 			/* output */
-			if (!(error_reporting() & $errno)) {
+			if (!(error_reporting() & $errno) || self :: $exit) {
 				/* this error code is not included in error_reporting */
 				return;
 			}
@@ -358,7 +363,11 @@ if (!class_exists('csl_error')) {
 			}
 			/* fatal exit */
 			if ($mark == 'Fatal error') {
-				exit;
+				if ($exit) {
+					exit;
+				} else {
+					self :: $exit = true;
+				}
 			}
 			return true;
 		}

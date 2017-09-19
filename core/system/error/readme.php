@@ -57,6 +57,8 @@
 
 	If the csl_error::cast function is used in the current error_handler function, the stack trace will be closed.
 	
+	If the hpl error :: delete function $ exit is false, the script will not exit and the next error will not be executed.
+	
 >> Peel Error Logs
 
 	Allows the stripping of the capture error mode so that the stored information is stored 
@@ -200,7 +202,8 @@
 
 	==============================================================
 	Capture error_handler information output error.
-	Usage : csl_error::capture();
+	Usage : csl_error::capture($exit);
+	Param : boolean $exit (fatal error exit script) : Default true
 	Return : boolean|null
 	Return Note : Returns null on stop.
 	--------------------------------------------------------------
@@ -217,6 +220,14 @@
 	}
 	csl_error::begin('ErrorHandler');
 	trigger_error('Test Error',E_USER_WARNING);
+	Output >> TRUE
+	Example :
+	function ErrorHandler() {
+		return csl_error::capture(false);
+	}
+	csl_error::begin('ErrorHandler');
+	csl_error::cast('Test Error',E_USER_ERROR);
+	echo 'end message';
 	Output >> TRUE
 	==============================================================
 

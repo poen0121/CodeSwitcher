@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.13.2
+	Revision	: 2.14.2
 	Notes		:
 
 	Revision History:
@@ -26,11 +26,17 @@
 	06-21-2017		Poen		06-21-2017	Poen		Fix error log time and line breaks.
 	06-22-2017		Poen		06-22-2017	Poen		Add peel error log mechanism.
 	09-13-2017		Poen		09-13-2017	Poen		Add recessive signal message to the error_handler function.
+	09-13-2017		Poen		09-18-2017	Poen		Modify message to the error_handler function.
+	09-13-2017		Poen		09-18-2017	Poen		Add begin function.
+	09-13-2017		Poen		09-18-2017	Poen		Add error_log_file function.
+	09-13-2017		Poen		09-18-2017	Poen		Add trace function.
+	09-13-2017		Poen		09-18-2017	Poen		Add cast_log_title function.
+	09-13-2017		Poen		09-18-2017	Poen		Add capture function.
 	---------------------------------------------------------------------------
 
 >> About
 
-	Throw an error by error_reporting control, and save the log records.
+	Use error_handler to capture error messages by using the error_reporting control to throw an error and save the log records.
 
 	Automatically grab the file and line echo location can be used to improve the depth of the actual stratification.
 
@@ -40,22 +46,31 @@
 	Set php.ini display_errors control display error message.
 
 	Set php.ini log_errors control save error message.
+	
+	Class function stack trace is turned off by default.
+	
+>> Note
 
+	If the csl_error::cast function is used in the current error_handler function, the default error_handler function csl_error::ErrorHandler is used.
+
+	If the csl_error::cast function is used in the error_handler function, the echo depth will be limited to the error_handler function range.
+
+	If the csl_error::cast function is used in the current error_handler function, the stack trace will be closed.
+	
 >> Peel Error Logs
 
-	Use $_SERVER['PEEL_OFF_ERROR_LOG_FILE'] to save the peel off error log file location.
+	Allows the stripping of the capture error mode so that the stored information is stored 
+	at the specified file location when the system archive location can not be changed.
 
-	Use $_SERVER['PEEL_OFF_NAME'] to save the peel off name.
+	Usage : csl_error::error_log_file function
 
 >> Stack Trace
 
-	Switch variable parameter is $_SERVER['ERROR_STACK_TRACE'] , stack trace calls will consume memory.
+	Stack trace calls will consume memory.
 
 	Stack trace grab file and line echo location.
-
-	Enable : $_SERVER['ERROR_STACK_TRACE'] = On;
-
-	Disable : $_SERVER['ERROR_STACK_TRACE'] = Off;
+	
+	Usage : csl_error::trace function
 
 >> Error Level
 
@@ -81,13 +96,89 @@
 	==============================================================
 
 	==============================================================
-	Throws an error and saves the error log and sends a recessive signal message to the error_handler function.
-	Note : The error_handler will catch the message 'ERROR_TOUCH_SIGNAL' string.
-	Usage : csl_error::cast($errorMessage,$errno,$echoDepth,$logTitle);
-	Param : string $errorMessage (error message)
+	Set the user-defined error handler to start the function.
+	Usage : csl_error::begin($errorHandler);
+	Param : callable $errorHandler (a callback or null default last declared value with the following signature)
+	Return : boolean
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : Enable default error_handler function.
+	csl_error::begin();
+	Output >> TRUE
+	Example : Enable definition error_handler function.
+	function ErrorHandler() {
+		return csl_error::capture();
+	}
+	csl_error::begin('ErrorHandler');
+	trigger_error('Test Error',E_USER_WARNING);
+	Output >> TRUE
+	==============================================================
+	
+	==============================================================
+	Set PHP log errors to specified default file.
+	Usage : csl_error::error_log_file($path,$peel);
+	Param : string $path (file path)
+	Param : boolean $peel (allow peel off to capture the error pattern) : Default false
+	Return : boolean
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : Rewrite the PHP system error_log file and terminate the error logs to strip the system error log file.
+	csl_error::error_log_file('./test.log');
+	Output >> TRUE
+	Example : Rewrite the PHP system error_log file and terminate the error logs to strip the system error log file.
+	csl_error::error_log_file('./test_log',false);
+	Output >> TRUE
+	Example : Allow the error logs to strip the system error log file.
+	csl_error::error_log_file('./test_log',true);
+	Output >> TRUE
+	Example : Error file path.
+	csl_error::error_log_file('http://example/test_log');
+	Output >> FALSE
+	Example : Error file path.
+	csl_error::error_log_file('./');
+	Output >> FALSE
+	==============================================================
+	
+	==============================================================
+	Set the error stack trace mode.
+	Usage : csl_error::trace($switch);
+	Param : boolean $switch (open or close the stack trace error mode)
+	Return : boolean
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : Close the error stack trace mode.
+	csl_error::trace(false);
+	Output >> TRUE
+	Example : Open the error stack trace mode.
+	csl_error::trace(true);
+	Output >> TRUE
+	==============================================================
+		
+	==============================================================
+	Set the error cast function default log title.
+	Usage : csl_error::cast_log_title($default);
+	Param : string $default (default error log title) : Default 'PHP' is system reserved words
+	Return : boolean
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example : Log title to 'PHP-USER'.
+	csl_error::cast_log_title('PHP-USER');
+	csl_error::cast('Test Error',E_USER_WARNING);
+	Output >> TRUE
+	Example : Log title to 'PHP'.
+	csl_error::cast_log_title('PHP-USER');
+	csl_error::cast('Test Error',E_USER_WARNING,0,'PHP');
+	Output >> TRUE
+	==============================================================
+
+	==============================================================
+	Throws an error and sends a recessive signal message to the error_handler function.
+	Note : The error_handler will catch the message 'ERROR_TOUCH_SIGNAL:' id string.
+	Usage : csl_error::cast($message,$errno,$echoDepth,$logTitle);
+	Param : string $message (the specified error message, the length limit of more than 1024 bytes, will be truncated)
 	Param : integer $errno (error level by error_reporting) : Default E_USER_NOTICE
 	Param : integer $echoDepth (location echo depth) : Default 0
-	Param : string $logTitle (log title) : Default 'PHP'
+	Param : string $logTitle (log title) : By default, the cast_log_title function default log title is used
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -97,21 +188,55 @@
 		csl_error::cast('Test Error',E_USER_WARNING);//get location on line
 	}
 	test();
+	Output >> TRUE
 	Example :
 	function test($var=null)
 	{
 		csl_error::cast('Test Error',E_USER_WARNING,1);
 	}
 	test();//get location on line
+	Output >> TRUE
+	==============================================================
+
+	==============================================================
+	Capture error_handler information output error.
+	Usage : csl_error::capture();
+	Return : boolean|null
+	Return Note : Returns null on stop.
+	--------------------------------------------------------------
+	Example :
+	function ErrorHandler() {
+		return csl_error::capture();
+	}
+	csl_error::begin('ErrorHandler');
+	csl_error::cast('Test Error',E_USER_WARNING);
+	Output >> TRUE
+	Example :
+	function ErrorHandler() {
+		return csl_error::capture();
+	}
+	csl_error::begin('ErrorHandler');
+	trigger_error('Test Error',E_USER_WARNING);
+	Output >> TRUE
 	==============================================================
 
 >> Example 
 
-	function TestErrorHandler($errno = null, $message = null, $file = null, $line = null) {
-		echo $message;
+	function ErrorHandler() {
+		return csl_error::capture();
 	}
-	set_error_handler('TestErrorHandler');
-	csl_error::cast('Test Error',E_USER_WARNING);
+	csl_error::begin('ErrorHandler');
+	csl_error::trace(true);
+	function test($var=null)
+	{
+		csl_error::cast('Cast Test Error',E_USER_WARNING,1);
+	}
+	test();//get location on line
+	function test_trigger($var=null)
+	{
+		trigger_error('Trigger Test Error',E_USER_WARNING);//get location on line
+	}
+	test_trigger();
 
 */
 ?>

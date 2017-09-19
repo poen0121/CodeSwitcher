@@ -5,125 +5,6 @@ if (!class_exists('csl_debug')) {
 	 * @about - debug the operation mode.
 	 */
 	class csl_debug {
-		/** Trace error handler.
-		 * @access - public function
-		 * @param - integer $errno (error number)
-		 * @param - string $message (error message)
-		 * @param - string $file (file path)
-		 * @param - integer $line (file line number)
-		 * @return - boolean|null
-		 * @usage - set_error_handler('csl_debug::TraceErrorHandler');
-		 */
-		public static function TraceErrorHandler($errno = null, $message = null, $file = null, $line = null) {
-			if (!(error_reporting() & $errno)) {
-				// This error code is not included in error_reporting
-				return;
-			}
-			//response message
-			$title = '';
-			switch ($errno) {
-				case E_PARSE :
-				case E_ERROR :
-				case E_CORE_ERROR :
-				case E_COMPILE_ERROR :
-				case E_USER_ERROR :
-					$title = 'Fatal error';
-					break;
-				case E_WARNING :
-				case E_USER_WARNING :
-				case E_COMPILE_WARNING :
-				case E_RECOVERABLE_ERROR :
-					$title = 'Warning';
-					break;
-				case E_NOTICE :
-				case E_USER_NOTICE :
-					$title = 'Notice';
-					break;
-				case E_STRICT :
-					$title = 'Strict';
-					break;
-				case E_DEPRECATED :
-				case E_USER_DEPRECATED :
-					$title = 'Deprecated';
-					break;
-				default :
-					$title = 'Error [' . $errno . ']';
-					break;
-			}
-			/* output message */
-			$is_record = preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('log_errors'));
-		 	$is_display = preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', ini_get('display_errors'));
-			if ($is_record || $is_display) {
-				$message = '<br /><b>' . $title . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b><br />';
-				if ((isset ($_SERVER['ERROR_STACK_TRACE']) ? preg_match('/^(on|(\+|-)?[0-9]*[1-9]+[0-9]*)$/i', $_SERVER['ERROR_STACK_TRACE']) : false)) { //error stack trace
-					$baseDepth = 1;
-					$caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT);
-					$rows = count($caller);
-					if ($rows > $baseDepth) {
-						$message .= PHP_EOL . 'Stack trace:' . PHP_EOL . '<br />';
-						for ($i = $baseDepth; $i < $rows; $i++) {
-							$argsList = ''; //args info
-							if (isset ($caller[$i]['args'])) {
-								foreach ($caller[$i]['args'] as $sort => $args) {
-									$argsList .= ($sort > 0 ? ', ' : '');
-									switch (gettype($args)) {
-										case 'string' :
-											$argsList .= '\'' . (mb_strlen($args, 'utf-8') > 20 ? mb_substr($args, 0, 17, 'utf-8') . '...' : $args) . '\'';
-											break;
-										case 'array' :
-											$argsList .= 'Array';
-											break;
-										case 'object' :
-											$argsList .= get_class($args) . ' Object';
-											break;
-										case 'resource' :
-											$argsList .= get_resource_type($args) . ' Resource';
-											break;
-										case 'boolean' :
-											$argsList .= ($args ? 'true' : 'false');
-											break;
-										case 'NULL' :
-											$argsList .= 'NULL';
-											break;
-										default :
-											$argsList .= $args;
-											break;
-									}
-								}
-							}
-							$message .= '#' . ($i - $baseDepth) . ' ' . $caller[$i]['file'] . '(' . $caller[$i]['line'] . '):' . (isset ($caller[$i]['class']) ? ' ' . $caller[$i]['class'] . $caller[$i]['type'] : ' ') . $caller[$i]['function'] . '(' . $argsList . ')' . ($i < ($rows -1) ? PHP_EOL : '') . '<br />';
-						}
-					}
-				}
-				if ($is_record) {
-					error_log('PHP ' . strip_tags($message), 0);
-				}
-				if ($is_display) {
-					echo PHP_EOL , (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? strip_tags($message) : $message) , PHP_EOL;
-				}
-			}
-			if ($title == 'Fatal error') {
-				exit;
-			}
-			/* Don't execute PHP internal error handler */
-			return true;
-		}
-		/** Set the PHP error stack trace mode to initialize the set_error_handler call hp_debug::TraceErrorHandler.
-		 * @access - public function
-		 * @param - boolean $switch (open or close the stack trace error mode) : Default true
-		 * @note - $switch `true` is open $_SERVER['ERROR_STACK_TRACE'] = On.
-		 * @note - $switch `false` is close $_SERVER['ERROR_STACK_TRACE'] = Off.
-		 * @return - boolean
-		 * @usage - csl_debug::trace_error_handler($switch);
-		 */
-		public static function trace_error_handler($switch = true) {
-			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: bool2error(0)) {
-				$_SERVER['ERROR_STACK_TRACE'] = ($switch ? 'On' : 'Off');
-				set_error_handler(__CLASS__ . '::TraceErrorHandler');
-				return true;
-			}
-			return false;
-		}
 		/** Set PHP errors report mode.
 		 * @access - public function
 		 * @param - boolean $switch (open or close the report error mode) : Default true
@@ -192,37 +73,16 @@ if (!class_exists('csl_debug')) {
 		/** Set PHP log errors to specified default file.
 		 * @access - public function
 		 * @param - string $path (file path)
-		 * @param - string $peelName (set the species name to peel off the system error log file) : Default 'PHP' is system reserved words
-		 * @note - $peelName use $_SERVER['PEEL_OFF_ERROR_LOG_FILE'] to save the peel off error log file location.
-		 * @note - $peelName use $_SERVER['PEEL_OFF_NAME'] to save the peel off name.
 		 * @return - boolean
-		 * @usage - csl_debug::error_log_file($path,$peelName);
+		 * @usage - csl_debug::error_log_file($path);
 		 */
-		public static function error_log_file($path = null, $peelName = 'PHP') {
+		public static function error_log_file($path = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
-				if (!isset ($path { 0 })) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
-				} else {
-					if (!csl_path :: is_absolute($path) && csl_path :: is_files($path)) {
-						$path = csl_path :: norm($path);
-						$peelName = strtoupper(trim($peelName));
-						if ($peelName == 'PHP') {
-							ini_set('error_log', $path);
-							if (csl_path :: norm(ini_get('error_log')) === $path) {
-								if (isset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE'])) {
-									unset ($_SERVER['PEEL_OFF_ERROR_LOG_FILE']);
-								}
-								if (isset ($_SERVER['PEEL_OFF_NAME'])) {
-									unset ($_SERVER['PEEL_OFF_NAME']);
-								}
-								return true;
-							}
-						} else {
-							$_SERVER['PEEL_OFF_ERROR_LOG_FILE'] = $path;
-							$_SERVER['PEEL_OFF_NAME'] = $peelName;
-							return true;
-						}
-
+				if (isset ($path { 0 }) && !csl_path :: is_absolute($path) && csl_path :: is_files($path)) {
+					$path = csl_path :: norm($path);
+					ini_set('error_log', $path);
+					if (csl_path :: norm(ini_get('error_log')) === $path) {
+						return true;
 					}
 				}
 			}

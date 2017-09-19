@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.6.3
+	Revision	: 3.7.3
 	Notes		:
 
 	Revision History:
@@ -27,6 +27,8 @@
 	06-22-2017		Poen		06-22-2017	Poen		PHP System error log recovery can only access system files.
 	06-22-2017		Poen		06-22-2017	Poen		Improve error_log_file function.
 	07-04-2017		Poen		07-04-2017	Poen		Improve trace_error_handler function.
+	09-18-2017		Poen		09-18-2017	Poen		Modify error_log_file function.
+	09-18-2017		Poen		09-18-2017	Poen		Rename trace_error_handler function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -38,23 +40,6 @@
 	==============================================================
 	Include file
 	Usage : include('debug/main.inc.php');
-	==============================================================
-
-	==============================================================
-	Set the PHP error stack trace mode to initialize the set_error_handler call hp_debug::TraceErrorHandler.
-	Usage : csl_debug::trace_error_handler($switch);
-	Param : boolean $switch (open or close the stack trace error mode) : Default true
-	Note : $switch `true` is open to $_SERVER['ERROR_STACK_TRACE'] = On.
-	Note : $switch `false` is close to $_SERVER['ERROR_STACK_TRACE'] = Off.
-	Return : boolean
-	Return Note : Returns FALSE on failure.
-	--------------------------------------------------------------
-	Example : Open the stack trace error.
-	csl_debug::trace_error_handler(true);
-	Output >> TRUE
-	Example : Close the stack trace error.
-	csl_debug::trace_error_handler(false);
-	Output >> TRUE
 	==============================================================
 
 	==============================================================
@@ -126,27 +111,18 @@
 
 	==============================================================
 	Set PHP log errors to specified default file.
-	Usage : csl_debug::error_log_file($path,$peelName);
+	Usage : csl_debug::error_log_file($path);
 	Param : string $path (file path)
-	Param : string $peelName (set the species name to peel off the system error log file) : Default 'PHP' is system reserved words
-	Note : $peelName use $_SERVER['PEEL_OFF_ERROR_LOG_FILE'] to save the peel off error log file location.
-	Note : $peelName use $_SERVER['PEEL_OFF_NAME'] to save the peel off name.
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
-	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
+	Example : Rewrite the PHP system error_log file.
 	csl_debug::error_log_file('./test.log');
 	Output >> TRUE
-	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
-	csl_debug::error_log_file('./test_log','PHP');
-	Output >> TRUE
-	Example : Use the error class to strip the system error log file , PHP error is still stored in the system error_log file.
-	csl_debug::error_log_file('./test_log','TEST');
-	Output >> TRUE
-	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
+	Example : Error file path.
 	csl_debug::error_log_file('http://example/test_log');
 	Output >> FALSE
-	Example : Rewrite the PHP system error_log file and terminate the error class to strip the system error log file.
+	Example : Error file path.
 	csl_debug::error_log_file('./');
 	Output >> FALSE
 	==============================================================

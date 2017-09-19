@@ -43,9 +43,9 @@ if (!class_exists('csl_mvc')) {
 		private static function start() {
 			if (is_null(self :: $portal)) {
 				clearstatcache();
-				csl_debug :: trace_error_handler(false); //system default error stack trace mode
-				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
-				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', 'PHP-CS'); //peel of system log file
+				csl_error :: cast_log_title('PHP-CS');
+				csl_error :: trace(false); //system default error stack trace mode
+				csl_error :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', true); //peel of system log file mode
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
@@ -136,14 +136,12 @@ if (!class_exists('csl_mvc')) {
 			if (isset ($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] { 0 })) {
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = csl_path :: norm($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
 				$CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] = (substr($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'], -1, 1) !== '/' ? $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . '/' : $CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION']);
-				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
-				csl_debug :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log', 'PHP-CS'); //peel of system log file
+				csl_error :: error_log_file($CS_CONF['ERROR_LOG_STORAGE_DIR_LOCATION'] . 'CS-' . csl_time :: get_date('host') . '.log', true); //peel of system log file mode
 			} else {
-				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log'); //PHP system log file
-				csl_debug :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', 'PHP-CS'); //peel of system log file
+				csl_error :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', true); //peel of system log file mode
 			}
 			//set error stack trace mode
-			csl_debug :: trace_error_handler($CS_CONF['ERROR_STACK_TRACE_MODE']);
+			csl_error :: trace($CS_CONF['ERROR_STACK_TRACE_MODE']);
 			//set error log storage mode
 			csl_debug :: record($CS_CONF['ERROR_LOG_MODE']);
 			//source IP verification tester

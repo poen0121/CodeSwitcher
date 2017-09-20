@@ -43,7 +43,7 @@ if (!class_exists('csl_mvc')) {
 		private static function start() {
 			if (is_null(self :: $portal)) {
 				clearstatcache();
-				csl_error :: cast_log_title('PHP-CS');
+				csl_error :: cast_log_title('CS-PHP');
 				csl_error :: trace(false); //system default error stack trace mode
 				csl_error :: error_log_file(BASEPATH . 'storage/logs/CS-' . csl_time :: get_date('host') . '.log', true); //peel of system log file mode
 				csl_debug :: report(true); //error mode E_ALL

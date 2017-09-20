@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_error function
-	Revision	: 2.14.2
+	Revision	: 2.14.3
 	Notes		:
 
 	Revision History:
@@ -18,7 +18,7 @@
 	09-23-2016		Poen		09-23-2016	Poen		Debug cast function.
 	11-21-2016		Poen		11-21-2016	Poen		Modify the usage error level by error_reporting.
 	11-22-2016		Poen		11-22-2016	Poen		Debug the program error messages.
-	12-05-2016		Poen		07-04-2017	Poen		Improve the program.
+	12-05-2016		Poen		09-20-2017	Poen		Improve the program.
 	03-09-2017		Poen		03-15-2017	Poen		Modify cast function to add stack trace.
 	03-15-2017		Poen		03-15-2017	Poen		Debug cast function uses the wrong error level to throw a file line error.
 	03-22-2017		Poen		03-22-2017	Poen		Fix cast function error message.
@@ -57,7 +57,7 @@
 
 	If the csl_error::cast function is used in the current error_handler function, the stack trace will be closed.
 	
-	If the hpl error :: delete function $ exit is false, the script will not exit and the next error will not be executed.
+	If the csl_error::capture function $exit is false, the script will not exit but the next error still stops capturing.
 	
 >> Peel Error Logs
 

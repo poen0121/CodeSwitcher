@@ -15,7 +15,7 @@ if (!class_exists('csl_debug')) {
 		 */
 		public static function report($switch = true) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: bool2error(0)) {
-				ini_set('error_reporting', ($switch ? E_ALL : 0));
+				error_reporting($switch ? E_ALL : 0);
 				return ($switch ? self :: is_all_report() : self :: is_close_report());
 			}
 			return false;

@@ -40,6 +40,7 @@ if (!class_exists('csl_error')) {
 					self :: $errorHandlerList[] = $errorHandler;
 					self :: $errorHandler = $errorHandler;
 				}
+				/* set default error_handler */
 				set_error_handler(self :: $errorHandler ? self :: $errorHandler : __CLASS__ . '::ErrorHandler');
 				return true;
 			}
@@ -151,15 +152,14 @@ if (!class_exists('csl_error')) {
 				$echoDepth = $echoDepth +4;
 				/* check function in error_handler */
 				$inHandler = false;
-				$errorHandler = null;
+				$errorHandler = false;
 				$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 0);
 				foreach ($caller as $i => $in) {
-					$findHandler = (isset ($in['class']) ? $in['class'] . $in['type'] : '') . $in['function'];
-					if (!isset ($errorHandler) && is_array(self :: $errorHandlerList) && in_array($findHandler, self :: $errorHandlerList)) {
-						$errorHandler = $findHandler;
+					$needle = (isset ($in['class']) ? $in['class'] . $in['type'] : '') . $in['function'];
+					if (!$errorHandler && is_array(self :: $errorHandlerList) && in_array($needle, self :: $errorHandlerList)) {
+						$errorHandler = $needle;
 					}
 					if (!isset ($in['file']) && !isset ($in['line'])) {
-						$errorHandler = (isset ($errorHandler) ? $errorHandler : (isset ($in['class']) ? $in['class'] . $in['type'] : '') . $in['function']);
 						$echoDepth = ($echoDepth >= (4 + $i) ? 4 + $i -1 : $echoDepth);
 						$inHandler = true;
 						break;
@@ -176,11 +176,13 @@ if (!class_exists('csl_error')) {
 				end(self :: $castList);
 				$id = key(self :: $castList);
 				/* set default error_handler */
-				if (!self :: $errorHandler || ($inHandler && $errorHandler === self :: $errorHandler)) {
-					set_error_handler(__CLASS__ . '::ErrorHandler');
-				}
+				$ord = set_error_handler(!self :: $errorHandler || ($inHandler && $errorHandler === self :: $errorHandler) ? __CLASS__ . '::ErrorHandler' : self :: $errorHandler);
 				/* throws an error signal */
 				trigger_error('ERROR_TOUCH_SIGNAL:' . $id);
+				/* reset error_handler is null */
+				if (!$ord) {
+					restore_error_handler();
+				}
 				return true;
 			}
 			return false;
@@ -189,7 +191,7 @@ if (!class_exists('csl_error')) {
 		 * @access - public function
 		 * @param - boolean $exit (fatal error exit script) : Default true
 		 * @return - boolean|null
-		 * @usage - csl_error::capture();
+		 * @usage - csl_error::capture($exit);
 		 */
 		public static function capture($exit = true) {
 			/* default native */
@@ -198,18 +200,20 @@ if (!class_exists('csl_error')) {
 			$trace = self :: $trace;
 			$caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, ($trace ? 0 : 3));
 			$rows = count($caller);
-			/* limit call */
+			$numArgs = func_num_args();
 			if ($rows == 1) {
+				/* limit call */
 				self :: cast('Cannot instantiate function ' . __CLASS__ . '::' . __FUNCTION__ . '()', E_USER_ERROR, 1);
 				return;
 			}
-			/* limit num args */
-			$numArgs = func_num_args();
-			if ($numArgs > 1) {
+			elseif ($numArgs > 1) {
+				/* limit num args */
 				self :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Expects at most 1 parameters, ' . $numArgs . ' given', E_USER_WARNING, 1);
+				return;
 			}
 			elseif (!is_bool($exit)) {
 				self :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Expects parameter 1 to be boolean, ' . strtolower(gettype($exit)) . ' given', E_USER_WARNING, 1);
+				return;
 			}
 			/* gets error message */
 			if (isset ($caller[1]['args'][1]) && is_string($caller[1]['args'][1]) && preg_match('/^ERROR_TOUCH_SIGNAL:[0-9]+$/', $caller[1]['args'][1])) {
@@ -366,7 +370,8 @@ if (!class_exists('csl_error')) {
 				if ($exit) {
 					exit;
 				} else {
-					self :: $exit = true;
+					self :: $exit = true; //force self exit
+					error_reporting(0); //force PHP system
 				}
 			}
 			return true;

@@ -227,7 +227,7 @@
 	==============================================================
 
 	==============================================================
-	Get system microtime.
+	Return current system Unix timestamp with microseconds.
 	Usage : csl_time::get_microtime();
 	Return : double
 	--------------------------------------------------------------

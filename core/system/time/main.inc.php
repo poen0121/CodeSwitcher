@@ -273,7 +273,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Get system microtime.
+		/** Return current system Unix timestamp with microseconds.
 		 * @access - public function
 		 * @return - double|boolean
 		 * @usage - csl_time::get_microtime();

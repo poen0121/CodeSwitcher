@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.15.8
+	Revision	: 2.16.8
 	Notes		:
 
 	Revision History:
@@ -42,6 +42,7 @@
 	08-08-2017		Poen		08-08-2017	Poen		Add switch_by_timezone function output type parameter.
 	08-08-2017		Poen		08-08-2017	Poen		Improve switch_by_timezone function.
 	10-11-2017		Poen		10-11-2017	Poen		Add sec2datetime function.
+	10-11-2017		Poen		10-11-2017	Poen		Improve sec2datetime function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -302,8 +303,8 @@
 
 	==============================================================
 	Total seconds conversion to datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
-	Usage : csl_time::datetime2sec($datetime);
-	Param : double $secs (total seconds)
+	Usage : csl_time::sec2datetime($secs);
+	Param : numeric $secs (total seconds)
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------

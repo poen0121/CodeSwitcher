@@ -373,10 +373,39 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
+					$timezone = self :: get_timezone();
+					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
+					/* get datetime unix timestamp */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
 					$secs = self :: $DateTime->format('U');
-					return ($secs !== false ? (62135578800 + (double) $secs) : false);
+					self :: $DateTime->setTimezone(new DateTimeZone($timezone));
+					/* count secs */
+					return ($secs !== false ? (62135596800 + (double) $secs) : false);
+				}
+			}
+			return false;
+		}
+		/** Total seconds conversion to datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
+		 * @access - public function
+		 * @param - double $secs (total seconds)
+		 * @return - string|boolean
+		 * @usage - csl_time::sec2datetime($secs);
+		 */
+		public static function sec2datetime($secs = null) {
+			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: double2error(0)) {
+				if ($secs < 0 || $secs > 1034026559999) {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The number of seconds is outside the allowable range.', E_USER_WARNING, 1);
+				} else {
+					if (is_null(self :: $DateTime)) {
+						self :: $DateTime = new DateTime();
+					}
+					$timezone = self :: get_timezone();
+					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
+					$datetime = ltrim(self :: $DateTime->createFromFormat('U', $secs - 62135596800)->format('Y-m-d H:i:s'), '0');
+					self :: $DateTime->setTimezone(new DateTimeZone($timezone));
+					/* check datetime */
+					return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
 				}
 			}
 			return false;

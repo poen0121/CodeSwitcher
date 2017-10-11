@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.14.7
+	Revision	: 2.15.8
 	Notes		:
 
 	Revision History:
@@ -36,11 +36,12 @@
 	08-04-2017		Poen		08-04-2017	Poen		Add get_timezone function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix jump_datetime function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date2week function.
-	08-04-2017		Poen		09-05-2017	Poen		Fix datetime2sec function.
+	08-04-2017		Poen		10-11-2017	Poen		Fix datetime2sec function.
 	08-04-2017		Poen		08-04-2017	Poen		Fix date_range function.
 	08-04-2017		Poen		08-04-2017	Poen		Add switch_by_timezone function.
 	08-08-2017		Poen		08-08-2017	Poen		Add switch_by_timezone function output type parameter.
 	08-08-2017		Poen		08-08-2017	Poen		Improve switch_by_timezone function.
+	10-11-2017		Poen		10-11-2017	Poen		Add sec2datetime function.
 	---------------------------------------------------------------------------
 
 >> About
@@ -297,6 +298,23 @@
 	Example :
 	csl_time::datetime2sec('1-01-01 00:00:00');
 	Output >> 0
+	==============================================================
+
+	==============================================================
+	Total seconds conversion to datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
+	Usage : csl_time::datetime2sec($datetime);
+	Param : double $secs (total seconds)
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example :
+	$secs=csl_time::datetime2sec('2011-12-10 13:20:30');
+	csl_time::sec2datetime($secs);
+	Output >> 2011-12-10 13:20:30
+	Example :
+	$secs=csl_time::datetime2sec('1-01-01 00:00:00');
+	csl_time::sec2datetime($secs);
+	Output >> 1-01-01 00:00:00
 	==============================================================
 
 	==============================================================

@@ -372,11 +372,11 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
+					/* set reference time zone */
+					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
 					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-					/* set reference time zone */
-					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
 					/* get unix timestamp */
 					$timestamp = self :: $DateTime->format('U');
 					/* count secs */
@@ -428,11 +428,11 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
+					/* set reference time zone */
+					self :: $DateTime->setTimezone(new DateTimeZone(self :: get_timezone()));
 					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-					/* set reference time zone */
-					self :: $DateTime->setTimezone(new DateTimeZone(self :: get_timezone()));
 					/* get offset */
 					$offsetTime = self :: $DateTime->format('P');
 					if ($offsetTime !== false) {

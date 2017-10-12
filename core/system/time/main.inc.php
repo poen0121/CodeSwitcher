@@ -28,10 +28,7 @@ if (!class_exists('csl_time')) {
 					$startWeekday = self :: date2week($min);
 					$startReduce = ($startWeekday == 7) ? 1 : 0;
 					$endWeekday = self :: date2week($max);
-					in_array($endWeekday, array (
-						6,
-						7
-					)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
+					in_array($endWeekday, array (6, 7)) && $endAdd = ($endWeekday == 7) ? 2 : 1;
 					$allDays = ((self :: datetime2sec($max . ' 00:00:00') - self :: datetime2sec($min . ' 00:00:00')) / 86400) + 1;
 					$weekEndDays = floor(($allDays + $startWeekday -1 - $endWeekday) / 7) * 2 - $startReduce + $endAdd;
 					if ($type) {
@@ -273,7 +270,7 @@ if (!class_exists('csl_time')) {
 			}
 			return false;
 		}
-		/** Return current system Unix timestamp with microseconds.
+		/** Return current Unix timestamp with microseconds.
 		 * @access - public function
 		 * @return - double|boolean
 		 * @usage - csl_time::get_microtime();
@@ -351,9 +348,11 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
+					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
 					$datetime = ltrim(self :: $DateTime->modify(($offsetSec < 0 ? '-' : '+') . abs($offsetSec) . ' sec')->format('Y-m-d H:i:s'), '0');
+					/* check datetime */
 					return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
 				}
 			}
@@ -373,15 +372,15 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
-					$timezone = self :: get_timezone();
-					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
-					/* get datetime unix timestamp */
+					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-					$secs = self :: $DateTime->format('U');
-					self :: $DateTime->setTimezone(new DateTimeZone($timezone));
+					/* set reference time zone */
+					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
+					/* get unix timestamp */
+					$timestamp = self :: $DateTime->format('U');
 					/* count secs */
-					return ($secs !== false ? (62135596800 + (double) $secs) : false);
+					return ($timestamp !== false ? (62135596800 + (double) $timestamp) : false);
 				}
 			}
 			return false;
@@ -400,10 +399,10 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
-					$timezone = self :: get_timezone();
+					/* set reference time zone */
 					self :: $DateTime->setTimezone(new DateTimeZone('Etc/GMT+0'));
-					$datetime = ltrim(self :: $DateTime->createFromFormat('U', (double) $secs - 62135596800)->format('Y-m-d H:i:s'), '0');
-					self :: $DateTime->setTimezone(new DateTimeZone($timezone));
+					/* seconds conversion datetime */
+					$datetime = ltrim(self :: $DateTime->createFromFormat('U', (double) $secs -62135596800)->format('Y-m-d H:i:s'), '0');
 					/* check datetime */
 					return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
 				}
@@ -429,8 +428,12 @@ if (!class_exists('csl_time')) {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
 					}
+					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
+					/* set reference time zone */
+					self :: $DateTime->setTimezone(new DateTimeZone(self :: get_timezone()));
+					/* get offset */
 					$offsetTime = self :: $DateTime->format('P');
 					if ($offsetTime !== false) {
 						$offsetTime = explode(':', $offsetTime);

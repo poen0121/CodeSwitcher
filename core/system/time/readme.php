@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.16.8
+	Revision	: 2.16.9
 	Notes		:
 
 	Revision History:
@@ -18,7 +18,7 @@
 	11-23-2016		Poen		11-23-2016	Poen		Improve get_date function.
 	11-23-2016		Poen		11-23-2016	Poen		Improve get_time function.
 	11-23-2016		Poen		11-23-2016	Poen		Improve get_datetime function.
-	12-14-2016		Poen		12-14-2016	Poen		Improve datetime2sec function.
+	12-14-2016		Poen		10-12-2017	Poen		Improve datetime2sec function.
 	03-27-2017		Poen		03-27-2017	Poen		Fix part_days function error message.
 	03-27-2017		Poen		03-27-2017	Poen		Fix in_range function error message.
 	03-27-2017		Poen		03-27-2017	Poen		Fix date2week function error message.
@@ -42,12 +42,15 @@
 	08-08-2017		Poen		08-08-2017	Poen		Add switch_by_timezone function output type parameter.
 	08-08-2017		Poen		08-08-2017	Poen		Improve switch_by_timezone function.
 	10-11-2017		Poen		10-11-2017	Poen		Add sec2datetime function.
-	10-11-2017		Poen		10-11-2017	Poen		Improve sec2datetime function.
+	10-11-2017		Poen		10-12-2017	Poen		Improve sec2datetime function.
+	10-12-2017		Poen		10-12-2017	Poen		Fix switch_by_timezone function.
 	---------------------------------------------------------------------------
 
 >> About
 
 	Time-related functions.
+
+	It is recommended to use the system to support 64-bit.
 
 >> Usage Function
 
@@ -229,7 +232,7 @@
 	==============================================================
 
 	==============================================================
-	Return current system Unix timestamp with microseconds.
+	Return current Unix timestamp with microseconds.
 	Usage : csl_time::get_microtime();
 	Return : double
 	--------------------------------------------------------------

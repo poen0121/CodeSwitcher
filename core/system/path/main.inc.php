@@ -242,7 +242,6 @@ if (!class_exists('csl_path')) {
 			} else {
 				return './';
 			}
-
 		}
 		/** Returns the full path to arrive.
 		 * @access - public function

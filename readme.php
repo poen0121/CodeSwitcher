@@ -120,6 +120,20 @@
 	==============================================================
 
 	==============================================================
+	Returns the current tester status.
+	Usage : csl_mvc::isTester();
+	Return : boolean
+	Return Note : FALSE when it fails or does not.
+	--------------------------------------------------------------
+	Example : On the list of testers.
+	csl_mvc::isTester();
+	Output >> TRUE
+	Example : Not on the list of testers.
+	csl_mvc::isTester();
+	Output >> FALSE
+	==============================================================
+
+	==============================================================
 	Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
 	Usage : csl_mvc::isPortal($eventName);
 	Param : string $eventName (events script directory path name)

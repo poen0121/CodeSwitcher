@@ -322,6 +322,23 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
+		/** Returns the current tester status.
+		 * @access - public function
+		 * @return - boolean
+		 * @usage - csl_mvc::isTester();
+		 */
+		public static function isTester() {
+			self :: start();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error()) {
+					return self :: $tester;
+				}
+			} else {
+				self :: ERROR500();
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+			}
+			return false;
+		}
 		/** Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
@@ -857,7 +874,7 @@ if (!class_exists('csl_mvc')) {
 								} else {
 									self :: ERROR500();
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get \'' . $model . '\' version', E_USER_ERROR, 1);
-								}			
+								}
 							}
 						} else {
 							self :: ERROR500();

@@ -73,6 +73,7 @@ if (!class_exists('csl_version')) {
 									}
 								}
 								closedir($dh);
+								$result = ($limitMaxVersion && $version ? (is_dir($dir . $limitMaxVersion) && filemtime($dir . $limitMaxVersion) <= $this->labelTime ? $limitMaxVersion : false) : $version);
 							}
 						}
 					}

@@ -7,7 +7,7 @@
 	Note :
 	If you want to develop API you can delete this file.
 
-	About : configs/CodeSwitcher directory.
+	About : configs/cs directory.
 	==============================================================
 	The introduction page uses the controller script name.
 	Example :
@@ -16,5 +16,5 @@
  */
 chdir(dirname(__FILE__));
 include ('./core/main.inc.php');
-csl_mvc :: callEvent();
+csl_mvc :: call_event();
 ?>

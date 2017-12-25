@@ -106,7 +106,7 @@
 	-----------------------------------------------------
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 	<?php
-	csl_mvc::importLibrary('example');
+	csl_mvc::import_library('example');
 	return true;
 	?>
 	-----------------------------------------------------

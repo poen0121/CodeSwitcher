@@ -10,9 +10,9 @@
 
 	Returns FALSE to terminate the load file.
 
-	The configs/CodeSwitcher directory is the system configuration for the CodeSwitcher framework.
+	The configs/cs directory is the system configuration for the CodeSwitcher framework.
 
-	The configs/CodeSwitcher directory does not support test develop mode in the csl_mvc::cueConfig or csl_mvc::version function.
+	The configs/cs directory does not support test develop mode in the csl_mvc::cue_config or csl_mvc::version function.
 
 >> Set Directory Version
 
@@ -83,13 +83,13 @@
 
 	==============================================================
 	Load configuration data form the CodeSwitcher configs directory.
-	Usage : csl_mvc::cueConfig($model);
+	Usage : csl_mvc::cue_config($model);
 	Param : string $model (model name)
 	Return : data
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::cueConfig('example');
+	csl_mvc::cue_config('example');
 	Output >> Example
 	==============================================================
 

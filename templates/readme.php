@@ -92,7 +92,7 @@
 
 	==============================================================
 	Load the page's template file to view the contents from the CodeSwitcher templates directory.
-	Usage : csl_mvc::viewTemplate($model,$data,$process);
+	Usage : csl_mvc::view_template($model,$data,$process);
 	Param : string $model (model name)
 	Param : array $data (data array)
 	Param : boolean $process (return content string mode) : Default false
@@ -101,12 +101,12 @@
 	--------------------------------------------------------------
 	Returns the version number of the view template content.
 	Example :
-	csl_mvc::viewTemplate('example',array('text'=>'Content'));
+	csl_mvc::view_template('example',array('text'=>'Content'));
 	Output >> 1.0.1
 	--------------------------------------------------------------
 	A string that returns the contents of the template.
 	Example :
-	csl_mvc::viewTemplate('example',array('text'=>'Content'),true);
+	csl_mvc::view_template('example',array('text'=>'Content'),true);
 	Output >> Contents String
 	==============================================================
 
@@ -130,7 +130,7 @@
 
 >> Call Resources URI
 
-	The resource URI path uses a leading / rather than a relative path unless you use the csl_mvc::formPath function to process the output URI.
+	The resource URI path uses a leading / rather than a relative path unless you use the csl_mvc::form_path function to process the output URI.
 
 	Example : http://example/CodeSwitcher
 
@@ -140,10 +140,10 @@
 	<script src="/CodeSwitcher/resources/test.js"></script>
 	--------------------------------------------------------------
 
-	Use the csl_mvc::formPath function to process the output URI.
+	Use the csl_mvc::form_path function to process the output URI.
 	eg:
 	--------------------------------------------------------------
-	<script src="<?=csl_mvc::formPath('resources/test.js',true);?>"></script>
+	<script src="<?=csl_mvc::form_path('resources/test.js',true);?>"></script>
 	--------------------------------------------------------------
 */
 ?>

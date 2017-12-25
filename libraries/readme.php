@@ -68,13 +68,13 @@
 
 	==============================================================
 	Returns the version number when the library file was loaded form the CodeSwitcher libraries directory.
-	Usage : csl_mvc::importLibrary($model);
+	Usage : csl_mvc::import_library($model);
 	Param : string $model (model name)
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::importLibrary('example');
+	csl_mvc::import_library('example');
 	Output >> 1.0.1
 	==============================================================
 

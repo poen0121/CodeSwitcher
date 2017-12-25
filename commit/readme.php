@@ -114,7 +114,7 @@
 		return true;
 	}else{
 		csl_header::http('Internal Server Error',500);
-		csl_mvc::viewTemplate('error/500');
+		csl_mvc::view_template('error/500');
 		return false;
 	}
 	?>

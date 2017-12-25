@@ -49,7 +49,7 @@
 	<?php
 	chdir(dirname(__FILE__));
 	include('../../core/main.inc.php');
-	csl_mvc::callEvent();
+	csl_mvc::call_event();
 	?>
 	-----------------------------------------------------
 
@@ -85,28 +85,28 @@
 
 >> Framework Usage Function
 
-	Note: csl_mvc::callEvent function only be called within the events script directory index.php file.
+	Note: csl_mvc::call_event function only be called within the events script directory index.php file.
 
 	==============================================================
 	Returns the version number when the script file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::callEvent();
+	Usage : csl_mvc::call_event();
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::callEvent();
+	csl_mvc::call_event();
 	Output >> 1.0.1
 	==============================================================
 
 	==============================================================
 	Returns the version number when the event file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::importEvent($model);
+	Usage : csl_mvc::import_event($model);
 	Param : string $model (model name)
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::importEvent('home');
+	csl_mvc::import_event('home');
 	Output >> 1.0.1
 	==============================================================
 
@@ -130,42 +130,42 @@
 
 	==============================================================
 	Captures the name of the script event that is currently running.
-	Usage : csl_mvc::scriptEvent();
+	Usage : csl_mvc::script_event();
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example : __FILE__ >> /var/www/events/example/index.php
-	csl_mvc::scriptEvent();
+	csl_mvc::script_event();
 	Output >> example
 	==============================================================
 
 	==============================================================
 	Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
-	Usage : csl_mvc::isPortal($eventName);
+	Usage : csl_mvc::is_portal($eventName);
 	Param : string $eventName (events script directory path name)
 	Return : boolean
 	Return Note : FALSE when it fails or does not exist.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::isPortal('example');
+	csl_mvc::is_portal('example');
 	Output >> TRUE
 	Example :
-	csl_mvc::isPortal('home');
+	csl_mvc::is_portal('home');
 	Output >> TRUE
 	==============================================================
 
 	==============================================================
 	Returns whether the event controller file exists from the events script directory path name of the CodeSwitcher root directory.
-	Usage : csl_mvc::isEvent($eventName);
+	Usage : csl_mvc::is_event($eventName);
 	Param : string $eventName (events script directory path name)
 	Return : boolean
 	Return Note : FALSE when it fails or does not exist.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::isEvent('example');
+	csl_mvc::is_event('example');
 	Output >> TRUE
 	Example :
-	csl_mvc::isEvent('home');
+	csl_mvc::is_event('home');
 	Output >> TRUE
 	==============================================================
 

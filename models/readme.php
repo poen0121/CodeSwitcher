@@ -70,13 +70,13 @@
 
 	==============================================================
 	Returns the version number when the model file was loaded form the CodeSwitcher models directory.
-	Usage : csl_mvc::importModel($model);
+	Usage : csl_mvc::import_model($model);
 	Param : string $model (model name)
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::importModel('example');
+	csl_mvc::import_model('example');
 	Output >> 1.0.1
 	==============================================================
 

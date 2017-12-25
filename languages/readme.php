@@ -93,13 +93,13 @@
 
 	==============================================================
 	Load create a language object form the CodeSwitcher languages directory.
-	Usage : csl_mvc::cueLanguage($model);
+	Usage : csl_mvc::cue_language($model);
 	Param : string $model (model name)
 	Return : object
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::cueLanguage('en_US');
+	csl_mvc::cue_language('en_US');
 	Output >> csl_language_content Object
 		**********************************************************
 		Gets tag content.
@@ -110,10 +110,10 @@
 		Return Note : Returns FALSE on failure.
 		----------------------------------------------------------
 		Example :
-		$language=csl_mvc::cueLanguage('en_US');
+		$language=csl_mvc::cue_language('en_US');
 		$language->gets('language_name');
 		Output >> English
-		$language=csl_mvc::cueLanguage('en_US');
+		$language=csl_mvc::cue_language('en_US');
 		$language->gets('language_name',false);
 		Output >> English
 		**********************************************************

@@ -23,7 +23,7 @@ if (!class_exists('csl_mvc')) {
 	 */
 	class csl_mvc {
 		private static $runEvent;
-		private static $script_event;
+		private static $scriptEvent;
 		private static $versionClass;
 		private static $rootDir;
 		private static $script;
@@ -314,7 +314,7 @@ if (!class_exists('csl_mvc')) {
 			self :: start();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error()) {
-					return self :: $script_event;
+					return self :: $scriptEvent;
 				}
 			} else {
 				self :: error500();
@@ -756,7 +756,7 @@ if (!class_exists('csl_mvc')) {
 										if ($version) {
 											$file = BASEPATH . 'events/' . $model . '/' . $version . '/main.inc.php';
 											if (is_file($file) && is_readable($file)) {
-												self :: $script_event = $model;
+												self :: $scriptEvent = $model;
 												if (self :: begin(__FUNCTION__)) {
 													self :: $tripSystem = true;
 													$import = csl_import :: from($file);

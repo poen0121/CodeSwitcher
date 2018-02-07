@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_inspect function
-	Revision	: 3.3.0
+	Revision	: 3.3.1
 	Notes		:
 
 	Revision History:
@@ -26,6 +26,7 @@
 	04-11-2017		Poen		04-11-2017	Poen		Improve is_ip function special purposes.
 	06-07-2017		Poen		06-07-2017	Poen		Remove is_number_format function.
 	07-03-2017		Poen		07-03-2017	Poen		Improve the program.
+	02-06-2018		Poen		02-06-2018	Poen		Fix PHP 7 content function to retain original input args.
 	---------------------------------------------------------------------------
 
 >> About

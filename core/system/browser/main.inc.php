@@ -52,10 +52,10 @@ if (!class_exists('csl_browser')) {
 		 */
 		public static function info($index = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				$index = strtolower($index);
+				$indexKey = strtolower($index);
 				$userAgent = (isset ($_SERVER['HTTP_USER_AGENT']) && is_string($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
 				$info = null;
-				switch ($index) {
+				switch ($indexKey) {
 					case 'language' :
 						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE'] { 0 }) && is_string($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 							$info = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 2);

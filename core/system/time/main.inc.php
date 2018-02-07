@@ -103,10 +103,10 @@ if (!class_exists('csl_time')) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 2 should be date YYYY-MM-DD', E_USER_WARNING, 1);
 				} else {
 					$dateList = array ();
-					$firstDate .= ' 00:00:00';
-					$secondDate .= ' 00:00:00';
-					$startDate = ($firstDate < $secondDate ? $firstDate : $secondDate);
-					$endDate = ($firstDate > $secondDate ? $firstDate : $secondDate);
+					$firstDatetime = $firstDate . ' 00:00:00';
+					$secondDatetime = $secondDate . ' 00:00:00';
+					$startDate = ($firstDatetime < $secondDatetime ? $firstDatetime : $secondDatetime);
+					$endDate = ($firstDatetime > $secondDatetime ? $firstDatetime : $secondDatetime);
 					$push = true;
 					while ($push) {
 						$dateList[] = self :: sub_datetime($startDate, 'date');
@@ -176,15 +176,15 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_date($date)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be date YYYY-MM-DD', E_USER_WARNING, 1);
 				} else {
-					$date = explode('-', $date);
-					$index = strtolower($index);
-					switch ($index) {
+					$dateInfo = explode('-', $date);
+					$indexKey = strtolower($index);
+					switch ($indexKey) {
 						case 'y' :
-							return $date[0];
+							return $dateInfo[0];
 						case 'm' :
-							return $date[1];
+							return $dateInfo[1];
 						case 'd' :
-							return $date[2];
+							return $dateInfo[2];
 						default :
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid index specified', E_USER_WARNING, 1);
 							return false;
@@ -205,21 +205,21 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_time($time)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be time hh:ii:ss', E_USER_WARNING, 1);
 				} else {
-					$time = explode(':', $time);
-					$index = strtolower($index);
-					switch ($index) {
+					$timeInfo = explode(':', $time);
+					$indexKey = strtolower($index);
+					switch ($indexKey) {
 						case 'h' :
-							return $time[0];
+							return $timeInfo[0];
 						case 'i' :
-							return $time[1];
+							return $timeInfo[1];
 						case 's' :
-							return $time[2];
+							return $timeInfo[2];
 						case '12h' :
-							$msg = (23 - (int) $time[0] > 11 ? 'AM ' : 'PM ');
-							$hour = ((int) $time[0] % 12);
+							$msg = (23 - (int) $timeInfo[0] > 11 ? 'AM ' : 'PM ');
+							$hour = ((int) $timeInfo[0] % 12);
 							$hour = ($hour != 0 ? $hour : 12);
 							$msg .= ($hour < 10 ? '0' . $hour : $hour);
-							$msg .= ':' . $time[1] . ':' . $time[2];
+							$msg .= ':' . $timeInfo[1] . ':' . $timeInfo[2];
 							return $msg;
 						default :
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid index specified', E_USER_WARNING, 1);
@@ -241,27 +241,27 @@ if (!class_exists('csl_time')) {
 				if (!csl_inspect :: is_datetime($datetime)) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
 				} else {
-					$datetime = explode(' ', $datetime);
-					$index = strtolower($index);
-					switch ($index) {
+					$datetimeInfo = explode(' ', $datetime);
+					$indexKey = strtolower($index);
+					switch ($indexKey) {
 						case 'y' :
-							return self :: sub_date($datetime[0], $index);
+							return self :: sub_date($datetimeInfo[0], $indexKey);
 						case 'm' :
-							return self :: sub_date($datetime[0], $index);
+							return self :: sub_date($datetimeInfo[0], $indexKey);
 						case 'd' :
-							return self :: sub_date($datetime[0], $index);
+							return self :: sub_date($datetimeInfo[0], $indexKey);
 						case 'h' :
-							return self :: sub_time($datetime[1], $index);
+							return self :: sub_time($datetimeInfo[1], $indexKey);
 						case 'i' :
-							return self :: sub_time($datetime[1], $index);
+							return self :: sub_time($datetimeInfo[1], $indexKey);
 						case 's' :
-							return self :: sub_time($datetime[1], $index);
+							return self :: sub_time($datetimeInfo[1], $indexKey);
 						case 'date' :
-							return $datetime[0];
+							return $datetimeInfo[0];
 						case '24h' :
-							return $datetime[1];
+							return $datetimeInfo[1];
 						case '12h' :
-							return self :: sub_time($datetime[1], $index);
+							return self :: sub_time($datetimeInfo[1], $indexKey);
 						default :
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid index specified', E_USER_WARNING, 1);
 							return false;
@@ -290,11 +290,11 @@ if (!class_exists('csl_time')) {
 		 */
 		public static function get_date($type = 'gmt') {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				$type = strtolower($type);
-				if ($type != 'host' && $type != 'gmt') {
+				$useType = strtolower($type);
+				if ($useType != 'host' && $useType != 'gmt') {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid type specified', E_USER_WARNING, 1);
 				} else {
-					return ($type == 'host' ? date('Y-m-d') : gmdate('Y-m-d'));
+					return ($useType == 'host' ? date('Y-m-d') : gmdate('Y-m-d'));
 				}
 			}
 			return false;
@@ -307,11 +307,11 @@ if (!class_exists('csl_time')) {
 		 */
 		public static function get_time($type = 'gmt') {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				$type = strtolower($type);
-				if ($type != 'host' && $type != 'gmt') {
+				$useType = strtolower($type);
+				if ($useType != 'host' && $useType != 'gmt') {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid type specified', E_USER_WARNING, 1);
 				} else {
-					return ($type == 'host' ? date('H:i:s') : gmdate('H:i:s'));
+					return ($useType == 'host' ? date('H:i:s') : gmdate('H:i:s'));
 				}
 			}
 			return false;
@@ -324,11 +324,11 @@ if (!class_exists('csl_time')) {
 		 */
 		public static function get_datetime($type = 'gmt') {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
-				$type = strtolower($type);
-				if ($type != 'host' && $type != 'gmt') {
+				$useType = strtolower($type);
+				if ($useType != 'host' && $useType != 'gmt') {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid type specified', E_USER_WARNING, 1);
 				} else {
-					return ($type == 'host' ? date('Y-m-d H:i:s') : gmdate('Y-m-d H:i:s'));
+					return ($useType == 'host' ? date('Y-m-d H:i:s') : gmdate('Y-m-d H:i:s'));
 				}
 			}
 			return false;
@@ -351,9 +351,9 @@ if (!class_exists('csl_time')) {
 					/* set datetime */
 					self :: $DateTime->setDate(self :: sub_datetime($datetime, 'y'), self :: sub_datetime($datetime, 'm'), self :: sub_datetime($datetime, 'd'));
 					self :: $DateTime->setTime(self :: sub_datetime($datetime, 'h'), self :: sub_datetime($datetime, 'i'), self :: sub_datetime($datetime, 's'));
-					$datetime = ltrim(self :: $DateTime->modify(($offsetSec < 0 ? '-' : '+') . abs($offsetSec) . ' sec')->format('Y-m-d H:i:s'), '0');
+					$getDatetime = ltrim(self :: $DateTime->modify(($offsetSec < 0 ? '-' : '+') . abs($offsetSec) . ' sec')->format('Y-m-d H:i:s'), '0');
 					/* check datetime */
-					return (csl_inspect :: is_datetime($datetime) ? $datetime : false);
+					return (csl_inspect :: is_datetime($getDatetime) ? $getDatetime : false);
 				}
 			}
 			return false;

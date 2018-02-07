@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_time function
-	Revision	: 2.16.11
+	Revision	: 2.16.12
 	Notes		:
 
 	Revision History:
@@ -44,6 +44,7 @@
 	10-11-2017		Poen		10-11-2017	Poen		Add sec2datetime function.
 	10-11-2017		Poen		10-25-2017	Poen		Improve sec2datetime function.
 	10-12-2017		Poen		10-12-2017	Poen		Fix switch_by_timezone function.
+	02-06-2018		Poen		02-06-2018	Poen		Fix PHP 7 content function to retain original input args.
 	---------------------------------------------------------------------------
 
 >> About

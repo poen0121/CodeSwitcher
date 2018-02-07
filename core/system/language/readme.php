@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_language function
-	Revision	: 2.7.0
+	Revision	: 2.7.1
 	Notes		: Use root XML tag names , the default is `language`.
 
 	Revision History:
@@ -17,6 +17,7 @@
 	09-30-2016		Poen		11-23-2016	Poen		Debug load function error messages.
 	02-22-2017		Poen		02-22-2017	Poen		Debug load function.
 	07-03-2017		Poen		07-03-2017	Poen		Improve the program.
+	02-06-2018		Poen		02-06-2018	Poen		Fix PHP 7 content function to retain original input args.
 	---------------------------------------------------------------------------
 
 >> About

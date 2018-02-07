@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.21.25
+	Revision	: 1.21.26
 	Notes		:
 
 	Revision History:
@@ -58,6 +58,7 @@
 	08-04-2017		Poen		08-04-2017	Poen		Fix the program initialization starting point.
 	09-11-2017		Poen		09-11-2017	Poen		Fix the program error log file date.
 	11-08-2017		Poen		11-08-2017	Poen		Ass is_tester function.
+	02-07-2018		Poen		02-07-2018	Poen		Fix PHP 7 content function to retain original input args.
 	---------------------------------------------------------------------------
 
 >> About

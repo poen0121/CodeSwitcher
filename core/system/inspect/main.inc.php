@@ -57,8 +57,8 @@ if (!class_exists('csl_inspect')) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$result = (preg_match('/^[1-9]{1}[0-9]*-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}$/', $data) ? true : false);
 				if ($result) {
-					$data = explode('-', $data);
-					$result = checkdate((int) $data[1], (int) $data[2], (int) $data[0]); //year 1 ~ 32767
+					$dataInfo = explode('-', $data);
+					$result = checkdate((int) $dataInfo[1], (int) $dataInfo[2], (int) $dataInfo[0]); //year 1 ~ 32767
 				}
 				return $result;
 			}
@@ -74,10 +74,10 @@ if (!class_exists('csl_inspect')) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$result = (preg_match('/^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/', $data) ? true : false);
 				if ($result) {
-					$data = explode(':', $data);
-					$result = ($result && (int) $data[0] > 23 ? false : $result);
-					$result = ($result && (int) $data[1] > 59 ? false : $result);
-					$result = ($result && (int) $data[2] > 59 ? false : $result);
+					$dataInfo = explode(':', $data);
+					$result = ($result && (int) $dataInfo[0] > 23 ? false : $result);
+					$result = ($result && (int) $dataInfo[1] > 59 ? false : $result);
+					$result = ($result && (int) $dataInfo[2] > 59 ? false : $result);
 				}
 				return $result;
 			}
@@ -93,8 +93,8 @@ if (!class_exists('csl_inspect')) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$result = (preg_match('/^[1-9]{1}[0-9]*-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}[ \f\r\t\n]{1}[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$/', $data) ? true : false);
 				if ($result) {
-					$data = explode(' ', $data);
-					$result = (self :: is_date($data[0]) && self :: is_time($data[1]) ? true : false);
+					$dataInfo = explode(' ', $data);
+					$result = (self :: is_date($dataInfo[0]) && self :: is_time($dataInfo[1]) ? true : false);
 				}
 				return $result;
 			}

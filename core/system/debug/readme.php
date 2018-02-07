@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_debug function
-	Revision	: 3.7.4
+	Revision	: 3.7.5
 	Notes		:
 
 	Revision History:
@@ -29,6 +29,7 @@
 	07-04-2017		Poen		07-04-2017	Poen		Improve trace_error_handler function.
 	09-18-2017		Poen		09-18-2017	Poen		Modify error_log_file function.
 	09-18-2017		Poen		09-18-2017	Poen		Rename trace_error_handler function.
+	02-05-2018		Poen		02-05-2018	Poen		Fix PHP 7 content function to retain original input args.
 	---------------------------------------------------------------------------
 
 >> About

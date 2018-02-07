@@ -81,18 +81,18 @@ if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
 			$object = false;
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				clearstatcache();
-				$path = csl_path :: norm($path);
-				if (!isset ($path { 0 })) {
+				$normPath = csl_path :: norm($path);
+				if (!isset ($normPath { 0 })) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Empty path supplied as input', E_USER_WARNING, 1);
 				}
-				elseif (csl_path :: is_absolute($path) || (!csl_path :: is_root_model($path) && !csl_path :: is_relative($path))) {
+				elseif (csl_path :: is_absolute($normPath) || (!csl_path :: is_root_model($normPath) && !csl_path :: is_relative($normPath))) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 				}
-				elseif (!is_file($path) || !is_readable($path) || !preg_match('/^(.)*\.xml$/i', $path)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unable to load language file ' . $path, E_USER_NOTICE, 1);
+				elseif (!is_file($normPath) || !is_readable($normPath) || !preg_match('/^(.)*\.xml$/i', $normPath)) {
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unable to load language file ' . $normPath, E_USER_NOTICE, 1);
 				} else {
 					if (!is_null($this->doc)) {
-						if (@ $this->doc->load($path)) {
+						if (@ $this->doc->load($normPath)) {
 							$root = $this->doc->getElementsByTagName($this->tag);
 							if ($root->item(0)) {
 								$handle = $root->item(0);
@@ -100,10 +100,10 @@ if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
 							}
 						}
 						if ($object === false) {
-							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unable to load language file ' . $path, E_USER_NOTICE, 1);
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unable to load language file ' . $normPath, E_USER_NOTICE, 1);
 						}
 					} else {
-						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(' . $path . '): failed to open stream: Wrong XML declaration', E_USER_WARNING, 1);
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(' . $normPath . '): failed to open stream: Wrong XML declaration', E_USER_WARNING, 1);
 					}
 				}
 			}

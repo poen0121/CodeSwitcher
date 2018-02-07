@@ -79,9 +79,9 @@ if (!class_exists('csl_debug')) {
 		public static function error_log_file($path = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
 				if (isset ($path { 0 }) && !csl_path :: is_absolute($path) && csl_path :: is_files($path)) {
-					$path = csl_path :: norm($path);
-					ini_set('error_log', $path);
-					if (csl_path :: norm(ini_get('error_log')) === $path) {
+					$normPath = csl_path :: norm($path);
+					ini_set('error_log', $normPath);
+					if (csl_path :: norm(ini_get('error_log')) === $normPath) {
 						return true;
 					}
 				}

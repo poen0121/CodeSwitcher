@@ -87,12 +87,12 @@ if (!class_exists('csl_header')) {
 		public static function location($url = null, $method = 'GET', $target = '_self') {
 			if (!self :: $build) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1) && !csl_func_arg :: string2error(2)) {
-					$method = strtoupper($method);
-					$target = strtolower($target);
-					if ($method != 'POST' && $method != 'GET') {
+					$useMethod = strtoupper($method);
+					$useTarget = strtolower($target);
+					if ($useMethod != 'POST' && $useMethod != 'GET') {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid transfer method specified', E_USER_WARNING, 1);
 					}
-					elseif ($target != '_parent' && $target != '_top' && $target != '_self') {
+					elseif ($useTarget != '_parent' && $useTarget != '_top' && $useTarget != '_self') {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid target mode specified', E_USER_WARNING, 1);
 					} else {
 						$fileName = null;
@@ -107,7 +107,7 @@ if (!class_exists('csl_header')) {
 							$urlPrefix = ($urlQuery ? substr($url, 0, strpos($url, '?' . $urlQuery)) : ($urlFragment ? substr($url, 0, strpos($url, '#' . $urlFragment)) : $url));
 							$urlPrefix = strtr((substr($urlPrefix, -1, 1) === '?' ? substr($urlPrefix, 0, -1) : $urlPrefix), '\\', '/');
 							//Refresh URI
-							$url = $urlPrefix . ($urlFragment ? '#' : '') . $urlFragment;
+							$refreshUrl = $urlPrefix . ($urlFragment ? '#' : '') . $urlFragment;
 							$queryList = array ();
 							parse_str($urlQuery, $queryList);
 							$form = '<!DOCTYPE html>' . PHP_EOL;
@@ -116,7 +116,7 @@ if (!class_exists('csl_header')) {
 							$form .= '<title>Redirect</title>' . PHP_EOL;
 							$form .= '</head>' . PHP_EOL;
 							$form .= '<body>' . PHP_EOL;
-							$form .= '<form target="' . $target . '" id="send" action="' . $url . '" method="' . $method . '" >' . PHP_EOL;
+							$form .= '<form target="' . $useTarget . '" id="send" action="' . $refreshUrl . '" method="' . $useMethod . '" >' . PHP_EOL;
 							$form .= self :: setInput($queryList);
 							$form .= '</form>' . PHP_EOL;
 							$form .= '<script type="text/javascript">' . PHP_EOL;

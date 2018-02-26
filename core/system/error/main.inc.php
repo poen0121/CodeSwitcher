@@ -252,6 +252,8 @@ if (!class_exists('csl_error')) {
 				/* this error code is not included in error_reporting */
 				return;
 			}
+			/* send an error signal for error_get_last() */
+			@ trigger_error('ERROR_LAST_SIGNAL');
 			/* build mark */
 			$mark = '';
 			switch ($errno) {

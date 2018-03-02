@@ -34,11 +34,7 @@
 
 	8.templates : Templates directory support version control mechanism.
 
-	9.begin : Control events begin program relies on the version control mechanism.
-
-	10.commit : Control events end program relies on the version control mechanism.
-
-	11.storage : System storage directory.
+	9.storage : System storage directory.
 
 >> Note
 

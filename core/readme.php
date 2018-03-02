@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.21.26
+	Revision	: 1.22.27
 	Notes		:
 
 	Revision History:
@@ -59,6 +59,9 @@
 	09-11-2017		Poen		09-11-2017	Poen		Fix the program error log file date.
 	11-08-2017		Poen		11-08-2017	Poen		Ass is_tester function.
 	02-07-2018		Poen		02-07-2018	Poen		Fix PHP 7 content function to retain original input args.
+	03-02-2018		Poen		03-02-2018	Poen		Improve the error 500 display.
+	03-02-2018		Poen		03-02-2018	Poen		Remove the begin program mechanism.
+	03-02-2018		Poen		03-02-2018	Poen		Remove the commit program mechanism.
 	---------------------------------------------------------------------------
 
 >> About
@@ -87,13 +90,9 @@
 
 	9.templates : Templates directory support version control mechanism.
 
-	10.begin : Control events begin program relies on the version control mechanism.
+	10.storage : System storage directory.
 
-	11.commit : Control events end program relies on the version control mechanism.
-
-	12.storage : System storage directory.
-
-	13.storage/logs : System error logs storage directory.
+	11.storage/logs : System error logs storage directory.
 
 >> Note
 

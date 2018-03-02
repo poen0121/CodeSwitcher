@@ -90,9 +90,11 @@
 
 	9.templates : Templates directory support version control mechanism.
 
-	10.storage : System storage directory.
+	10.templates/error/500 : System error 500 content directory.
 
-	11.storage/logs : System error logs storage directory.
+	11.storage : System storage directory.
+
+	12.storage/logs : System error logs storage directory.
 
 >> Note
 

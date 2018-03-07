@@ -248,7 +248,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -304,7 +304,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -320,7 +320,7 @@ if (!class_exists('csl_mvc')) {
 					return self :: $scriptEvent;
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -336,7 +336,7 @@ if (!class_exists('csl_mvc')) {
 					return self :: $tester;
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -369,7 +369,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -407,7 +407,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -433,7 +433,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -459,7 +459,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -512,7 +512,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -565,7 +565,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -624,7 +624,7 @@ if (!class_exists('csl_mvc')) {
 								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unknown script path', E_USER_ERROR, 1);
 							}
 							elseif (!self :: $portal) {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 							}
 						}
 					} else {
@@ -684,7 +684,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -736,7 +736,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -788,7 +788,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}
@@ -847,7 +847,7 @@ if (!class_exists('csl_mvc')) {
 					}
 				}
 			} else {
-				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_ERROR, 1);
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
 			}
 			return false;
 		}

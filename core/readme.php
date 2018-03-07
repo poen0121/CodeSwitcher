@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.22.27
+	Revision	: 1.22.28
 	Notes		:
 
 	Revision History:
@@ -62,6 +62,7 @@
 	03-02-2018		Poen		03-02-2018	Poen		Improve the error 500 display.
 	03-02-2018		Poen		03-02-2018	Poen		Remove the begin program mechanism.
 	03-02-2018		Poen		03-02-2018	Poen		Remove the commit program mechanism.
+	03-07-2018		Poen		03-07-2018	Poen		Improve function error message.
 	---------------------------------------------------------------------------
 
 >> About

@@ -16,5 +16,5 @@
  */
 chdir(dirname(__FILE__));
 include ('./core/main.inc.php');
-csl_mvc :: call_event();
+csl_mvc :: start();
 ?>

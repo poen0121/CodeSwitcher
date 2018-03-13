@@ -35,12 +35,12 @@ if (!class_exists('csl_mvc')) {
 		private static $tripSystem;
 		private static $error500;
 		private static $uriLayer;
-		/** Start info.
+		/** Trigger information.
 		 * @access - private function
 		 * @return - null
-		 * @usage -  self::start();
+		 * @usage -  self::trigger();
 		 */
-		private static function start() {
+		private static function trigger() {
 			if (is_null(self :: $portal)) {
 				clearstatcache();
 				csl_error :: cast_log_title('CS-PHP');
@@ -215,7 +215,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::version($pathName,$mode);
 		 */
 		public static function version($pathName = null, $mode = false) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
 					if (!isset ($pathName { 0 }) || csl_path :: is_absolute($pathName) || !csl_path :: is_relative($pathName)) {
@@ -260,7 +260,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::form_path($pathName,$uriMode);
 		 */
 		public static function form_path($pathName = null, $uriMode = false) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: bool2error(1)) {
 					if (csl_path :: is_relative($pathName)) {
@@ -314,7 +314,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::script_event();
 		 */
 		public static function script_event() {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error()) {
 					return self :: $scriptEvent;
@@ -330,7 +330,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::is_tester();
 		 */
 		public static function is_tester() {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error()) {
 					return self :: $tester;
@@ -347,7 +347,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::is_portal($eventName);
 		 */
 		public static function is_portal($eventName = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
@@ -380,7 +380,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::is_event($eventName);
 		 */
 		public static function is_event($eventName = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (isset ($eventName { 0 }) && csl_path :: is_relative($eventName)) {
@@ -418,7 +418,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::logs($mode);
 		 */
 		public static function logs($mode = false) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: bool2error(0)) {
 					$numargs = func_num_args();
@@ -444,7 +444,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::debug($mode);
 		 */
 		public static function debug($mode = false) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: bool2error(0)) {
 					$numargs = func_num_args();
@@ -470,7 +470,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::cue_config($model);
 		 */
 		public static function cue_config($model = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
@@ -523,7 +523,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::cue_language($model);
 		 */
 		public static function cue_language($model = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
@@ -572,10 +572,10 @@ if (!class_exists('csl_mvc')) {
 		/** Returns the version number when the script file was loaded form the CodeSwitcher events directory.
 		 * @access - public function
 		 * @return - string|error|boolean
-		 * @usage - csl_mvc::call_event();
+		 * @usage - csl_mvc::start();
 		 */
-		public static function call_event() {
-			self :: start();
+		public static function start() {
+			self :: trigger();
 			//restrictions can only be called once
 			if (!self :: $runEvent) {
 				self :: $runEvent = true;
@@ -643,7 +643,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::import_event($model);
 		 */
 		public static function import_event($model = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
@@ -695,7 +695,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::import_model($model);
 		 */
 		public static function import_model($model = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
@@ -747,7 +747,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::import_library($model);
 		 */
 		public static function import_library($model = null) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
@@ -801,7 +801,7 @@ if (!class_exists('csl_mvc')) {
 		 * @usage - csl_mvc::view_template($model,$data,$process);
 		 */
 		public static function view_template($model = null, $data = array (), $process = false) {
-			self :: start();
+			self :: trigger();
 			if (self :: $tripSystem) {
 				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: array2error(1) && !csl_func_arg :: bool2error(2)) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {

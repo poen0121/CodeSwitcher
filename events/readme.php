@@ -49,7 +49,7 @@
 	<?php
 	chdir(dirname(__FILE__));
 	include('../../core/main.inc.php');
-	csl_mvc::call_event();
+	csl_mvc::start();
 	?>
 	-----------------------------------------------------
 
@@ -85,16 +85,16 @@
 
 >> Framework Usage Function
 
-	Note: csl_mvc::call_event function only be called within the events script directory index.php file.
+	Note: csl_mvc::start function only be called within the events script directory index.php file.
 
 	==============================================================
 	Returns the version number when the script file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::call_event();
+	Usage : csl_mvc::start();
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::call_event();
+	csl_mvc::start();
 	Output >> 1.0.1
 	==============================================================
 

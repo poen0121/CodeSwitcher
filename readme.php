@@ -68,7 +68,7 @@
 
 	Note: The CodeSwitcher functions can only be called within the framework script.
 
-	Note: csl_mvc::call_event function only be called within the events script directory index.php file.
+	Note: csl_mvc::start function only be called within the events script directory index.php file.
 
 	==============================================================
 	Get the available version info from the file directory path name of the CodeSwitcher root directory.
@@ -243,12 +243,12 @@
 
 	==============================================================
 	Returns the version number when the script file was loaded form the CodeSwitcher events directory.
-	Usage : csl_mvc::call_event();
+	Usage : csl_mvc::start();
 	Return : string
 	Return Note : Returns FALSE on error.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::call_event();
+	csl_mvc::start();
 	Output >> 1.0.1
 	==============================================================
 

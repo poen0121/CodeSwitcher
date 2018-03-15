@@ -38,8 +38,6 @@
 
 	3.templates/error/400 : system error templates.
 
-	4.templates/error/500 : system error templates.
-
 >> Configuration
 
 	Directory : configs/routes

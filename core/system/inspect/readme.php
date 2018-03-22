@@ -80,7 +80,7 @@
 	==============================================================
 	Time format verification.
 	Usage : csl_inspect::is_time($data);
-	Param : string $data (time hh:ii:ss)
+	Param : string $data (time hh:mm:ss)
 	Return : boolean
 	--------------------------------------------------------------
 	Example :
@@ -91,7 +91,7 @@
 	==============================================================
 	Datetime format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_inspect::is_datetime($data);
-	Param : string $data (datetime YYYY-MM-DD hh:ii:ss)
+	Param : string $data (datetime YYYY-MM-DD hh:mm:ss)
 	Return : boolean
 	--------------------------------------------------------------
 	Example :

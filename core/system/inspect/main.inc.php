@@ -66,7 +66,7 @@ if (!class_exists('csl_inspect')) {
 		}
 		/** Time format verification.
 		 * @access - public function
-		 * @param - string $data (time hh:ii:ss)
+		 * @param - string $data (time hh:mm:ss)
 		 * @return - boolean
 		 * @usage - csl_inspect::is_time($data);
 		 */
@@ -85,7 +85,7 @@ if (!class_exists('csl_inspect')) {
 		}
 		/** Datetime format verification, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $data (datetime YYYY-MM-DD hh:ii:ss)
+		 * @param - string $data (datetime YYYY-MM-DD hh:mm:ss)
 		 * @return - boolean
 		 * @usage - csl_inspect::is_datetime($data);
 		 */

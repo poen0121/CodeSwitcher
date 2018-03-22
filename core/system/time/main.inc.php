@@ -42,22 +42,22 @@ if (!class_exists('csl_time')) {
 		}
 		/** Check the now datetime within limits range, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $nowDatetime (YYYY-MM-DD hh:ii:ss)
-		 * @param - string $firstDatetime (YYYY-MM-DD hh:ii:ss)
-		 * @param - string $secondDatetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $nowDatetime (YYYY-MM-DD hh:mm:ss)
+		 * @param - string $firstDatetime (YYYY-MM-DD hh:mm:ss)
+		 * @param - string $secondDatetime (YYYY-MM-DD hh:mm:ss)
 		 * @return - boolean
 		 * @usage - csl_time::in_range($nowDatetime,$firstDatetime,$secondDatetime)
 		 */
 		public static function in_range($nowDatetime = null, $firstDatetime = null, $secondDatetime = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1) && !csl_func_arg :: string2error(2)) {
 				if (!csl_inspect :: is_datetime($nowDatetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				}
 				elseif (!csl_inspect :: is_datetime($firstDatetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 2 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 2 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				}
 				elseif (!csl_inspect :: is_datetime($secondDatetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 3 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 3 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				} else {
 					$max = ($firstDatetime > $secondDatetime ? $firstDatetime : $secondDatetime);
 					$min = ($firstDatetime > $secondDatetime ? $secondDatetime : $firstDatetime);
@@ -195,7 +195,7 @@ if (!class_exists('csl_time')) {
 		}
 		/** Return part info of time.
 		 * @access - public function
-		 * @param - string $time (hh:ii:ss)
+		 * @param - string $time (hh:mm:ss)
 		 * @param - string $index (index h,i,s,12h)
 		 * @return - string|boolean
 		 * @usage - csl_time::sub_time($time,$index)
@@ -203,7 +203,7 @@ if (!class_exists('csl_time')) {
 		public static function sub_time($time = null, $index = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
 				if (!csl_inspect :: is_time($time)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be time hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be time hh:mm:ss', E_USER_WARNING, 1);
 				} else {
 					$timeInfo = explode(':', $time);
 					$indexKey = strtolower($index);
@@ -231,7 +231,7 @@ if (!class_exists('csl_time')) {
 		}
 		/** Return part info of datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $datetime (YYYY-MM-DD hh:mm:ss)
 		 * @param - string $index (index y,m,d,h,i,s,date,24h,12h)
 		 * @return - string|boolean
 		 * @usage - csl_time::sub_datetime($datetime,$index)
@@ -239,7 +239,7 @@ if (!class_exists('csl_time')) {
 		public static function sub_datetime($datetime = null, $index = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
 				if (!csl_inspect :: is_datetime($datetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				} else {
 					$datetimeInfo = explode(' ', $datetime);
 					$indexKey = strtolower($index);
@@ -335,7 +335,7 @@ if (!class_exists('csl_time')) {
 		}
 		/** Jump change datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $datetime (YYYY-MM-DD hh:mm:ss)
 		 * @param - integer $offsetSec (offset sec number -2147483647 ~ 2147483647)
 		 * @return - string|boolean
 		 * @usage - csl_time::jump_datetime($datetime,$offsetSec);
@@ -343,7 +343,7 @@ if (!class_exists('csl_time')) {
 		public static function jump_datetime($datetime = null, $offsetSec = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: int2error(1)) {
 				if (!csl_inspect :: is_datetime($datetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				} else {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
@@ -360,14 +360,14 @@ if (!class_exists('csl_time')) {
 		}
 		/** Datetime conversion total number of seconds, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $datetime (YYYY-MM-DD hh:mm:ss)
 		 * @return - numeric|boolean
 		 * @usage - csl_time::datetime2sec($datetime);
 		 */
 		public static function datetime2sec($datetime = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				if (!csl_inspect :: is_datetime($datetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				} else {
 					if (is_null(self :: $DateTime)) {
 						self :: $DateTime = new DateTime();
@@ -411,7 +411,7 @@ if (!class_exists('csl_time')) {
 		}
 		/** Get switching time is based on the timezone, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 		 * @access - public function
-		 * @param - string $datetime (YYYY-MM-DD hh:ii:ss)
+		 * @param - string $datetime (YYYY-MM-DD hh:mm:ss)
 		 * @param - string $output (output type `host` or `gmt`) : Default gmt
 		 * @return - string|boolean
 		 * @usage - csl_time::switch_by_timezone($datetime,$output);
@@ -420,7 +420,7 @@ if (!class_exists('csl_time')) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1)) {
 				$output = strtolower($output);
 				if (!csl_inspect :: is_datetime($datetime)) {
-					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:ii:ss', E_USER_WARNING, 1);
+					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): The parameter 1 should be datetime YYYY-MM-DD hh:mm:ss', E_USER_WARNING, 1);
 				}
 				elseif ($output != 'host' && $output != 'gmt') {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid output type specified', E_USER_WARNING, 1);

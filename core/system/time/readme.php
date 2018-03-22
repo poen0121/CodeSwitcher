@@ -86,9 +86,9 @@
 	==============================================================
 	Check the now datetime within limits range, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::in_range($nowDatetime,$firstDatetime,$secondDatetime)
-	Param : string $nowDatetime (YYYY-MM-DD hh:ii:ss)
-	Param : string $firstDatetime (YYYY-MM-DD hh:ii:ss)
-	Param : string $secondDatetime (YYYY-MM-DD hh:ii:ss)
+	Param : string $nowDatetime (YYYY-MM-DD hh:mm:ss)
+	Param : string $firstDatetime (YYYY-MM-DD hh:mm:ss)
+	Param : string $secondDatetime (YYYY-MM-DD hh:mm:ss)
 	Return : boolean
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -177,7 +177,7 @@
 	==============================================================
 	Return part info of time.
 	Usage : csl_time::sub_time($time,$index)
-	Param : string $time (hh:ii:ss)
+	Param : string $time (hh:mm:ss)
 	Param : string $index (index h,i,s,12h)
 	Return : string
 	Return Note : Returns FALSE on failure.
@@ -198,7 +198,7 @@
 	==============================================================
 	Return part info of datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::sub_datetime($datetime,$index)
-	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
+	Param : string $datetime (YYYY-MM-DD hh:mm:ss)
 	Param : string $index (index y,m,d,h,i,s,date,24h,12h)
 	Return : string
 	Return Note : Returns FALSE on failure.
@@ -277,7 +277,7 @@
 	==============================================================
 	Jump change datetime, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::jump_datetime($datetime,$offsetSec);
-	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
+	Param : string $datetime (YYYY-MM-DD hh:mm:ss)
 	Param : integer $offsetSec (offset sec number -2147483647 ~ 2147483647)
 	Return : string
 	Return Note : Returns FALSE on failure.
@@ -293,7 +293,7 @@
 	==============================================================
 	Datetime conversion total number of seconds, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::datetime2sec($datetime);
-	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
+	Param : string $datetime (YYYY-MM-DD hh:mm:ss)
 	Return : numeric
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -325,7 +325,7 @@
 	==============================================================
 	Get switching time is based on the timezone, if YYYY beyond calculation range 1 ~ 32767 returns false on failure.
 	Usage : csl_time::switch_by_timezone($datetime,$output);
-	Param : string $datetime (YYYY-MM-DD hh:ii:ss)
+	Param : string $datetime (YYYY-MM-DD hh:mm:ss)
 	Param : string $output (output type `host` or `gmt`) : Default gmt
 	Return : string
 	Return Note : Returns FALSE on failure.

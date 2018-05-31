@@ -64,18 +64,6 @@ PHP Framework ( PHP >= 5.2.0 ) CLI,CGI
 	Version : 2.0.1
 	Version : 2.1.0
 
-> Begin Controler
-
-	Load the script when the system begin.
-
-	Control events begin program is executed before the script.
-
-> Commit Controler
-
-	Load the script when the system shut down.
-
-	After the script executes the control events end program.
-
 > Note Namespace
 
 	System usage :

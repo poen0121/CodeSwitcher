@@ -245,7 +245,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -513,7 +513,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Config failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Config failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Config failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -571,7 +571,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Language failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Language failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Language failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -632,7 +632,7 @@ if (!class_exists('csl_mvc')) {
 											}
 										}
 									} else {
-										csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get ini directory version in \'' . $model . '\'', E_USER_ERROR, 1);
+										csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get ini directory version at \'' . $model . '\'', E_USER_ERROR, 1);
 									}
 								} else {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - intro page does not exist', E_USER_ERROR, 1);
@@ -700,7 +700,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -757,7 +757,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Model failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Model failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Model failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -814,7 +814,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Library failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Library failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Library failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
@@ -878,7 +878,7 @@ if (!class_exists('csl_mvc')) {
 									}
 								}
 							} else {
-								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Template failed - unable to get ini directory version in \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Template failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Template failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);

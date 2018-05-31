@@ -15,13 +15,14 @@
 		├── 1.0.1
 		│	└── main.inc.xml
 	  	└── ini
-			└── version.php
+	  		└── 1.0.1
+				└── version.php
 
 	Step 1 : Create a main directory.
 
-	Step 2 : Create `ini` directory.
+	Step 2 : Create `ini` version directory such as `ini/1.0.1`.
 
-	Step 3 : Create limit version file `ini/version.php`.
+	Step 3 : Create limit version file as `ini/1.0.1/version.php`.
 	Write at the top of the file :
 	-----------------------------------------------------
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');?>

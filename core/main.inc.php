@@ -226,7 +226,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -392,7 +392,7 @@ if (!class_exists('csl_mvc')) {
 						$cleanPath = trim(csl_path :: clean(self :: $rootDir . $eventName), '/');
 						if (isset ($cleanPath { 0 })) {
 							if (is_dir(BASEPATH . 'events/' . $cleanPath)) {
-								$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini'); //ini directory version
+								$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 								if ($version) {
 									$maxVersion = BASEPATH . 'events/' . $cleanPath . '/ini/' . $version . '/version.php';
 									$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -485,7 +485,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'configs/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'configs/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'configs/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'configs/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -543,7 +543,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'languages/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'languages/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'languages/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'languages/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -601,7 +601,7 @@ if (!class_exists('csl_mvc')) {
 							if (!csl_func_arg :: delimit2error()) {
 								$model = (is_null(self :: $script) ? self :: $intro : self :: $script);
 								if (isset ($model { 0 }) && is_dir(BASEPATH . 'events/' . $model)) {
-									$version = self :: $versionClass->get(BASEPATH . 'events/' . $model . '/ini'); //ini directory version
+									$version = self :: $versionClass->get(BASEPATH . 'events/' . $model . '/ini', '', 'version.php'); //ini directory version
 									if ($version) {
 										$maxVersion = BASEPATH . 'events/' . $model . '/ini/' . $version . '/version.php';
 										$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -673,7 +673,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'events/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'events/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -730,7 +730,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'models/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'models/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'models/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'models/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -787,7 +787,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'libraries/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'libraries/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'libraries/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'libraries/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
@@ -846,7 +846,7 @@ if (!class_exists('csl_mvc')) {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 						}
 						elseif (is_dir(BASEPATH . 'templates/' . $cleanPath)) {
-							$version = self :: $versionClass->get(BASEPATH . 'templates/' . $cleanPath . '/ini'); //ini directory version
+							$version = self :: $versionClass->get(BASEPATH . 'templates/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'templates/' . $cleanPath . '/ini/' . $version . '/version.php';
 								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');

@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.24.29
+	Revision	: 1.24.30
 	Notes		:
 
 	Revision History:
@@ -64,7 +64,7 @@
 	03-02-2018		Poen		03-02-2018	Poen		Remove the commit program mechanism.
 	03-07-2018		Poen		03-07-2018	Poen		Improve function error message.
 	03-13-2018		Poen		03-13-2018	Poen		Rename call_event function to the start.
-	05-31-2018		Poen		05-31-2018	Poen		Improve the ini file read in version mode.
+	05-31-2018		Poen		06-04-2018	Poen		Improve the ini file read in version mode.
 	05-31-2018		Poen		05-31-2018	Poen		Fix the ini file read in version mode error message.
 	---------------------------------------------------------------------------
 

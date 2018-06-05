@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.24.30
+	Revision	: 1.24.31
 	Notes		:
 
 	Revision History:
@@ -13,7 +13,7 @@
 	09-22-2016		Poen		03-30-2017	Poen		Reforming the program.
 	04-06-2016		Poen		04-06-2017	Poen		Improve the index function to correct the info on the intro page.
 	04-06-2016		Poen		04-06-2017	Poen		Improve call_event function.
-	04-07-2016		Poen		03-13-2018	Poen		Improve the program.
+	04-07-2016		Poen		06-05-2018	Poen		Improve the program.
 	04-20-2017		Poen		04-20-2017	Poen		Support CLI normal error output.
 	04-20-2017		Poen		04-20-2017	Poen		Restricting the CLI mode is the tester mode.
 	04-24-2017		Poen		04-24-2017	Poen		Confirm that the script information is available.

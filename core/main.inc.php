@@ -229,7 +229,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Version failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -395,7 +395,7 @@ if (!class_exists('csl_mvc')) {
 								$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 								if ($version) {
 									$maxVersion = BASEPATH . 'events/' . $cleanPath . '/ini/' . $version . '/version.php';
-									$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+									$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 									if (preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion) && self :: $versionClass->is_exists(BASEPATH . 'events/' . $cleanPath, $maxVersion)) {
 										$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath, (!self :: $tester || !self :: $develop ? $maxVersion : ''));
 										if ($version) {
@@ -488,7 +488,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'configs/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'configs/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Config failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -546,7 +546,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'languages/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'languages/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Language failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -604,7 +604,7 @@ if (!class_exists('csl_mvc')) {
 									$version = self :: $versionClass->get(BASEPATH . 'events/' . $model . '/ini', '', 'version.php'); //ini directory version
 									if ($version) {
 										$maxVersion = BASEPATH . 'events/' . $model . '/ini/' . $version . '/version.php';
-										$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+										$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 										if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 											csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unknown \'' . $model . '\' defined version number', E_USER_ERROR, 1);
 										}
@@ -676,7 +676,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'events/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'events/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Event failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -733,7 +733,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'models/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'models/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Model failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -790,7 +790,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'libraries/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'libraries/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Library failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}
@@ -849,7 +849,7 @@ if (!class_exists('csl_mvc')) {
 							$version = self :: $versionClass->get(BASEPATH . 'templates/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
 							if ($version) {
 								$maxVersion = BASEPATH . 'templates/' . $cleanPath . '/ini/' . $version . '/version.php';
-								$maxVersion = (is_file($maxVersion) && is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
 								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
 									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Template failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
 								}

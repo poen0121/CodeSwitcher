@@ -318,10 +318,10 @@
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
 	Example :
-	csl_mvc::resource_path('resources/test','main.js',false);
+	csl_mvc::resource_path('test','main.js',false);
 	Output >> Server Relative Path
 	Example :
-	csl_mvc::resource_path('resources/test','main.js');
+	csl_mvc::resource_path('test','main.js');
 	Output >> Client URI Relative Path
 	==============================================================
 

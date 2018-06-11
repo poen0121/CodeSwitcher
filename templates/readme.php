@@ -164,7 +164,7 @@
 	Use the csl_mvc::resource_path function to process the output URI.
 	eg:
 	--------------------------------------------------------------
-	<script src="<?=csl_mvc::resource_path('resources/test','main.js');?>"></script>
+	<script src="<?=csl_mvc::resource_path('test','main.js');?>"></script>
 	--------------------------------------------------------------
 
 */

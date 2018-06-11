@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.24.31
+	Revision	: 1.25.31
 	Notes		:
 
 	Revision History:
@@ -57,7 +57,7 @@
 	08-04-2017		Poen		08-04-2017	Poen		Fix the program commit error message.
 	08-04-2017		Poen		08-04-2017	Poen		Fix the program initialization starting point.
 	09-11-2017		Poen		09-11-2017	Poen		Fix the program error log file date.
-	11-08-2017		Poen		11-08-2017	Poen		Ass is_tester function.
+	11-08-2017		Poen		11-08-2017	Poen		Add is_tester function.
 	02-07-2018		Poen		02-07-2018	Poen		Fix PHP 7 content function to retain original input args.
 	03-02-2018		Poen		03-02-2018	Poen		Improve the error 500 display.
 	03-02-2018		Poen		03-02-2018	Poen		Remove the begin program mechanism.
@@ -66,6 +66,7 @@
 	03-13-2018		Poen		03-13-2018	Poen		Rename call_event function to the start.
 	05-31-2018		Poen		06-04-2018	Poen		Improve the ini file read in version mode.
 	05-31-2018		Poen		05-31-2018	Poen		Fix the ini file read in version mode error message.
+	06-11-2018		Poen		06-11-2018	Poen		Add resource_path function.
 	---------------------------------------------------------------------------
 
 >> About

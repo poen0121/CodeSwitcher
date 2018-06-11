@@ -8,7 +8,7 @@
  $CS_CONF['INTRO'] = 'home';
  ==============================================================
  */
-$CS_CONF['INTRO'] = 'home';
+$CS_CONF['INTRO'] = 'router';
 /*
  ==============================================================
  Use the timezone identifier, like UTC or Europe/Lisbon to set the default timezone for the script.

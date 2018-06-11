@@ -21,7 +21,7 @@
 	resources
 	└── main directory
 		├── 1.0.1
-		│	└── resource file
+		│	└── resource anchor file
 	  	└── ini
 	  		└── 1.0.1
 				└── version.php
@@ -43,8 +43,7 @@
 	?>
 	-----------------------------------------------------
 
-	Step 4 : Create a directory such as `1.0.1` version and place your files here.
-
+	Step 4 : Create a directory such as `1.0.1` version and place your resource anchor file here.
 
 >> Revision Rule
 
@@ -71,10 +70,27 @@
 >> Framework Usage Function
 
 	==============================================================
-	Get the available version info from the file directory path name of the CodeSwitcher root directory.
+	Get the relative path from the anchor file name in the CodeSwitcher resource version directory.
+	Usage : csl_mvc::resource_path($model,$anchorName,$uriMode);
+	Param : string $model (model name)
+	Param : string $anchorName (anchor file name at version directory)
+	Param : boolean $uriMode (client URI analysis mode) : Default true
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example :
+	csl_mvc::resource_path('resources/test','main.js',false);
+	Output >> Server Relative Path
+	Example :
+	csl_mvc::resource_path('resources/test','main.js');
+	Output >> Client URI Relative Path
+	==============================================================
+
+	==============================================================
+	Get the available version info from the file directory path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
 	Param : string $pathName (path name in framework)
-	Param : string $mode (returns directory relative path or version number) : Default false
+	Param : boolean $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.
 	Return : string

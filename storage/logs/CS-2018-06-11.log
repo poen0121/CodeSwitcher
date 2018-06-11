@@ -1,0 +1,7 @@
+[11-Jun-2018 12:07:28 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - target 'test' does not exist in D:\xampp\htdocs\test\CodeSwitcher-Router\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher-Router\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tt.js', false)
+#1 D:\xampp\htdocs\test\CodeSwitcher-Router\events\router\1.0.1\main.inc.php(34): example_c->index('test', 'go')
+#2 D:\xampp\htdocs\test\CodeSwitcher-Router\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher-Router\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#4 D:\xampp\htdocs\test\CodeSwitcher-Router\index.php(19): csl_mvc::start()

@@ -112,10 +112,10 @@
 	==============================================================
 
 	==============================================================
-	Get the available version info from the file directory path name of the CodeSwitcher root directory.
+	Get the available version info from the file directory path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
 	Param : string $pathName (path name in framework)
-	Param : string $mode (returns directory relative path or version number) : Default false
+	Param : boolean $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.
 	Return : string
@@ -130,6 +130,8 @@
 	==============================================================
 
 >> Call Resources URI
+
+	Usage : Non-versioned path.
 
 	The resource URI path uses a leading / rather than a relative path unless you use the csl_mvc::form_path function to process the output URI.
 
@@ -146,5 +148,24 @@
 	--------------------------------------------------------------
 	<script src="<?=csl_mvc::form_path('resources/test.js',true);?>"></script>
 	--------------------------------------------------------------
+
+	Usage : Versioned path.
+
+	The resource version URI uses the csl_mvc::resource_path function to process the output URI.
+
+	Example : http://example/CodeSwitcher
+
+	Enter your own URI.
+	eg:
+	--------------------------------------------------------------
+	<script src="/CodeSwitcher/resources/test/1.0.1/main.js"></script>
+	--------------------------------------------------------------
+
+	Use the csl_mvc::resource_path function to process the output URI.
+	eg:
+	--------------------------------------------------------------
+	<script src="<?=csl_mvc::resource_path('resources/test','main.js');?>"></script>
+	--------------------------------------------------------------
+
 */
 ?>

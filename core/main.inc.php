@@ -205,10 +205,10 @@ if (!class_exists('csl_mvc')) {
 			}
 			return $buffer;
 		}
-		/** Get the available version info from the file directory path name of the CodeSwitcher root directory.
+		/** Get the available version info from the file directory path name in the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $pathName (path name in framework)
-		 * @param - string $mode (returns directory relative path or version number) : Default false
+		 * @param - boolean $mode (returns directory relative path or version number) : Default false
 		 * @note - $mode `true` is returns directory relative path.
 		 * @note - $mode `false` is returns version number.
 		 * @return - string|boolean
@@ -257,10 +257,10 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Get the relative path from the file path name of the CodeSwitcher root directory.
+		/** Get the relative path from the file path name in the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $pathName (path name in framework)
-		 * @param - string $uriMode (client URI analysis mode) : Default false
+		 * @param - boolean $uriMode (client URI analysis mode) : Default false
 		 * @return - string|boolean
 		 * @usage - csl_mvc::form_path($pathName,$uriMode);
 		 */
@@ -345,7 +345,7 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
+		/** Returns whether the event index page file exists from the events script directory path name in the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
 		 * @return - boolean
@@ -378,7 +378,7 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns whether the event controller file exists from the events script directory path name of the CodeSwitcher root directory.
+		/** Returns whether the event controller file exists from the events script directory path name in the CodeSwitcher root directory.
 		 * @access - public function
 		 * @param - string $eventName (events script directory path name)
 		 * @return - boolean
@@ -882,6 +882,64 @@ if (!class_exists('csl_mvc')) {
 							}
 						} else {
 							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Template failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
+						}
+					}
+				}
+			} else {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
+			}
+			return false;
+		}
+		/** Get the relative path from the anchor file name in the CodeSwitcher resource version directory.
+		 * @access - public function
+		 * @param - string $model (model name)
+		 * @param - string $anchorName (anchor file name at version directory)
+		 * @param - boolean $uriMode (client URI analysis mode) : Default true
+		 * @return - string|error|boolean
+		 * @usage - csl_mvc::resource_path($model,$anchorName,$uriMode);
+		 */
+		public static function resource_path($model = null, $anchorName = null, $uriMode = true) {
+			self :: trigger();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0) && !csl_func_arg :: string2error(1) && !csl_func_arg :: bool2error(2)) {
+					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
+					}
+					elseif (preg_match('/[\\\\:\/]/i', $anchorName)) {
+						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unknown anchor file name', E_USER_WARNING, 1);
+					} else {
+						$cleanPath = trim(csl_path :: clean(self :: $rootDir . $model), '/');
+						if (!isset ($cleanPath { 0 })) {
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
+						}
+						elseif (is_dir(BASEPATH . 'resources/' . $cleanPath)) {
+							$version = self :: $versionClass->get(BASEPATH . 'resources/' . $cleanPath . '/ini', '', 'version.php'); //ini directory version
+							if ($version) {
+								$maxVersion = BASEPATH . 'resources/' . $cleanPath . '/ini/' . $version . '/version.php';
+								$maxVersion = (is_readable($maxVersion) ? csl_import :: from($maxVersion) : '');
+								if (!preg_match('/^([0-9]{1}|[1-9]{1}[0-9]*)*\.([0-9]{1}|[1-9]{1}[0-9]*)\.([0-9]{1}|[1-9]{1}[0-9]*)$/', $maxVersion)) {
+									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - unknown \'' . $cleanPath . '\' defined version number', E_USER_ERROR, 1);
+								}
+								elseif (!self :: $versionClass->is_exists(BASEPATH . 'resources/' . $cleanPath, $maxVersion)) {
+									csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - defined \'' . $cleanPath . '\' version \'' . $maxVersion . '\' has not been established', E_USER_ERROR, 1);
+								} else {
+									$version = self :: $versionClass->get(BASEPATH . 'resources/' . $cleanPath, (!self :: $tester || !self :: $develop ? $maxVersion : ''));
+									if ($version) {
+										$file = BASEPATH . 'resources/' . $cleanPath . '/' . $version . '/' . $anchorName;
+										if (is_file($file) && is_readable($file)) {
+											return self :: form_path('resources/' . $cleanPath . '/' . $version . '/' . $anchorName, $uriMode);
+										} else {
+											csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - could not load \'' . $cleanPath . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
+										}
+									} else {
+										csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - unable to get \'' . $cleanPath . '\' version', E_USER_ERROR, 1);
+									}
+								}
+							} else {
+								csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - unable to get ini directory version at \'' . $cleanPath . '\'', E_USER_ERROR, 1);
+							}
+						} else {
+							csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Resource failed - target \'' . $cleanPath . '\' does not exist', E_USER_ERROR, 1);
 						}
 					}
 				}

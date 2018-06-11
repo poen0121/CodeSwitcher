@@ -71,10 +71,10 @@
 	Note: csl_mvc::start function only be called within the events script directory index.php file.
 
 	==============================================================
-	Get the available version info from the file directory path name of the CodeSwitcher root directory.
+	Get the available version info from the file directory path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::version($pathName,$mode);
 	Param : string $pathName (path name in framework)
-	Param : string $mode (returns directory relative path or version number) : Default false
+	Param : boolean $mode (returns directory relative path or version number) : Default false
 	Note : $mode `true` is returns directory relative path.
 	Note : $mode `false` is returns version number.
 	Return : string
@@ -89,10 +89,10 @@
 	==============================================================
 
 	==============================================================
-	Get the relative path from the file path name of the CodeSwitcher root directory.
+	Get the relative path from the file path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::form_path($pathName,$uriMode);
 	Param : string $pathName (path name in framework)
-	Param : string $uriMode (client URI analysis mode) : Default false
+	Param : boolean $uriMode (client URI analysis mode) : Default false
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -130,7 +130,7 @@
 	==============================================================
 
 	==============================================================
-	Returns whether the event index page file exists from the events script directory path name of the CodeSwitcher root directory.
+	Returns whether the event index page file exists from the events script directory path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::is_portal($eventName);
 	Param : string $eventName (events script directory path name)
 	Return : boolean
@@ -145,7 +145,7 @@
 	==============================================================
 
 	==============================================================
-	Returns whether the event controller file exists from the events script directory path name of the CodeSwitcher root directory.
+	Returns whether the event controller file exists from the events script directory path name in the CodeSwitcher root directory.
 	Usage : csl_mvc::is_event($eventName);
 	Param : string $eventName (events script directory path name)
 	Return : boolean
@@ -306,6 +306,23 @@
 	Example :
 	csl_mvc::view_template('example',array('text'=>'Content'),true);
 	Output >> Contents String
+	==============================================================
+
+	==============================================================
+	Get the relative path from the anchor file name in the CodeSwitcher resource version directory.
+	Usage : csl_mvc::resource_path($model,$anchorName,$uriMode);
+	Param : string $model (model name)
+	Param : string $anchorName (anchor file name at version directory)
+	Param : boolean $uriMode (client URI analysis mode) : Default true
+	Return : string
+	Return Note : Returns FALSE on failure.
+	--------------------------------------------------------------
+	Example :
+	csl_mvc::resource_path('resources/test','main.js',false);
+	Output >> Server Relative Path
+	Example :
+	csl_mvc::resource_path('resources/test','main.js');
+	Output >> Client URI Relative Path
 	==============================================================
 
 >> CodeSwitcher System Configuration

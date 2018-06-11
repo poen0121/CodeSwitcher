@@ -70,7 +70,7 @@
 >> Framework Usage Function
 
 	==============================================================
-	Get the relative path from the version anchor file name in the CodeSwitcher resource directory.
+	Get the relative path from the version of the anchor file in the CodeSwitcher resource directory.
 	Usage : csl_mvc::resource_path($model,$anchorName,$uriMode);
 	Param : string $model (model name)
 	Param : string $anchorName (anchor file name at version directory)

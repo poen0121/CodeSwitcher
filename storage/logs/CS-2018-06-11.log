@@ -1,7 +1,390 @@
-[11-Jun-2018 12:07:28 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - target 'test' does not exist in D:\xampp\htdocs\test\CodeSwitcher-Router\events\example\1.0.1\main.inc.php on line 14
+[11-Jun-2018 11:13:15 Asia/Taipei] CS-PHP Warning: csl_mvc::resource_path(): Unknown anchor file name in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
 Stack trace:
-#0 D:\xampp\htdocs\test\CodeSwitcher-Router\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tt.js', false)
-#1 D:\xampp\htdocs\test\CodeSwitcher-Router\events\router\1.0.1\main.inc.php(34): example_c->index('test', 'go')
-#2 D:\xampp\htdocs\test\CodeSwitcher-Router\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
-#3 D:\xampp\htdocs\test\CodeSwitcher-Router\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
-#4 D:\xampp\htdocs\test\CodeSwitcher-Router\index.php(19): csl_mvc::start()
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tc/t.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:13:25 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - target 'test' does not exist in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:13:50 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - unable to get ini directory version at 'test' in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:14:06 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - defined 'test' version '1.0.1' has not been established in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:14:19 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - defined 'test' version '1.0.1' has not been established in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:14:41 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - defined 'test' version '1.0.1' has not been established in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:14:48 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - defined 'test' version '1.0.1' has not been established in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:15:13 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - could not load 'test' version '1.0.1' main file in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:15:14 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - could not load 'test' version '1.0.1' main file in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:16:23 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - could not load 'test' version '1.0.1' main file in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tct.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:19:05 Asia/Taipei] CS-PHP Fatal error: csl_mvc::resource_path(): Resource failed - could not load 'test' version '1.0.1' main file in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 14
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(14): csl_mvc::resource_path('test', 'tt.txt')
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:54:34 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:54:34 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:54:46 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:54:46 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:55:15 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:55:15 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:55:49 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:55:49 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(620): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:56:07 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:56:07 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:25 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:25 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:44 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(622): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:44 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(622): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:51 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(622): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:57:51 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(622): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:18 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:18 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:32 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(624): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:32 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(624): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:54 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(624): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:58:54 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(624): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:10 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:10 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:24 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:24 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:41 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:41 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:50 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 11:59:50 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:00:08 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:00:08 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:01:20 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:01:20 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:01:43 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:01:43 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:25 Asia/Taipei] PHP Warning: include(../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:25 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:39 Asia/Taipei] PHP Warning: include(../../../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:39 Asia/Taipei] PHP Warning: include(): Failed opening '../../../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:48 Asia/Taipei] PHP Warning: include(./resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:02:48 Asia/Taipei] PHP Warning: include(): Failed opening './resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:04 Asia/Taipei] PHP Warning: include(../../../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:04 Asia/Taipei] PHP Warning: include(): Failed opening '../../../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:10 Asia/Taipei] PHP Warning: include(../resources/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:10 Asia/Taipei] PHP Warning: include(): Failed opening '../resources/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:22 Asia/Taipei] PHP Warning: include(../resources/1.0.1/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:22 Asia/Taipei] PHP Warning: include(): Failed opening '../resources/1.0.1/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:29 Asia/Taipei] PHP Warning: include(../../resources/1.0.1/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:29 Asia/Taipei] PHP Warning: include(): Failed opening '../../resources/1.0.1/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:36 Asia/Taipei] PHP Warning: include(../../../../resources/1.0.1/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:36 Asia/Taipei] PHP Warning: include(): Failed opening '../../../../resources/1.0.1/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:40 Asia/Taipei] PHP Warning: include(../../../resources/1.0.1/tt.js): failed to open stream: No such file or directory in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()
+[11-Jun-2018 12:03:40 Asia/Taipei] PHP Warning: include(): Failed opening '../../../resources/1.0.1/tt.js' for inclusion (include_path='D:\xampp\php\PEAR') in D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php on line 13
+Stack trace:
+#0 D:\xampp\htdocs\test\CodeSwitcher\events\example\1.0.1\main.inc.php(13): include()
+#1 D:\xampp\htdocs\test\CodeSwitcher\core\system\import\main.inc.php(17): include('D:\xampp\htdocs\t...')
+#2 D:\xampp\htdocs\test\CodeSwitcher\core\main.inc.php(621): csl_import::from('D:/xampp/htdocs/t...')
+#3 D:\xampp\htdocs\test\CodeSwitcher\events\example\index.php(4): csl_mvc::start()

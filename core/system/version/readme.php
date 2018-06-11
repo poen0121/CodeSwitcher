@@ -63,10 +63,10 @@
 
 	==============================================================
 	Specify search directory to obtain version directory name based on the current script and document root.
-	Usage : Object->get($dir,$limitMaxVersion,$anchorName);
+	Usage : Object->get($dir,$limitMaxVersion,$anchor);
 	Param : string $dir (home directory path)
 	Param : string $limitMaxVersion (limit maximum version) : Default void
-	Param : string $anchorName (anchor file name at version directory) : Default void
+	Param : string $anchor (anchor file name at version directory) : Default void
 	Return : string
 	Return Note : Returns FALSE on failure.
 	--------------------------------------------------------------
@@ -82,10 +82,10 @@
 
 	==============================================================
 	Check the version of the directory exists specified search directory based on the current script and document root.
-	Usage : Object->is_exists($dir,$version,$anchorName);
+	Usage : Object->is_exists($dir,$version,$anchor);
 	Param : string $dir (home directory path)
 	Param : string $version (check version)
-	Param : string $anchorName (anchor file name at version directory) : Default void
+	Param : string $anchor (anchor file name at version directory) : Default void
 	Return : boolean
 	--------------------------------------------------------------
 	Example :

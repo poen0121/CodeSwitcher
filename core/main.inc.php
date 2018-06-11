@@ -905,7 +905,7 @@ if (!class_exists('csl_mvc')) {
 					if (!isset ($model { 0 }) || csl_path :: is_absolute($model) || !csl_path :: is_relative($model)) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument by parameter 1', E_USER_WARNING, 1);
 					}
-					elseif (preg_match('/[\\\\:\/]/i', $anchorName)) {
+					elseif (preg_match('/[\\\\:\/]/i', $anchorName) || !isset ($anchorName { 0 })) {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Unknown anchor file name', E_USER_WARNING, 1);
 					} else {
 						$cleanPath = trim(csl_path :: clean(self :: $rootDir . $model), '/');

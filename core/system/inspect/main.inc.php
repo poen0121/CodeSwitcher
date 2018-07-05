@@ -145,6 +145,7 @@ if (!class_exists('csl_inspect')) {
 					//Array of establishment weighted base
 					$multiply = array (8,7,6,5,4,3,2,1);
 					//Cut string
+					$stringArray = array ();
 					for ($i = 0; $i < $len; $i++) {
 						$stringArray[$i] = substr($id, $i, 1);
 					}

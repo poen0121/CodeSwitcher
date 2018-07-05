@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <?php
+$CS_CONF = array ();
 /*
  ==============================================================
  The introduction page uses the controller script directory name.

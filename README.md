@@ -66,7 +66,7 @@ PHP Framework ( PHP >= 5.2.0 ) CLI,CGI
 
 > Note Namespace
 
-	System usage :
+	Global namespace code :
 
 	use csl_mvc;
 	use csl_error;

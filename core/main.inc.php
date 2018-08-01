@@ -49,11 +49,11 @@ if (!class_exists('csl_mvc')) {
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
-				self :: $runEvent = false; //event running state
+				self :: $runEvent = false; //event running status
 				self :: $rootDir = csl_path :: document_root();
 				self :: $tester = false; //tester mode
 				self :: $develop = false; //develop mode by tester
-				self :: $portal = false; //portal script state
+				self :: $portal = false; //portal script status
 				self :: $versionClass = new csl_version(); //version controller
 				self :: $script = (isset ($_SERVER['SCRIPT_FILENAME']) && is_string($_SERVER['SCRIPT_FILENAME']) ? csl_path :: clean(realpath($_SERVER['SCRIPT_FILENAME'])) : false); //script path
 				if (self :: $script !== false) {
@@ -77,7 +77,7 @@ if (!class_exists('csl_mvc')) {
 			/*---load-system-config---*/
 			self :: $tripSystem = true;
 			$CS_CONF = self :: cue_config('cs');
-			self :: $tripSystem = false; //system default running state
+			self :: $tripSystem = false; //system default running status
 			$CS_CONF = (is_array($CS_CONF) ? $CS_CONF : array ()); //check CodeSwitcher config array type
 			//intro page
 			if (!isset ($CS_CONF['INTRO']) || !is_string($CS_CONF['INTRO'])) {
@@ -172,7 +172,7 @@ if (!class_exists('csl_mvc')) {
 			$error500 = 'templates/error/500';
 			self :: $tripSystem = true;
 			$version = self :: version($error500);
-			self :: $tripSystem = false; //system default running state
+			self :: $tripSystem = false; //system default running status
 			if ($version !== false) {
 				$file = BASEPATH . $error500 . '/' . $version . '/main.inc.php';
 				if (is_file($file) && is_readable($file)) {
@@ -441,7 +441,7 @@ if (!class_exists('csl_mvc')) {
 			}
 			return false;
 		}
-		/** Returns debug display state 0 or 1, a temporarily change.
+		/** Returns debug display status 0 or 1, a temporarily change.
 		 * @access - public function
 		 * @param - boolean $mode (temporarily change mode does not support tester mode) : Default empty
 		 * @return - integer|boolean

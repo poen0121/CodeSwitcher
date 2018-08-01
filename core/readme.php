@@ -31,7 +31,7 @@
 	05-18-2016		Poen		05-18-2017	Poen		Modify the form_path function to add client URI analysis mode.
 	05-18-2016		Poen		05-18-2017	Poen		Modify the index function only to exist for detection.
 	05-19-2016		Poen		05-19-2017	Poen		Debug the form_path function by client URI analysis mode.
-	05-24-2016		Poen		05-24-2017	Poen		Improve the http state 500 status information flexibility customization.
+	05-24-2016		Poen		05-24-2017	Poen		Improve the http status 500 information flexibility customization.
 	05-31-2017		Poen		05-31-2017	Poen		Change the timezone by timezone id.
 	05-31-2017		Poen		06-01-2017	Poen		Improve the program initialization error display.
 	06-01-2017		Poen		06-01-2017	Poen		Add timezone default mechanism.

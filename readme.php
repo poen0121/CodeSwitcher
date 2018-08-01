@@ -181,7 +181,7 @@
 	==============================================================
 
 	==============================================================
-	Returns debug display state 0 or 1, a temporarily change.
+	Returns debug display status 0 or 1, a temporarily change.
 	Usage : csl_mvc::debug($mode);
 	Param : boolean $mode (temporarily change mode does not support tester mode) : Default empty
 	Return : integer
@@ -392,7 +392,7 @@
 	--------------------------------------------------------------
 	Note : General user default is false.
 	About Function : csl_mvc::debug($mode);
-	Function : Returns debug display state 0 or 1, a temporarily change.
+	Function : Returns debug display status 0 or 1, a temporarily change.
 	Param : boolean $mode (temporarily change mode does not support tester mode)
 	Return : integer
 	Return Note : Returns FALSE on failure.

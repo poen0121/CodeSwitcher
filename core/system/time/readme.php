@@ -332,11 +332,11 @@
 	--------------------------------------------------------------
 	Example : Get GMT datetime.
 	csl_time::set_timezone('Asia/Taipei');
-    csl_time::switch_by_timezone('2017-01-01 08:00:00');
+	csl_time::switch_by_timezone('2017-01-01 08:00:00');
 	Output >> 2017-01-01 00:00:00
 	Example : Get host datetime.
 	csl_time::set_timezone('Asia/Taipei');
-    csl_time::switch_by_timezone('2017-01-01 00:00:00','host');
+	csl_time::switch_by_timezone('2017-01-01 00:00:00','host');
 	Output >> 2017-01-01 08:00:00
 	==============================================================
 

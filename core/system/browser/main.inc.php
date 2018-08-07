@@ -119,7 +119,7 @@ if (!class_exists('csl_browser')) {
 						}
 						break;
 					case 'version' :
-					    $matches = null;
+						$matches = null;
 						if (preg_match('/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/i', $userAgent, $matches)) {
 							$info = (isset ($matches[1]) ? $matches[1] : null);
 						}

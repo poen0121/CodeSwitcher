@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.25.32
+	Revision	: 1.25.33
 	Notes		:
 
 	Revision History:
@@ -68,6 +68,7 @@
 	05-31-2018		Poen		05-31-2018	Poen		Fix the ini file read in version mode error message.
 	06-11-2018		Poen		06-11-2018	Poen		Add resource_path function.
 	06-11-2018		Poen		06-11-2018	Poen		Fix the resource_path function.
+	08-08-2018		Poen		08-08-2018	Poen		Fix the error begin initialization.
 	---------------------------------------------------------------------------
 
 >> About

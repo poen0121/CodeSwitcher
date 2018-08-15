@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_browser function
-	Revision	: 2.12.5
+	Revision	: 2.12.6
 	Notes		:
 
 	Revision History:
@@ -20,6 +20,7 @@
 	07-17-2016		Poen		07-17-2017	Poen		Fix info function index 'server' for IIS.
 	02-05-2018		Poen		02-05-2018	Poen		Fix PHP 7 content function to retain original input args.
 	08-15-2018		Poen		08-15-2018	Poen		Add info function index `pathinfo`.
+	08-15-2018		Poen		08-15-2018	Poen		Fix info function index `pathinfo`.
 	---------------------------------------------------------------------------
 
 >> About

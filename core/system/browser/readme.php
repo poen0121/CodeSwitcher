@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_browser function
-	Revision	: 2.12.6
+	Revision	: 2.12.7
 	Notes		:
 
 	Revision History:

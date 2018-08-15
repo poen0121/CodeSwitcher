@@ -84,12 +84,12 @@ if (!class_exists('csl_browser')) {
 							if ($uriPath) {
 								if (strpos($uriPath, $_SERVER['SCRIPT_NAME']) === 0) {
 									$info = substr($uriPath, strlen($_SERVER['SCRIPT_NAME']));
-									$info = (isset ($info { 0 }) ? '/' . ltrim($info, '/') : null);
+									$info = (isset ($info { 0 }) ? '/' . ltrim(urldecode($info), '/') : null);
 								}
 								elseif (strpos($uriPath, dirname($_SERVER['SCRIPT_NAME'])) === 0) {
 									$info = substr($uriPath, strlen(dirname($_SERVER['SCRIPT_NAME'])));
 									$info = ltrim($info, '/');
-									$info = (isset ($info { 0 }) ? '/' . $info : null);
+									$info = (isset ($info { 0 }) ? '/' . urldecode($info) : null);
 								}
 							}
 						}

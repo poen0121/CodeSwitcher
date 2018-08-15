@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_header function
-	Revision	: 2.8.2
+	Revision	: 2.8.3
 	Notes		:
 
 	Revision History:
@@ -17,6 +17,7 @@
 	03-27-2017		Poen		03-27-2017	Poen		Fix http function error message.
 	04-28-2017		Poen		04-28-2017	Poen		Debug http function.
 	02-06-2018		Poen		02-06-2018	Poen		Fix PHP 7 content function to retain original input args.
+	08-15-2018		Poen		08-15-2018	Poen		Improve the http function.
 	---------------------------------------------------------------------------
 
 >> About

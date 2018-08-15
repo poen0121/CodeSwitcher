@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
-if (!class_exists('csl_path')) {
+if (!class_exists('csl_header')) {
 	/**
 	 * @about - processing file path.
 	 */
@@ -173,7 +173,7 @@ if (!class_exists('csl_path')) {
 				if (self :: is_absolute($scriptName) || (!self :: is_root_model($scriptName) && !self :: is_relative($scriptName))) {
 					csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Invalid argument', E_USER_WARNING, 1);
 				}
-				elseif (isset ($_SERVER['REQUEST_SCHEME'] { 0 }, $_SERVER['SERVER_NAME'] { 0 }, $_SERVER['SERVER_PORT'] { 0 }) && is_string($_SERVER['REQUEST_SCHEME']) && is_string($_SERVER['SERVER_NAME']) && is_string($_SERVER['SERVER_PORT'])) {
+				elseif (isset ($_SERVER['REQUEST_SCHEME'] { 0 }, $_SERVER['SERVER_NAME'] { 0 }, $_SERVER['SERVER_PORT'] { 0 })) {
 					return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ($_SERVER['SERVER_PORT'] != '80' && $_SERVER['SERVER_PORT'] != '443' ? ':' . $_SERVER['SERVER_PORT'] : '') . self :: clean($scriptName);
 				}
 			}

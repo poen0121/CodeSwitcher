@@ -20,7 +20,7 @@ if (!class_exists('csl_browser')) {
 					'HTTP_FORWARDED',
 					'REMOTE_ADDR'
 				) as $key) {
-				if (isset ($_SERVER[$key]) && is_string($_SERVER[$key])) {
+					if (isset ($_SERVER[$key] { 0 })) {
 					foreach (explode(',', $_SERVER[$key]) as $ip) {
 						$ip = trim($ip);
 						if ((bool) filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -40,6 +40,7 @@ if (!class_exists('csl_browser')) {
 		 * host : http host
 		 * source : http source
 		 * url : browser URL
+		 * pathinfo : URI path info
 		 * ip : client ip
 		 * proxy : proxy address
 		 * name : browser name
@@ -53,36 +54,51 @@ if (!class_exists('csl_browser')) {
 		public static function info($index = null) {
 			if (!csl_func_arg :: delimit2error() && !csl_func_arg :: string2error(0)) {
 				$indexKey = strtolower($index);
-				$userAgent = (isset ($_SERVER['HTTP_USER_AGENT']) && is_string($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
+				$userAgent = (isset ($_SERVER['HTTP_USER_AGENT'] { 0 }) ? $_SERVER['HTTP_USER_AGENT'] : '');
 				$info = null;
 				switch ($indexKey) {
 					case 'language' :
-						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE'] { 0 }) && is_string($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+						if (isset ($_SERVER['HTTP_ACCEPT_LANGUAGE'] { 0 })) {
 							$info = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 2);
 							$info = $info[0];
 						}
 						break;
 					case 'server' :
-						$info = (isset ($_SERVER['LOCAL_ADDR'] { 0 }) && is_string($_SERVER['LOCAL_ADDR']) ? $_SERVER['LOCAL_ADDR'] : null); //Windows IIS
-						$info = (isset ($_SERVER['SERVER_ADDR'] { 0 }) && is_string($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : $info);
+						$info = (isset ($_SERVER['LOCAL_ADDR'] { 0 }) ? $_SERVER['LOCAL_ADDR'] : null); //Windows IIS
+						$info = (isset ($_SERVER['SERVER_ADDR'] { 0 }) ? $_SERVER['SERVER_ADDR'] : $info);
 						break;
 					case 'host' :
-						$info = (isset ($_SERVER['HTTP_HOST'] { 0 }) && is_string($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null);
+						$info = (isset ($_SERVER['HTTP_HOST'] { 0 }) ? $_SERVER['HTTP_HOST'] : null);
 						break;
 					case 'source' :
-						$info = (isset ($_SERVER['HTTP_REFERER'] { 0 }) && is_string($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
+						$info = (isset ($_SERVER['HTTP_REFERER'] { 0 }) ? $_SERVER['HTTP_REFERER'] : null);
 						break;
 					case 'url' :
-						if (isset ($_SERVER['REQUEST_SCHEME'] { 0 }, $_SERVER['HTTP_HOST'] { 0 }) && is_string($_SERVER['REQUEST_SCHEME']) && is_string($_SERVER['HTTP_HOST'])) {
-							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI']) && is_string($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '');
+						if (isset ($_SERVER['REQUEST_SCHEME'] { 0 }, $_SERVER['HTTP_HOST'] { 0 })) {
+							$info = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . (isset ($_SERVER['REQUEST_URI'] { 0 }) ? $_SERVER['REQUEST_URI'] : '');
+						}
+						break;
+					case 'pathinfo' :
+						if (isset ($_SERVER['REQUEST_URI'] { 0 }, $_SERVER['SCRIPT_NAME'] { 0 })) {
+							$uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+							if ($uriPath) {
+								if (strpos($uriPath, $_SERVER['SCRIPT_NAME']) === 0) {
+									$info = substr($uriPath, strlen($_SERVER['SCRIPT_NAME']));
+									$info = (isset ($info { 0 }) ? $info : null);
+								}
+								elseif (strpos($uriPath, dirname($_SERVER['SCRIPT_NAME'])) === 0) {
+									$info = substr($uriPath, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+									$info = (isset ($info { 0 }) ? $info : null);
+								}
+							}
 						}
 						break;
 					case 'ip' :
 						$info = self :: client_ip();
 						break;
 					case 'proxy' :
-						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR']) && is_string($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
-							$info = (isset ($_SERVER['REMOTE_ADDR'] { 0 }) && is_string($_SERVER['REMOTE_ADDR']) ? (filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) ? $_SERVER['REMOTE_ADDR'] : null) : null);
+						if (isset ($_SERVER['HTTP_X_FORWARDED_FOR'] { 0 }) && $_SERVER['HTTP_X_FORWARDED_FOR'] != 'unknown') {
+							$info = (isset ($_SERVER['REMOTE_ADDR'] { 0 }) ? (filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) ? $_SERVER['REMOTE_ADDR'] : null) : null);
 						}
 						break;
 					case 'name' :
@@ -176,7 +192,7 @@ if (!class_exists('csl_browser')) {
 		 */
 		public static function in_source() {
 			if (!csl_func_arg :: delimit2error()) {
-				if (isset ($_SERVER['HTTP_REFERER'] { 0 }, $_SERVER['SERVER_NAME'] { 0 }) && is_string($_SERVER['HTTP_REFERER']) && is_string($_SERVER['SERVER_NAME'])) {
+				if (isset ($_SERVER['HTTP_REFERER'] { 0 }, $_SERVER['SERVER_NAME'] { 0 })) {
 					$source = parse_url($_SERVER['HTTP_REFERER']);
 					if (isset ($source['host'] { 0 }) && $source['host'] == $_SERVER['SERVER_NAME']) {
 						return true;

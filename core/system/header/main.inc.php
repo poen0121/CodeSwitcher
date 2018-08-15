@@ -47,7 +47,7 @@ if (!class_exists('csl_header')) {
 					$fileName = null;
 					$lineNum = null;
 					if (!headers_sent($fileName, $lineNum)) {
-						header((isset ($_SERVER['SERVER_PROTOCOL'] { 0 }) && is_string($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1') . ' ' . $code . ' ' . $text, TRUE, $code);
+						header((isset ($_SERVER['SERVER_PROTOCOL'] { 0 }) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1') . ' ' . $code . ' ' . $text, TRUE, $code);
 						return true;
 					} else {
 						csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): Cannot modify header information - headers already sent by (output started at ' . $fileName . ':' . $lineNum . ')', E_USER_WARNING, 1);

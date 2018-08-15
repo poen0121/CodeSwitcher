@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
-if (!class_exists('csl_header')) {
+if (!class_exists('csl_path')) {
 	/**
 	 * @about - processing file path.
 	 */

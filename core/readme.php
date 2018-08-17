@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.25.33
+	Revision	: 1.26.33
 	Notes		:
 
 	Revision History:
@@ -69,6 +69,7 @@
 	06-11-2018		Poen		06-11-2018	Poen		Add resource_path function.
 	06-11-2018		Poen		06-11-2018	Poen		Fix the resource_path function.
 	08-08-2018		Poen		08-08-2018	Poen		Fix the error begin initialization.
+	08-17-2018		Poen		08-17-20187	Poen		Add is_cli function.
 	---------------------------------------------------------------------------
 
 >> About

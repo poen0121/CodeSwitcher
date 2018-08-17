@@ -22,6 +22,7 @@ if (!class_exists('csl_mvc')) {
 	 * @about - this is the code version control framework.
 	 */
 	class csl_mvc {
+		private static $CLI;
 		private static $runEvent;
 		private static $scriptEvent;
 		private static $versionClass;
@@ -50,6 +51,7 @@ if (!class_exists('csl_mvc')) {
 				csl_debug :: report(true); //error mode E_ALL
 				csl_debug :: record(true); //save error logs
 				csl_debug :: display(true); //erorr display
+				self :: $CLI = (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? true : false);
 				self :: $runEvent = false; //event running status
 				self :: $rootDir = csl_path :: document_root();
 				self :: $tester = false; //tester mode
@@ -158,7 +160,7 @@ if (!class_exists('csl_mvc')) {
 			//set error log storage mode
 			csl_debug :: record($CS_CONF['ERROR_LOG_MODE']);
 			//source IP verification tester
-			self :: $tester = (isset ($_SERVER['argc']) && $_SERVER['argc'] >= 1 ? true : (preg_match('/^(localhost|127.0.0.1)$/i', (isset ($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) ? true : in_array(csl_browser :: info('ip'), (isset ($CS_CONF['TESTER_IP']) && is_array($CS_CONF['TESTER_IP']) ? $CS_CONF['TESTER_IP'] : array ()), true)));
+			self :: $tester = (self :: $CLI ? true : (preg_match('/^(localhost|127.0.0.1)$/i', (isset ($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '')) ? true : in_array(csl_browser :: info('ip'), (isset ($CS_CONF['TESTER_IP']) && is_array($CS_CONF['TESTER_IP']) ? $CS_CONF['TESTER_IP'] : array ()), true)));
 			//set tester mode
 			if (self :: $tester) {
 				//set debug mode
@@ -205,6 +207,22 @@ if (!class_exists('csl_mvc')) {
 				return file_get_contents(self :: $error500 . 'content.txt');
 			}
 			return $buffer;
+		}
+		/** Returns the status of the interface cli type.
+		 * @access - public function
+		 * @return - boolean
+		 * @usage - csl_mvc::is_cli();
+		 */
+		public static function is_cli() {
+			self :: trigger();
+			if (self :: $tripSystem) {
+				if (!csl_func_arg :: delimit2error()) {
+					return self :: $CLI;
+				}
+			} else {
+				csl_error :: cast(__CLASS__ . '::' . __FUNCTION__ . '(): No direct script access allowed', E_USER_NOTICE, 1);
+			}
+			return false;
 		}
 		/** Get the available version info from the file directory path name in the CodeSwitcher root directory.
 		 * @access - public function

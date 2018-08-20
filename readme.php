@@ -76,7 +76,7 @@
 	Return : boolean
 	Return Note : FALSE when it fails or does not.
 	--------------------------------------------------------------
-	Example : $ php /var/www/html/index.php
+	Example : $ php /var/www/index.php
 	csl_mvc::is_cli();
 	Output >> TRUE
 	Example : http://example.com/index.php

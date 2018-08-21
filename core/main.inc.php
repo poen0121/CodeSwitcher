@@ -609,7 +609,7 @@ if (!class_exists('csl_mvc')) {
 				//initialize system config
 				if (self :: init(__FUNCTION__)) {
 					//open output buffer
-					if (ob_start('csl_mvc::browse')) {
+					if (ob_start('self::browse')) {
 						if (self :: $portal) {
 							if (!csl_func_arg :: delimit2error()) {
 								$model = (is_null(self :: $script) ? self :: $intro : self :: $script);

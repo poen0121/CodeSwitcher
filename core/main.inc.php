@@ -179,13 +179,7 @@ if (!class_exists('csl_mvc')) {
 			if ($version !== false) {
 				$file = BASEPATH . $error500 . '/' . $version . '/main.inc.php';
 				if (is_file($file) && is_readable($file)) {
-					$file = BASEPATH . $error500 . '/' . $version . '/content.txt';
-					if (is_file($file) && is_readable($file)) {
-						self :: $error500 = BASEPATH . $error500 . '/' . $version . '/';
-					} else {
-						csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . '(): Init failed - could not load \'content.txt\' file for \'' . $error500 . '\'', E_USER_ERROR, 1);
-						return false;
-					}
+					self :: $error500 = BASEPATH . $error500 . '/' . $version . '/';
 				} else {
 					csl_error :: cast(__CLASS__ . '::' . $__FUNCTION__ . '(): Init failed - could not load \'' . $error500 . '\' version \'' . $version . '\' main file', E_USER_ERROR, 1);
 					return false;
@@ -204,7 +198,7 @@ if (!class_exists('csl_mvc')) {
 		private static function browse($buffer) {
 			if (is_array(error_get_last()) && !csl_debug :: is_display() && self :: $error500) {
 				include (self :: $error500 . 'main.inc.php');
-				return file_get_contents(self :: $error500 . 'content.txt');
+ 				$buffer = substr(ob_get_contents(), strlen($buffer));
 			}
 			return $buffer;
 		}

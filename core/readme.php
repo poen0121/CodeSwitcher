@@ -3,7 +3,7 @@
 >> Information
 
 	Title		: csl_mvc function
-	Revision	: 1.26.33
+	Revision	: 1.26.34
 	Notes		:
 
 	Revision History:
@@ -48,7 +48,7 @@
 	06-22-2016		Poen		06-22-2017	Poen		Improve logs function.
 	06-22-2016		Poen		06-22-2017	Poen		Improve debug function.
 	06-22-2017		Poen		06-22-2017	Poen		Add peel error log mechanism.
-	07-14-2017		Poen		07-14-2017	Poen		Fix the program error 500 display.
+	07-14-2017		Poen		08-21-2018	Poen		Fix the program error 500 display.
 	07-14-2017		Poen		07-14-2017	Poen		Improve bufferClean function.
 	07-14-2017		Poen		07-14-2017	Poen		Modify bufferClean function to public.
 	07-14-2017		Poen		07-14-2017	Poen		Add an error status message at the bufferClean function buffer level.

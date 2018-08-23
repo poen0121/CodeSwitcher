@@ -277,8 +277,7 @@ if (!class_exists('csl_time')) {
 		 */
 		public static function get_microtime() {
 			if (!csl_func_arg :: delimit2error()) {
-				list ($usec, $sec) = explode(' ', microtime());
-				return (double) ($sec . '.' . str_replace('0.', '', $usec));
+				return microtime(true);
 			}
 			return false;
 		}

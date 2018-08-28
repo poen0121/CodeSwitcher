@@ -7,7 +7,7 @@ if (!class_exists('csl_language_content') && !class_exists('csl_language')) {
 	 * @return - object
 	 * @usage - Object var name=new csl_language_content(&$handle);
 	 */
-	class csl_language_content {
+	final class csl_language_content {
 		private $handle;
 		function __construct(& $handle = null) {
 			$caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
